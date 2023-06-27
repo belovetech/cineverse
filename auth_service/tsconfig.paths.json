@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"],
+      "@authentication/*": ["src/authentication/*"],
+      "@verification/*": ["src/verification/*"],
+      "@healthcheck/*": ["src/healthcheck/*"],
+      "@datasources/*": ["src/datasources/*"],
+      "@models/*": ["src/models"],
+      "@internals/*": [
+        "src/libs/*",
+        "src/datasources/*",
+        "src/models/*",
+        "src/repositories/*",
+        "src/services/*"
+      ]
+    }
+  }
+}

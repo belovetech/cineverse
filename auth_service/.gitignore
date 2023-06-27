@@ -1,0 +1,13 @@
+# package directories
+node_modules
+jspm_packages
+.nyc_output
+coverage
+
+.DS_Store
+.env
+.eslintcache
+.vscode
+
+# esbuild directories
+.esbuild
