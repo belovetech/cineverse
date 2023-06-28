@@ -10,7 +10,7 @@
     "allowJs": true,
     "pretty": true,
     "declaration": true,
-    "declarationDir": "src/types",
+    "declarationDir": "./types",
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
