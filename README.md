@@ -6,6 +6,6 @@ A movie ticketing system is a ticketing system that allows moviegoers to choose 
 
 ![](movie-ticketing-system-ERD.jpg)
 
-### microservice design
+### Microservice Design
 
 ![](movie-ticketing-system-design.jpeg)
