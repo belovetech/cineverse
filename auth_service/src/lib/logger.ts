@@ -1,4 +1,5 @@
 import { addColors, createLogger, transports, format } from 'winston';
+
 const { combine, timestamp, colorize, printf } = format;
 
 class Logger {
@@ -31,7 +32,7 @@ class Logger {
     ];
   }
 
-  public logger() {
+  public createLogger() {
     return createLogger({
       level: this.level(),
       levels: this.levels,
@@ -42,5 +43,5 @@ class Logger {
   }
 }
 
-const logger = new Logger();
-export default logger.logger();
+const logger: Logger = new Logger();
+export default logger.createLogger();
