@@ -8,6 +8,6 @@ coverage
 .env
 .eslintcache
 .vscode
-
+logs/
 # esbuild directories
 .esbuild

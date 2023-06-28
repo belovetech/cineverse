@@ -1,5 +1,6 @@
 import express from 'express';
 import IRoute from './interfaces/routes.interface';
+import logger from './lib/logger';
 
 export default class App {
   public app: express.Application;
@@ -16,8 +17,7 @@ export default class App {
 
   public listen() {
     this.app.listen(this.port, () => {
-      // logger info
-      console.log(`App listening on localhost:${this.port}`);
+      logger.debug(`App listening on localhost:${this.port}`);
     });
   }
 
