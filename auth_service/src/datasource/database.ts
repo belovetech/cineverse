@@ -5,7 +5,6 @@ import logger from '@libs/logger';
 
 dotenv.config({ path: __dirname + '/../.env' });
 
-const url = process.env.DB_URL;
 const options: ConnectOptions & ConnectionOptionExtend = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -36,5 +35,11 @@ class MongoClient {
   }
 }
 
+let url;
+if (process.env.NODE_ENV === 'testing') {
+  url = process.env.TEST_DB_URL;
+} else {
+  url = process.env.DB_URL;
+}
 const dbClient = new MongoClient(url, options);
 export default dbClient;
