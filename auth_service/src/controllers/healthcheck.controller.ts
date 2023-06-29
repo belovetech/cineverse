@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 export default class HealthCheck {
-  public async ping(req: Request, res: Response, next: NextFunction) {
+  public ping(_req: Request, res: Response, next: NextFunction) {
     try {
       return res.status(200).json({ message: 'Pong!' });
     } catch (error) {

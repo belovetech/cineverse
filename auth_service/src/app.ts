@@ -1,7 +1,8 @@
 import express from 'express';
 import IRoute from '@interfaces/routes.interface';
 import logger from '@libs/logger';
-import morgan, { StreamOptions } from 'morgan';
+import morgan from 'morgan';
+import customMorgan from '@middlewares/morgan.middleware';
 
 export default class App {
   public app: express.Application;
@@ -19,9 +20,9 @@ export default class App {
 
   public listen() {
     this.app.listen(this.port, () => {
-      logger.info('========================================');
+      logger.info('==================================');
       logger.info(`App listening on localhost:${this.port} 🚀`);
-      logger.info('========================================');
+      logger.info('==================================');
     });
   }
 
@@ -31,20 +32,9 @@ export default class App {
 
   private inititializeMiddlewares() {
     if (this.env === 'development') {
-      this.app.use(this.morgan());
+      this.app.use(customMorgan());
     } else {
       this.app.use(morgan('combined'));
     }
-  }
-
-  private morgan() {
-    const stream: StreamOptions = {
-      write: message => logger.http(message),
-    };
-    const skip = () => {
-      return this.env !== 'development';
-    };
-    const format = ':method :url :status :res[content-length] - :response-time ms';
-    return morgan(format, { stream, skip });
   }
 }

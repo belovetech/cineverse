@@ -6,6 +6,7 @@
       "@controllers/*": ["controllers/*"],
       "@datasources/*": ["datasources/*"],
       "@interfaces/*": ["interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@services/*": ["services/*"],
       "@routes/*": ["routes/*"],
       "@models/*": ["models/*"],
