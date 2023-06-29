@@ -26,7 +26,7 @@ class Logger {
   }
 
   private transports() {
-    const transport2: DailyRotateFile = new DailyRotateFile({
+    const transport1: DailyRotateFile = new DailyRotateFile({
       filename: 'logs/app-%DATE%.log',
       auditFile: 'logs/app.json',
       datePattern: 'YYYY-MM-DD-HH',
@@ -34,8 +34,21 @@ class Logger {
       maxSize: '20m',
       maxFiles: '1d',
     });
-    const transport1 = new transports.File({ filename: 'logs/error.log', level: 'error' });
-    return [new transports.Console(), transport1, transport2];
+    const transport2: DailyRotateFile = new DailyRotateFile({
+      level: 'http',
+      filename: 'logs/request-%DATE%.log',
+      auditFile: 'logs/request.json',
+      datePattern: 'YYYY-MM-DD-HH',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+      format: format.prettyPrint(),
+    });
+    const transport3 = new transports.File({
+      level: 'error',
+      filename: 'logs/error.log',
+    });
+    return [new transports.Console(), transport1, transport2, transport3];
   }
 
   public createLogger() {

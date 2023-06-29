@@ -1,6 +1,7 @@
 import express from 'express';
-import IRoute from './interfaces/routes.interface';
-import logger from './lib/logger';
+import IRoute from '@interfaces/routes.interface';
+import logger from '@libs/logger';
+import morgan, { StreamOptions } from 'morgan';
 
 export default class App {
   public app: express.Application;
@@ -12,16 +13,38 @@ export default class App {
     this.port = process.env.PORT || '3000';
     this.env = process.env.NODE_ENV || 'development';
 
+    this.inititializeMiddlewares();
     this.inititializeRoutes(routes);
   }
 
   public listen() {
     this.app.listen(this.port, () => {
-      logger.debug(`App listening on localhost:${this.port}`);
+      logger.info('========================================');
+      logger.info(`App listening on localhost:${this.port} 🚀`);
+      logger.info('========================================');
     });
   }
 
   private inititializeRoutes(routes: IRoute[]) {
     routes.forEach(route => this.app.use('/', route.router));
+  }
+
+  private inititializeMiddlewares() {
+    if (this.env === 'development') {
+      this.app.use(this.morgan());
+    } else {
+      this.app.use(morgan('combined'));
+    }
+  }
+
+  private morgan() {
+    const stream: StreamOptions = {
+      write: message => logger.http(message),
+    };
+    const skip = () => {
+      return this.env !== 'development';
+    };
+    const format = ':method :url :status :res[content-length] - :response-time ms';
+    return morgan(format, { stream, skip });
   }
 }

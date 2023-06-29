@@ -1,20 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@authentication/*": ["src/authentication/*"],
-      "@verification/*": ["src/verification/*"],
-      "@healthcheck/*": ["src/healthcheck/*"],
-      "@datasources/*": ["src/datasources/*"],
-      "@models/*": ["src/models"],
-      "@internals/*": [
-        "src/libs/*",
-        "src/datasources/*",
-        "src/models/*",
-        "src/repositories/*",
-        "src/services/*"
-      ]
+      "@controllers/*": ["controllers/*"],
+      "@datasources/*": ["datasources/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@services/*": ["services/*"],
+      "@routes/*": ["routes/*"],
+      "@models/*": ["models/*"],
+      "@libs/*": ["libs/*"]
     }
   }
 }
