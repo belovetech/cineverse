@@ -24,9 +24,15 @@
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
+    "@types/chai-http": "^4.2.0",
     "@types/express": "^4.17.17",
+    "@types/mocha": "^10.0.1",
     "@types/morgan": "^1.9.4",
     "@types/winston": "^2.4.4",
+    "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
+    "stub": "^0.3.2",
     "tsconfig-paths": "^4.2.0"
   }
 }
