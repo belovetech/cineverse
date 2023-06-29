@@ -1,8 +1,10 @@
+import 'dotenv/config';
 import express from 'express';
 import IRoute from '@interfaces/routes.interface';
 import logger from '@libs/logger';
 import morgan from 'morgan';
 import customMorgan from '@middlewares/morgan.middleware';
+import dbClient from '@datasource/database';
 
 export default class App {
   public app: express.Application;
@@ -14,6 +16,7 @@ export default class App {
     this.port = process.env.PORT || '3000';
     this.env = process.env.NODE_ENV || 'development';
 
+    this.inititializeDatabase();
     this.inititializeMiddlewares();
     this.inititializeRoutes(routes);
   }
@@ -36,5 +39,9 @@ export default class App {
     } else {
       this.app.use(morgan('combined'));
     }
+  }
+
+  private async inititializeDatabase() {
+    await dbClient.connect();
   }
 }

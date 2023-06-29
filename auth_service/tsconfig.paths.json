@@ -4,7 +4,7 @@
     "paths": {
       "@/*": ["*"],
       "@controllers/*": ["controllers/*"],
-      "@datasources/*": ["datasources/*"],
+      "@datasource/*": ["datasource/*"],
       "@interfaces/*": ["interfaces/*"],
       "@middlewares/*": ["middlewares/*"],
       "@services/*": ["services/*"],
