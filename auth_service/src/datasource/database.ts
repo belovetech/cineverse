@@ -1,24 +1,19 @@
 import * as dotenv from 'dotenv';
-import mongoose, { ConnectOptions, Connection, connect } from 'mongoose';
-import ConnectionOptionExtend from '@interfaces/connection.interface';
+import mongoose, { ConnectOptions, Connection } from 'mongoose';
+import { ConnectionOptionExtend } from '@interfaces/connection.interface';
 import logger from '@libs/logger';
 
 dotenv.config({ path: __dirname + '/../.env' });
-
-const options: ConnectOptions & ConnectionOptionExtend = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
 
 class MongoClient {
   private connection: Connection;
 
   constructor(url: string, options?: ConnectOptions) {
-    connect(url, options);
+    mongoose.connect(url, options);
     this.connection = mongoose.connection;
   }
 
-  public async connect() {
+  public async connect(): Promise<void> {
     this.connection.on('error', () => {
       logger.error('Unable to connect to the database');
       process.exit(1);
@@ -29,17 +24,29 @@ class MongoClient {
     });
   }
 
-  public async disconnect() {
+  public async disconnect(): Promise<void> {
     await this.connection.close();
     logger.info('Database connection has been disconnected.');
   }
+
+  public isAlive(): boolean {
+    if (this.connection) {
+      return true;
+    }
+    return false;
+  }
 }
 
-let url;
-if (process.env.NODE_ENV === 'testing') {
-  url = process.env.TEST_DB_URL;
-} else {
-  url = process.env.DB_URL;
+function getUrl(env: string): string {
+  if (env === 'testing') {
+    return process.env.TEST_DB_URL;
+  }
+  return process.env.DB_URL;
 }
-const dbClient = new MongoClient(url, options);
-export default dbClient;
+
+const options: ConnectOptions & ConnectionOptionExtend = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
+export default new MongoClient(getUrl(process.env.NODE_ENV), options);

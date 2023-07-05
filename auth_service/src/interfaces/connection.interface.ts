@@ -1,4 +1,4 @@
-export default interface ConnectionOptionExtend {
+export interface ConnectionOptionExtend {
   useNewUrlParser: boolean;
   useUnifiedTopology: boolean;
 }
