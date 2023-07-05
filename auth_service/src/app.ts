@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express from 'express';
+import express, { Application } from 'express';
 import IRoute from '@interfaces/routes.interface';
 import logger from '@libs/logger';
 import morgan from 'morgan';
@@ -7,9 +7,9 @@ import customMorgan from '@middlewares/morgan.middleware';
 import mongoClient from '@/datasource/database';
 
 export default class App {
-  public app: express.Application;
-  public port: string | number;
-  public env: string;
+  private app: Application;
+  private port: string | number;
+  private env: string;
 
   constructor(routes: IRoute[]) {
     this.app = express();
@@ -27,6 +27,10 @@ export default class App {
       logger.info(`App listening on localhost:${this.port} 🚀`);
       logger.info('==================================');
     });
+  }
+
+  public getServer() {
+    return this.app;
   }
 
   private inititializeRoutes(routes: IRoute[]) {
