@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import mongoose, { ConnectOptions, Connection } from 'mongoose';
-import { ConnectionOptionExtend } from '@interfaces/connection.interface';
+import { IConnectionOptionExtend } from '@interfaces/connection.interface';
 import logger from '@libs/logger';
 
 dotenv.config({ path: __dirname + '/../.env' });
@@ -44,7 +44,7 @@ function getUrl(env: string): string {
   return process.env.DB_URL;
 }
 
-const options: ConnectOptions & ConnectionOptionExtend = {
+const options: ConnectOptions & IConnectionOptionExtend = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
