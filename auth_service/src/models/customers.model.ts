@@ -29,14 +29,6 @@ const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
       type: String,
       required: true,
     },
-    otp: {
-      type: String,
-      required: false,
-    },
-    otpExpiredAt: {
-      type: String,
-      required: true,
-    },
     isVerified: {
       type: Boolean,
       required: true,

@@ -7,7 +7,5 @@ export interface ICustomer extends Document {
   email: string;
   password: string;
   passwordConfirm: string;
-  otp: string;
-  otpExpiredAt: string;
   isVerified: boolean;
 }
