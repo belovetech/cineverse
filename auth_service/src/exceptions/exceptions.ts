@@ -32,6 +32,13 @@ export class InvalidCredentialsError extends Exception {
   }
 }
 
+export class BadRequestError extends Exception {
+  constructor(statusCode: number, message: string) {
+    super(statusCode, message);
+    this.type = 'BadRequestError';
+  }
+}
+
 export class AuthenticationError extends Exception {
   constructor(statusCode: number, message?: string) {
     super(statusCode, message);

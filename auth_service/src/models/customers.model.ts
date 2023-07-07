@@ -23,10 +23,12 @@ const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
     password: {
       type: String,
       required: true,
+      select: false,
     },
     passwordConfirm: {
       type: String,
       required: true,
+      select: false,
     },
     isVerified: {
       type: Boolean,
