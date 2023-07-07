@@ -4,4 +4,5 @@ export interface CustomerDto {
   readonly email: string;
   password: string;
   readonly passwordConfirm: string;
+  readonly isVerified?: string;
 }

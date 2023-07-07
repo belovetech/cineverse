@@ -32,7 +32,7 @@ const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
     },
     isVerified: {
       type: Boolean,
-      required: true,
+      default: false,
     },
   },
   {
