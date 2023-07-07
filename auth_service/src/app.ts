@@ -46,6 +46,8 @@ export default class App {
       this.app.use(customMorgan());
     }
     this.app.use(morgan('combined'));
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
   }
 
   private async inititializeDatabase(): Promise<void> {

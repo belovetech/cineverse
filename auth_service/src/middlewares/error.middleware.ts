@@ -10,7 +10,10 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
 
     logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
-    return res.status(statusCode).json({ statusCode, type, message });
+    if (process.env.NODE_ENV === 'development') {
+      return res.status(statusCode).json({ message: JSON.parse(message), stackTrace: err });
+    }
+    return res.status(statusCode).json({ statusCode, type, message: JSON.parse(message) });
   } catch (error) {
     return next(error);
   }

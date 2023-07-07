@@ -2,51 +2,46 @@ import bcrypt from 'bcrypt';
 import Customer from '@/models/customers.model';
 import { CustomerDto } from '@/dtos/customers.dto';
 import { ICustomer } from '@/interfaces/customers.interface';
+import { BadRequestError, NotFoundError } from '@/exceptions/exceptions';
 import { validateCustomerInput } from '@/utils/validates';
-import { Exception, NotFoundError } from '@/exceptions/exceptions';
+import { filteredCustomer } from '@/utils/filteredCustomer';
 
-export class CustomerService {
-  public async createCustomer(data: CustomerDto): Promise<ICustomer> {
+export default class CustomerService {
+  public static async createCustomer(data: CustomerDto): Promise<ICustomer> {
     validateCustomerInput(data);
 
-    const customerExist = await this.findCustomer(data.email);
-    if (customerExist) throw new Exception(409, 'Customer already exists!');
+    const customerExist = await Customer.findOne({ email: data.email }).exec();
+    if (customerExist) throw new BadRequestError(409, 'Customer already exists!');
 
-    const hashPassword: string = bcrypt.hash(data.email, 12);
-    data.password = hashPassword;
-    const customer = await Customer.create(data);
+    const hashPassword: string = await bcrypt.hash(data.email, 12);
+    const customer = await Customer.create({ ...data, password: hashPassword });
 
     return customer;
   }
 
-  public async findCustomer(email: string): Promise<ICustomer> {
-    const customerExist = await Customer.findOne({ email });
-    if (!customerExist) throw new NotFoundError(404, 'Customer not found');
-    return customerExist;
-  }
-
   public async findCustomerById(customerId: string): Promise<ICustomer> {
-    const customerExist = await Customer.findById(customerId);
+    const customerExist = await Customer.findById(customerId).exec();
     if (!customerExist) throw new NotFoundError(404, 'Customer not found');
     return customerExist;
   }
 
   public async findAllCustomers(): Promise<ICustomer[]> {
-    const customers = Customer.find();
+    const customers = Customer.find().exec();
     return customers;
   }
 
-  public async updateCustomer(customerId: string, data: object): Promise<ICustomer> {
+  public async updateCustomer(customerId: string, data: CustomerDto): Promise<ICustomer> {
+    const filteredData = filteredCustomer(data);
     const customerExist = await this.findCustomerById(customerId);
     if (!customerExist) throw new NotFoundError(404, 'Customer not found');
-    const updatedCustomer = await Customer.findByIdAndUpdate(customerId, data);
+    const updatedCustomer = await Customer.findByIdAndUpdate(customerId, filteredData).exec();
     return updatedCustomer;
   }
 
   public async deleteCustomer(customerId: string): Promise<boolean> {
     const customerExist = await this.findCustomerById(customerId);
     if (!customerExist) throw new NotFoundError(404, 'Customer not found');
-    await Customer.deleteOne({ customerId });
+    await Customer.findByIdAndDelete(customerId);
     return true;
   }
 }

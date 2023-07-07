@@ -4,9 +4,10 @@ import { ICustomer } from '@/interfaces/customers.interface';
 
 const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
   {
-    customerId: {
+    _id: {
+      type: String,
       default: () => uuidv4().replace(/-/g, ''),
-      unique: true,
+      alias: 'customerId',
     },
     firstName: {
       type: String,
@@ -36,16 +37,25 @@ const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
     },
   },
   {
-    _id: false,
-    id: false,
     timestamps: true,
     versionKey: false,
     collection: 'customers',
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-    // alias: { _id: 'customerId' },
   },
 );
+
+customerSchema.set('toJSON', {
+  virtuals: true,
+  transform: function (_doc, ret) {
+    delete ret._id;
+  },
+});
+
+customerSchema.pre('save', function (next) {
+  this.passwordConfirm = undefined;
+  next();
+});
 
 const Customer = model<ICustomer>('Customer', customerSchema);
 export default Customer;
