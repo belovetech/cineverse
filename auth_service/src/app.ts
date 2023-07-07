@@ -1,9 +1,10 @@
 import 'dotenv/config';
 import express, { Application } from 'express';
-import IRoute from '@interfaces/routes.interface';
-import logger from '@libs/logger';
 import morgan from 'morgan';
 import customMorgan from '@middlewares/morgan.middleware';
+import errorMiddleware from './middlewares/error.middleware';
+import IRoute from '@interfaces/routes.interface';
+import logger from '@/utils/logger';
 import mongoClient from '@/datasource/database';
 
 export default class App {
@@ -19,9 +20,10 @@ export default class App {
     this.inititializeDatabase();
     this.inititializeMiddlewares();
     this.inititializeRoutes(routes);
+    this.initializeGlobalErrorHandler();
   }
 
-  public listen() {
+  public listen(): void {
     this.app.listen(this.port, () => {
       logger.info('==================================');
       logger.info(`App listening on localhost:${this.port} 🚀`);
@@ -29,23 +31,26 @@ export default class App {
     });
   }
 
-  public getServer() {
+  public getServer(): Application {
     return this.app;
   }
 
-  private inititializeRoutes(routes: IRoute[]) {
+  private inititializeRoutes(routes: IRoute[]): void {
     routes.forEach(route => this.app.use('/', route.router));
   }
 
-  private inititializeMiddlewares() {
+  private inititializeMiddlewares(): void {
     if (this.env === 'development') {
       this.app.use(customMorgan());
-    } else {
-      this.app.use(morgan('combined'));
     }
+    this.app.use(morgan('combined'));
   }
 
-  private async inititializeDatabase() {
+  private async inititializeDatabase(): Promise<void> {
     await mongoClient.connect();
+  }
+
+  private initializeGlobalErrorHandler(): void {
+    this.app.use(errorMiddleware);
   }
 }
