@@ -3,7 +3,7 @@ import mongoClient from '../datasource/database';
 import redisClient from '../datasource/redis';
 
 export default class HealthCheck {
-  public ping(_req: Request, res: Response, next: NextFunction) {
+  public ping(req: Request, res: Response, next: NextFunction) {
     try {
       if (mongoClient.isAlive() && redisClient.isAlive()) {
         return res.status(200).json({ message: 'Pong!' });
@@ -14,8 +14,7 @@ export default class HealthCheck {
         redisClient: redisClient.isAlive(),
       });
     } catch (error) {
-      next(error);
-      return res.status(500).json({ error: error.message });
+      return next(error);
     }
   }
 }

@@ -6,6 +6,7 @@ import errorMiddleware from './middlewares/error.middleware';
 import IRoute from '@interfaces/routes.interface';
 import logger from '@/utils/logger';
 import mongoClient from '@/datasource/database';
+import { UnknownRoute } from './controllers/unknownRoute.controller';
 
 export default class App {
   private app: Application;
@@ -20,6 +21,7 @@ export default class App {
     this.inititializeDatabase();
     this.inititializeMiddlewares();
     this.inititializeRoutes(routes);
+    this.handleUnknownRoute();
     this.initializeGlobalErrorHandler();
   }
 
@@ -52,5 +54,9 @@ export default class App {
 
   private initializeGlobalErrorHandler(): void {
     this.app.use(errorMiddleware);
+  }
+
+  private handleUnknownRoute() {
+    this.app.all('*', UnknownRoute.handler);
   }
 }

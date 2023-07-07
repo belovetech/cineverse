@@ -7,10 +7,12 @@
       "@datasource/*": ["datasource/*"],
       "@interfaces/*": ["interfaces/*"],
       "@middlewares/*": ["middlewares/*"],
+      "@exceptions/*": ["exceptions/*"],
       "@services/*": ["services/*"],
       "@routes/*": ["routes/*"],
       "@models/*": ["models/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"]
     }
   }
 }

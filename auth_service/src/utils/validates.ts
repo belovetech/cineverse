@@ -1,4 +1,4 @@
-import { ValidationError } from '@/exceptions/exception';
+import { ValidationError } from '@/exceptions/exceptions';
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
