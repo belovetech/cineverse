@@ -5,15 +5,19 @@ import logger from '@/utils/logger';
 function errorMiddleware(err: Exception, req: Request, res: Response, next: NextFunction) {
   try {
     const statusCode: number = err.statusCode || 500;
-    const message: string = err.message || 'Internal Server Error';
-    const type: string = err.type || 'InternalServerError';
+    let message: string = err.message || 'Internal Server Error';
+    const name: string = err.name || 'InternalServerError';
 
     logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
-    if (process.env.NODE_ENV === 'development') {
-      return res.status(statusCode).json({ message: JSON.parse(message), stackTrace: err });
+    if (err.name === 'ValidationError') {
+      message = JSON.parse(message);
     }
-    return res.status(statusCode).json({ statusCode, type, message: JSON.parse(message) });
+
+    if (process.env.NODE_ENV === 'development') {
+      return res.status(statusCode).json({ message, stackTrace: err });
+    }
+    return res.status(statusCode).json({ statusCode, name, message });
   } catch (error) {
     return next(error);
   }
