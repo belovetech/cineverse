@@ -10,7 +10,7 @@
       "@services/*": ["services/*"],
       "@routes/*": ["routes/*"],
       "@models/*": ["models/*"],
-      "@libs/*": ["libs/*"]
+      "@utils/*": ["utils/*"]
     }
   }
 }

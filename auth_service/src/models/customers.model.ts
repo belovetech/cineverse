@@ -5,7 +5,6 @@ import { ICustomer } from '@/interfaces/customers.interface';
 const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
   {
     customerId: {
-      type: String,
       default: () => uuidv4().replace(/-/g, ''),
       unique: true,
     },
