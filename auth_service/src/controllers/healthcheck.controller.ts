@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import mongoClient from '../datasource/database';
-import redisClient from '../datasource/redis';
+import mongoClient from '@datasource/database';
+import redisClient from '@datasource/redis';
 
 export default class HealthCheck {
   public ping(req: Request, res: Response, next: NextFunction) {

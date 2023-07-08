@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { CustomerDto } from '@/dtos/customers.dto';
-import CustomerService from '@/services/customer.service';
-import formatResponse from '@/utils/formatResponse';
+import { CustomerDto } from '@dtos/customers.dto';
+import CustomerService from '@services/customer.service';
+import formatResponse from '@utils/formatResponse';
 
 export class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {

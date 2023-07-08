@@ -12,7 +12,8 @@
       "@routes/*": ["routes/*"],
       "@models/*": ["models/*"],
       "@utils/*": ["utils/*"],
-      "@config/*": ["config/*"]
+      "@config/*": ["config/*"],
+      "@dtos/*": ["dtos/*"]
     }
   }
 }

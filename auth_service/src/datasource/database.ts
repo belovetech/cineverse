@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import mongoose, { ConnectOptions, Connection } from 'mongoose';
 import { IConnectionOptionExtend } from '@interfaces/connection.interface';
-import logger from '@/utils/logger';
+import logger from '@utils/logger';
 
 dotenv.config({ path: __dirname + '/../.env' });
 
