@@ -1,4 +1,4 @@
-import { ICustomer } from '@/interfaces/customers.interface';
+import { ICustomer } from '@interfaces/customers.interface';
 
 export default function formatResponse(customer: ICustomer & { createAt?: string; updatedAt?: string }) {
   return {

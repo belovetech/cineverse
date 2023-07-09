@@ -1,3 +1,4 @@
+export { Exception } from './exceptions';
 export { AuthenticationException } from './authentication.exception';
 export { BadRequestException } from './badRequest.exception';
 export { ForbiddenException } from './forbidden.exception';

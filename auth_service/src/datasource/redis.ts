@@ -1,5 +1,5 @@
 import Redis, { RedisOptions, RedisKey, RedisValue } from 'ioredis';
-import logger from '@/utils/logger';
+import logger from '@utils/logger';
 
 class RedisClient {
   private redis: Redis;

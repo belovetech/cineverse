@@ -1,4 +1,4 @@
-import logger from '@/utils/logger';
+import logger from '@utils/logger';
 import morgan, { StreamOptions } from 'morgan';
 
 export default function customMorgan() {

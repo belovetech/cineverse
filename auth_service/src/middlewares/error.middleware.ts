@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { Exception } from '@/exceptions/exceptions';
-import logger from '@/utils/logger';
+import { Exception } from '@exceptions';
+import logger from '@utils/logger';
 
 function errorMiddleware(err: Exception, req: Request, res: Response, next: NextFunction) {
   try {
@@ -8,7 +8,7 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
     let message: string = err.message || 'Internal Server Error';
     const name: string = err.name || 'InternalServerError';
 
-    logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
+    logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
     if (err.name === 'ValidationError') {
       message = JSON.parse(message);

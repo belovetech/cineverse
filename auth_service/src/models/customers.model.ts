@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-import { ICustomer } from '@/interfaces/customers.interface';
+import { ICustomer } from '@interfaces/customers.interface';
 
 const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
   {
