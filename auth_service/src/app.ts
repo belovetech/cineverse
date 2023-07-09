@@ -2,11 +2,11 @@ import 'dotenv/config';
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import customMorgan from '@middlewares/morgan.middleware';
-import errorMiddleware from './middlewares/error.middleware';
+import errorMiddleware from '@middlewares/error.middleware';
 import IRoute from '@interfaces/routes.interface';
-import logger from '@/utils/logger';
-import mongoClient from '@/datasource/database';
-import { UnknownRoute } from './controllers/unknownRoute.controller';
+import logger from '@utils/logger';
+import mongoClient from '@datasource/database';
+import unknownRoute from '@controllers/unknownRoute.controller';
 
 export default class App {
   private app: Application;
@@ -37,8 +37,8 @@ export default class App {
     return this.app;
   }
 
-  private inititializeRoutes(routes: IRoute[]): void {
-    routes.forEach(route => this.app.use('/', route.router));
+  private async inititializeDatabase(): Promise<void> {
+    await mongoClient.connect();
   }
 
   private inititializeMiddlewares(): void {
@@ -50,15 +50,15 @@ export default class App {
     this.app.use(express.urlencoded({ extended: true }));
   }
 
-  private async inititializeDatabase(): Promise<void> {
-    await mongoClient.connect();
+  private inititializeRoutes(routes: IRoute[]): void {
+    routes.forEach(route => this.app.use('/', route.router));
+  }
+
+  private handleUnknownRoute() {
+    this.app.all('*', unknownRoute.handler);
   }
 
   private initializeGlobalErrorHandler(): void {
     this.app.use(errorMiddleware);
-  }
-
-  private handleUnknownRoute() {
-    this.app.all('*', UnknownRoute.handler);
   }
 }

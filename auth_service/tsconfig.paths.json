@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
+      "@*": ["*"],
       "@controllers/*": ["controllers/*"],
       "@datasource/*": ["datasource/*"],
       "@interfaces/*": ["interfaces/*"],
