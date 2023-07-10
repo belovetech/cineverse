@@ -1,9 +1,9 @@
 import { Exception } from './exceptions';
 
 export class ForbiddenException extends Exception {
-  constructor(statusCode?: number, message?: string) {
+  constructor(message?: string, statusCode?: number) {
     super(statusCode, message);
     this.statusCode = 403;
-    this.message = 'Forbidden:: Unauthorized';
+    this.message = message ?? 'Forbidden:: Unauthorized';
   }
 }

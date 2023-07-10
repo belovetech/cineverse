@@ -1,16 +1,16 @@
 import bcrypt from 'bcrypt';
 import Customer from '@models/customers.model';
 import CustomerDto from '@dtos/customers.dto';
-import filteredCustomer from '@utils/filterCustomerData';
+import filteredCustomerData from '@utils/filterCustomerData';
 import { ICustomer } from '@interfaces/customers.interface';
-import { NotFoundException, BadRequestException } from '@exceptions';
-import { validateCustomerInput } from '@utils/validatesCustomerInput';
+import { NotFoundException, ConflictException } from '@exceptions';
+import { validateCustomerInput } from '@utils/validateCustomerInput';
 
 export default class CustomerService {
   public static async createCustomer(data: CustomerDto): Promise<ICustomer> {
     validateCustomerInput(data);
     const customerExist = await Customer.findOne({ email: data.email }).exec();
-    if (customerExist) throw new BadRequestException(409, 'Customer already exists!');
+    if (customerExist) throw new ConflictException();
     const hashPassword: string = await bcrypt.hash(data.email, 12);
     const customer = await Customer.create({ ...data, password: hashPassword });
     return customer;
@@ -18,7 +18,7 @@ export default class CustomerService {
 
   public static async findCustomerById(customerId: string): Promise<ICustomer> {
     const customerExist = await Customer.findById(customerId).exec();
-    if (!customerExist) throw new NotFoundException(404, 'Customer not found');
+    if (!customerExist) throw new NotFoundException();
     return customerExist;
   }
 
@@ -28,9 +28,9 @@ export default class CustomerService {
   }
 
   public static async updateCustomer(customerId: string, data: CustomerDto): Promise<ICustomer> {
-    const filteredData = filteredCustomer(data);
+    const filteredData = filteredCustomerData(data);
     const customerExist = await this.findCustomerById(customerId);
-    if (!customerExist) throw new NotFoundException(404, 'Customer not found');
+    if (!customerExist) throw new NotFoundException();
     const updatedCustomer = await Customer.findByIdAndUpdate(customerId, filteredData).exec();
     updatedCustomer.save();
     return updatedCustomer;
@@ -38,7 +38,7 @@ export default class CustomerService {
 
   public static async deleteCustomer(customerId: string): Promise<boolean> {
     const customerExist = await this.findCustomerById(customerId);
-    if (!customerExist) throw new NotFoundException(404, 'Customer not found');
+    if (!customerExist) throw new NotFoundException();
     await Customer.findByIdAndDelete(customerId);
     return true;
   }

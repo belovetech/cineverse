@@ -1,9 +1,9 @@
 import { Exception } from './exceptions';
 
 export class AuthenticationException extends Exception {
-  constructor(statusCode: number, message?: string) {
+  constructor(message?: string, statusCode?: number) {
     super(statusCode, message);
     this.statusCode = 401;
-    this.message = 'Unauthorized:: Authentication failed';
+    this.message = message ?? 'Unauthorized:: Authentication failed';
   }
 }
