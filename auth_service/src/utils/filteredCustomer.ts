@@ -1,6 +1,10 @@
-import { CustomerDto } from '@dtos/customers.dto';
+import 'dotenv/config';
+import CustomerDto from '@dtos/customers.dto';
+import { BadRequestException } from '@exceptions';
 
-export function filteredCustomer(data: CustomerDto) {
-  const { firstName, lastName } = data;
+export default function filteredCustomer(data: CustomerDto) {
+  const { firstName, lastName, email } = data;
+  const message = 'Kindly use appropriate route to update your password';
+  if (email) throw new BadRequestException(400, message);
   return { firstName, lastName };
 }

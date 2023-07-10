@@ -10,13 +10,13 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
 
     logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
-    if (err.name === 'ValidationError') {
+    if (err.name === 'ValidationException') {
       message = JSON.parse(message);
     }
 
-    if (process.env.NODE_ENV === 'development') {
-      return res.status(statusCode).json({ message, stackTrace: err });
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //   return res.status(statusCode).json({ message, stackTrace: err });
+    // }
     return res.status(statusCode).json({ statusCode, name, message });
   } catch (error) {
     return next(error);

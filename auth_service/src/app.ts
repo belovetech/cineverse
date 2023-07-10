@@ -51,7 +51,7 @@ export default class App {
   }
 
   private inititializeRoutes(routes: IRoute[]): void {
-    routes.forEach(route => this.app.use('/', route.router));
+    routes.forEach(route => this.app.use('/api/v1', route.router));
   }
 
   private handleUnknownRoute() {
