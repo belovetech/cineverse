@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 import Customer from '@models/customers.model';
 import CustomerDto from '@dtos/customers.dto';
-import filteredCustomer from '@utils/filteredCustomer';
+import filteredCustomer from '@utils/filterCustomerData';
 import { ICustomer } from '@interfaces/customers.interface';
 import { NotFoundException, BadRequestException } from '@exceptions';
-import { validateCustomerInput } from '@utils/validates';
+import { validateCustomerInput } from '@utils/validatesCustomerInput';
 
 export default class CustomerService {
   public static async createCustomer(data: CustomerDto): Promise<ICustomer> {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import CustomerDto from '@dtos/customers.dto';
 import CustomerService from '@services/customer.service';
-import ApiResponseFormatter from '@utils/apiResponse';
+import ApiResponseFormatter from '@utils/apiResponseFormatter';
 
 export class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {
