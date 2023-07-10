@@ -6,7 +6,7 @@ const config = {
   node_env: process.env.NODE_ENV || 'development',
   development: {
     uri: process.env.DEV_DB_URL,
-    port: process.env.PORT || 3000,
+    port: process.env.DB_PORT || 3000,
   },
   test: {
     uri: process.env.TEST_DB_URL,
