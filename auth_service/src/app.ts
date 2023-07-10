@@ -1,10 +1,10 @@
-import config from '@config';
 import express, { Application } from 'express';
-import morgan from 'morgan';
+import config from '@config';
 import customMorgan from '@middlewares/morgan.middleware';
 import errorMiddleware from '@middlewares/error.middleware';
 import IRoute from '@interfaces/routes.interface';
 import logger from '@utils/logger';
+import morgan from 'morgan';
 import mongoClient from '@datasource/database';
 import unknownRoute from '@controllers/unknownRoute.controller';
 
@@ -51,7 +51,7 @@ export default class App {
   }
 
   private inititializeRoutes(routes: IRoute[]): void {
-    routes.forEach(route => this.app.use('/api/v1', route.router));
+    routes.forEach(route => this.app.use('/v1', route.router));
   }
 
   private handleUnknownRoute() {

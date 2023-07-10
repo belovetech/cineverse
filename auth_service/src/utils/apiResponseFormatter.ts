@@ -1,9 +1,7 @@
-import * as dotenv from 'dotenv';
+import config from '@config';
 import { ApiResponse, IResponse } from '@interfaces/response.interface';
 import { ICustomer } from '@interfaces/customers.interface';
 import { Request } from 'express';
-
-dotenv.config({ path: __dirname + '/../.env' });
 
 type Customer = ICustomer & { createdAt?: string; updatedAt?: string };
 
@@ -11,7 +9,7 @@ export default class ApiResponseFormatter {
   private customer: ICustomer;
   private req: Request;
   private url: string;
-  private baseUrl: string = process.env.URL;
+  private baseUrl: string = config.baseUrl;
 
   constructor(req: Request, customer?: Customer) {
     this.customer = customer;
