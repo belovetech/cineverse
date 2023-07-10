@@ -1,25 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
-import CustomerDto from '@dtos/customers.dto';
+import { ICustomer } from '@interfaces/customers.interface';
 import CustomerService from '@services/customer.service';
 import ApiResponseFormatter from '@utils/apiResponseFormatter';
-import { GET_links, UPDATE_links } from '@utils/responseLink';
+import { GET_links, UPDATE_links, POST_links } from '@utils/responseLink';
 
 export class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {
     try {
-      const customerData: CustomerDto = req.body;
+      const customerData: ICustomer = req.body;
       const customer = await CustomerService.createCustomer(customerData);
-      const apiResponseFormatter = new ApiResponseFormatter(customer);
+      const apiResponseFormatter = new ApiResponseFormatter(customer, POST_links);
       return res.status(201).json(apiResponseFormatter.format());
     } catch (error) {
       return next(error);
     }
   }
 
-  public async getCustomers(req: Request, res: Response, next: NextFunction) {
+  public async getCustomers(_req: Request, res: Response, next: NextFunction) {
     try {
       const customers = await CustomerService.findAllCustomers();
-      const formattedCustomers = customers.map(customer => ApiResponseFormatter.getData(customer));
+      const formattedCustomers = customers.map(customer => new ApiResponseFormatter(customer).format());
       return res.status(200).json(formattedCustomers);
     } catch (error) {
       return next(error);

@@ -3,6 +3,21 @@ import { ILink } from '@interfaces/response.interface';
 
 const baseUrl = config.baseUrl;
 
+export const POST_links: Array<ILink> = [
+  {
+    rel: 'self',
+    href: `${baseUrl}/customer`,
+    action: 'POST',
+    types: ['text/xml', 'application/json'],
+  },
+  {
+    rel: 'customer',
+    href: `${baseUrl}/customer`,
+    action: 'UPDATE',
+    types: ['text/xml', 'application/json'],
+  },
+];
+
 export const GET_links: Array<ILink> = [
   {
     rel: 'self',

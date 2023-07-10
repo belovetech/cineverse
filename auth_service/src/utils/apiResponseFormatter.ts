@@ -1,5 +1,6 @@
 import { IResponse, ILink } from '@interfaces/response.interface';
 import { ICustomer } from '@interfaces/customers.interface';
+import CustomerDto from '@dtos/customers.dto';
 
 type Customer = ICustomer & { createdAt?: string; updatedAt?: string };
 
@@ -8,13 +9,13 @@ export default class ApiResponseFormatter {
   private linkOptions: Array<ILink>;
   private customerId: string;
 
-  constructor(customer?: Customer, linkOptions?: Array<ILink>) {
+  constructor(customer: Customer, linkOptions?: Array<ILink>) {
     this.customer = customer;
     this.linkOptions = linkOptions;
     this.customerId = this.customer?.customerId || '';
   }
 
-  public static getData(customer: Customer) {
+  private getData(customer: Customer): CustomerDto {
     return {
       customerId: customer._id,
       firstName: customer.firstName,
@@ -25,10 +26,11 @@ export default class ApiResponseFormatter {
   }
 
   private getLinks(): Array<ILink> {
+    if (!this.linkOptions) return [];
     const links = this.linkOptions.map(link => {
       return {
         rel: link.rel || 'self',
-        href: `${link.href}/${this.customerId}`,
+        href: `${link.href}/${link.action != 'POST' ? this.customerId : ''}`,
         action: link.action,
         types: link.types || ['text/xml', 'application/json'],
       };
@@ -38,7 +40,7 @@ export default class ApiResponseFormatter {
 
   public format(): IResponse {
     const response: IResponse = {
-      ...ApiResponseFormatter.getData(this.customer),
+      ...this.getData(this.customer),
       links: this.getLinks(),
     };
     return response;

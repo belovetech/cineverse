@@ -1,8 +1,7 @@
 export default interface CustomerDto {
+  readonly customerId: string;
   readonly firstName: string;
   readonly lastName: string;
   readonly email: string;
-  password: string;
-  readonly passwordConfirm: string;
-  readonly isVerified?: string;
+  readonly isVerified?: boolean;
 }
