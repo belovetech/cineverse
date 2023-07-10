@@ -7,7 +7,7 @@ dotenv.config({ path: __dirname + '/../.env' });
 
 type Customer = ICustomer & { createdAt?: string; updatedAt?: string };
 
-export default class APIResponse {
+export default class ApiResponseFormatter {
   private customer: ICustomer;
   private req: Request;
   private url: string;
