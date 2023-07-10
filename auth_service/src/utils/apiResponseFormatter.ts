@@ -1,23 +1,20 @@
-import config from '@config';
-import { ApiResponse, IResponse } from '@interfaces/response.interface';
+import { IResponse, ILink } from '@interfaces/response.interface';
 import { ICustomer } from '@interfaces/customers.interface';
-import { Request } from 'express';
 
 type Customer = ICustomer & { createdAt?: string; updatedAt?: string };
 
 export default class ApiResponseFormatter {
   private customer: ICustomer;
-  private req: Request;
-  private url: string;
-  private baseUrl: string = config.baseUrl;
+  private linkOptions: Array<ILink>;
+  private customerId: string;
 
-  constructor(req: Request, customer?: Customer) {
+  constructor(customer?: Customer, linkOptions?: Array<ILink>) {
     this.customer = customer;
-    this.req = req;
-    this.url = `${this.req.protocol}://${req.get('host')}${this.req.originalUrl}`;
+    this.linkOptions = linkOptions;
+    this.customerId = this.customer?.customerId || '';
   }
 
-  public getData(customer: Customer) {
+  public static getData(customer: Customer) {
     return {
       customerId: customer._id,
       firstName: customer.firstName,
@@ -27,26 +24,23 @@ export default class ApiResponseFormatter {
     };
   }
 
-  private addBaseUrl(paths: object) {
-    const constructedPaths = {};
-    for (let key in paths) {
-      constructedPaths[key] = `${this.baseUrl}/${paths[key]}`;
-    }
-    return constructedPaths;
+  private getLinks(): Array<ILink> {
+    const links = this.linkOptions.map(link => {
+      return {
+        rel: link.rel || 'self',
+        href: `${link.href}/${this.customerId}`,
+        action: link.action,
+        types: link.types || ['text/xml', 'application/json'],
+      };
+    });
+    return links;
   }
 
-  public format(options: { paths: object; message?: string }) {
-    const paths = this.addBaseUrl(options.paths);
-    const response: ApiResponse<IResponse> = {
-      success: true,
-      message: options.message,
-      data: this.getData(this.customer),
-      links: {
-        self: this.url,
-        related: { ...paths },
-      },
+  public format(): IResponse {
+    const response: IResponse = {
+      ...ApiResponseFormatter.getData(this.customer),
+      links: this.getLinks(),
     };
-    if (!options.message) delete response.message;
     return response;
   }
 }

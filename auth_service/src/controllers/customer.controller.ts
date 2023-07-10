@@ -2,21 +2,15 @@ import { Request, Response, NextFunction } from 'express';
 import CustomerDto from '@dtos/customers.dto';
 import CustomerService from '@services/customer.service';
 import ApiResponseFormatter from '@utils/apiResponseFormatter';
+import { GET_links, UPDATE_links } from '@utils/responseLink';
 
 export class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {
     try {
       const customerData: CustomerDto = req.body;
       const customer = await CustomerService.createCustomer(customerData);
-      const apiResponseFormatter = new ApiResponseFormatter(req, customer);
-      const options = {
-        message: 'Customer was successfully created.',
-        paths: {
-          getme: `${customer._id}`,
-          login: `login`,
-        },
-      };
-      return res.status(201).json(apiResponseFormatter.format(options));
+      const apiResponseFormatter = new ApiResponseFormatter(customer);
+      return res.status(201).json(apiResponseFormatter.format());
     } catch (error) {
       return next(error);
     }
@@ -25,8 +19,7 @@ export class CustomerController {
   public async getCustomers(req: Request, res: Response, next: NextFunction) {
     try {
       const customers = await CustomerService.findAllCustomers();
-      const { getData } = new ApiResponseFormatter(req);
-      const formattedCustomers = customers.map(customer => getData(customer));
+      const formattedCustomers = customers.map(customer => ApiResponseFormatter.getData(customer));
       return res.status(200).json(formattedCustomers);
     } catch (error) {
       return next(error);
@@ -36,15 +29,8 @@ export class CustomerController {
   public async getCustomer(req: Request, res: Response, next: NextFunction) {
     try {
       const customer = await CustomerService.findCustomerById(req.params.id);
-      const apiResponseFormatter = new ApiResponseFormatter(req, customer);
-      const options = {
-        message: 'Customer was successfully fetched.',
-        paths: {
-          updateMe: `${customer._id}`,
-          login: `logout`,
-        },
-      };
-      return res.status(200).json(apiResponseFormatter.format(options));
+      const apiResponseFormatter = new ApiResponseFormatter(customer, GET_links);
+      return res.status(200).json(apiResponseFormatter.format());
     } catch (error) {
       return next(error);
     }
@@ -53,15 +39,8 @@ export class CustomerController {
   public async updateCustomer(req: Request, res: Response, next: NextFunction) {
     try {
       const updatedCustomer = await CustomerService.updateCustomer(req.params.id, req.body);
-      const apiResponseFormatter = new ApiResponseFormatter(req, updatedCustomer);
-      const options = {
-        message: 'Customer was successfully updated.',
-        paths: {
-          deleteMe: `${updatedCustomer._id}`,
-          login: `logout`,
-        },
-      };
-      return res.status(200).json(apiResponseFormatter.format(options));
+      const apiResponseFormatter = new ApiResponseFormatter(updatedCustomer, UPDATE_links);
+      return res.status(200).json(apiResponseFormatter.format());
     } catch (error) {
       return next(error);
     }

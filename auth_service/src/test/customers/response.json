@@ -1,0 +1,21 @@
+{
+  "customerId": "123AFG",
+  "firstName": "Abeeb",
+  "lastName": "Raheem",
+  "email": "belovetech@gmail.com",
+  "isVerified": true,
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://showroom.com/customer/1",
+      "action": "GET",
+      "types": ["text/xml", "application/json"]
+    },
+    {
+      "rel": "customer",
+      "href": "http://showroom.com/customer/1",
+      "action": "GET",
+      "types": ["text/xml", "application/json"]
+    }
+  ]
+}

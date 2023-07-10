@@ -1,7 +1,7 @@
 import config from '@config';
-import mongoose, { ConnectOptions, Connection } from 'mongoose';
 import { IConnectionOptionExtend } from '@interfaces/connection.interface';
 import logger from '@utils/logger';
+import mongoose, { ConnectOptions, Connection } from 'mongoose';
 
 class MongoClient {
   private connection: Connection;
