@@ -1,11 +1,23 @@
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
 
-export const config = {
+dotenv.config({ path: __dirname + '/../.env' });
+
+const config = {
+  node_env: process.env.NODE_ENV,
   development: {
-    uri: process.env.TEST_DB_URL,
-  },
-  db: {
+    uri: process.env.DEV_DB_URL,
     port: process.env.PORT || 3000,
-    uri: process.env.DB_URL,
   },
+  test: {
+    uri: process.env.TEST_DB_URL,
+    port: process.env.TEST_DB_PORT || 5000,
+  },
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  },
+  baseUrl: process.env.BASE_URL,
+  secret: 'S3cr3tK3y!',
 };
+
+export default config;

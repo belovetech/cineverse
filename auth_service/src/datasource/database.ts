@@ -1,9 +1,7 @@
-import * as dotenv from 'dotenv';
+import config from '@config';
 import mongoose, { ConnectOptions, Connection } from 'mongoose';
 import { IConnectionOptionExtend } from '@interfaces/connection.interface';
 import logger from '@utils/logger';
-
-dotenv.config({ path: __dirname + '/../.env' });
 
 class MongoClient {
   private connection: Connection;
@@ -38,10 +36,10 @@ class MongoClient {
 }
 
 function getUrl(env: string): string {
-  if (env === 'testing') {
-    return process.env.TEST_DB_URL;
+  if (env === 'test') {
+    return config.test.uri;
   }
-  return process.env.DB_URL;
+  return config.development.uri;
 }
 
 const options: ConnectOptions & IConnectionOptionExtend = {
@@ -49,4 +47,4 @@ const options: ConnectOptions & IConnectionOptionExtend = {
   useUnifiedTopology: true,
 };
 
-export default new MongoClient(getUrl(process.env.NODE_ENV), options);
+export default new MongoClient(getUrl(config.node_env), options);
