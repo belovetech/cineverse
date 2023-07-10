@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: __dirname + '/../.env' });
 
 const config = {
-  node_env: process.env.NODE_ENV,
+  node_env: process.env.NODE_ENV || 'development',
   development: {
     uri: process.env.DEV_DB_URL,
     port: process.env.PORT || 3000,
@@ -14,7 +14,7 @@ const config = {
   },
   redis: {
     host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT,
+    port: parseInt(process.env.REDIS_PORT),
   },
   baseUrl: process.env.BASE_URL,
   secret: 'S3cr3tK3y!',

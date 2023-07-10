@@ -1,4 +1,5 @@
 import Redis, { RedisOptions, RedisKey, RedisValue } from 'ioredis';
+import config from '@config';
 import logger from '@utils/logger';
 
 class RedisClient {
@@ -45,8 +46,8 @@ class RedisClient {
 }
 
 const redisOptions: RedisOptions = {
-  host: process.env.REDIS_HOST,
-  port: parseInt(process.env.REDIS_PORT),
+  host: config.redis.host,
+  port: config.redis.port,
 };
 
 export default new RedisClient(redisOptions);

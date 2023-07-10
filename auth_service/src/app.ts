@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import config from '@config';
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import customMorgan from '@middlewares/morgan.middleware';
@@ -15,8 +15,8 @@ export default class App {
 
   constructor(routes: IRoute[]) {
     this.app = express();
-    this.port = process.env.PORT || '3000';
-    this.env = process.env.NODE_ENV || 'development';
+    this.port = config.development.port;
+    this.env = config.node_env;
 
     this.inititializeDatabase();
     this.inititializeMiddlewares();
