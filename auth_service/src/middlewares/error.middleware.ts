@@ -8,7 +8,7 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
     let message: string = err.message || 'Internal Server Error';
     const name: string = err.name || 'InternalServerError';
 
-    logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
+    logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
     if (err.name === 'BadRequestException') {
       message = JSON.parse(message);
