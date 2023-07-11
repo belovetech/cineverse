@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: Auth
+  version: 1.0.0
+  description: Customer endpoint documentation
+schemes:
+  - http
+  - https
+
+paths:
+  /ping:
+    get:
+      summary: Get server health status
+      tags: [Healthcheck]
+      responses:
+        200:
+          description: Server is running smoothly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /customers:
+    post:
+      summary: Create a new customer
+      description: Endpoint to create a new customer.
+      tags:
+        - customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customers'
+      responses:
+        '201':
+          $ref: '#/definitions/responses/created'
+        '400':
+          $ref: '#/definitions/exceptions/badRequest'
+        '500':
+          $ref: '#/definitions/exceptions/serverError'
+
+    get:
+      summary: Get all customers
+      description: Endpoint to get all the customers
+      tags:
+        - customers
+      responses:
+        '200':
+          $ref: '#/definition/responses/ok'
+
+  /customers/{id}:
+    get:
+      summary: Get customer by id
+      description: Endpoint to get a single customer by id
+      tags:
+        - customers
+      parameters:
+        - name: id
+          in: path
+          description: Customer's id
+          required: true
+          schema:
+            $ref: '#/components/schemas/customerId'
+          example: 'c85aedc9c339491cb2c0560359c9b7ec'
+      responses:
+        '200':
+          $ref: '#/definitions/responses/ok'
+        '409':
+          $ref: '#/definitions/exceptions/conflict'
+        '500':
+          $ref: '#/definitions/exceptions/serverError'
+
+    patch:
+      summary: Update customer by id
+      description: Endpoint to update a customer's details by id
+      tags:
+        - customers
+      parameters:
+        - name: id
+          in: path
+          description: Customer's id
+          required: true
+          schema:
+            $ref: '#/definitions/customerId'
+          example: 'c85aedc9c339491cb2c0560359c9b7ec'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/updatecustomer'
+      responses:
+        '200':
+          $ref: '#/definitions/responses/ok'
+        '400':
+          $ref: '#/definitions/exceptions/badRequest'
+        '409':
+          $ref: '#/definitions/exceptions/conflict'
+        '500':
+          $ref: '#/definitions/exceptions/serverError'
+
+    delete:
+      summary: Delete customer by id
+      description: Endpoint to delete a customer's details by id
+      tags:
+        - customers
+      parameters:
+        - name: id
+          in: path
+          description: Customer's id
+          required: true
+          schema:
+            $ref: '#/definitions/customerId'
+          example: 'c85aedc9c339491cb2c0560359c9b7ec'
+      responses:
+        '204':
+          $ref: '#/definitions/responses/noContent'
+        '500':
+          $ref: '#/definitions/exceptions/serverError'
+
+definitions:
+  customers:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+      passwordConfirm:
+        type: string
+    required:
+      - firstName
+      - lastName
+      - email
+      - password
+      - passwordConfirm
+
+  customerId:
+    type: string
+    format: uuid
+
+  updatecustomer:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+    required:
+      - firstName
+      - lastName
+
+  responses:
+    created:
+      description: Customer successfully created
+    ok:
+      description: Ok!
+    noContent:
+      description: Customer successfully deleted
+
+  exceptions:
+    badRequest:
+      description: 'Bad Request:: Invalid request payload'
+    notFound:
+      description: 'Not found:: Customer not found'
+    serverError:
+      description: 'Server Error:: Internal Server Error'
+    conflict:
+      description: 'Conflict:: Customer already exists.'

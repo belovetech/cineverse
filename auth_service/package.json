@@ -9,11 +9,13 @@
     "build": "tsc && npx tsc-alias",
     "test": "mocha -r ts-node/register NODE_ENV=testing --extension ts '__tests__/**/*.ts'",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "author": "Abeeb Raheem",
   "license": "ISC",
   "dependencies": {
+    "and": "^0.0.3",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "cross-env": "^7.0.3",
@@ -22,6 +24,9 @@
     "mongoose": "^7.3.1",
     "morgan": "^1.10.0",
     "normalize-mongoose": "^1.0.0",
+    "swagger-autogen": "^2.23.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.5",
     "uuid": "^9.0.0",

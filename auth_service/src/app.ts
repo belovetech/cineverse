@@ -1,12 +1,15 @@
 import express, { Application } from 'express';
+import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDOC from 'swagger-jsdoc';
 import config from '@config';
 import customMorgan from '@middlewares/morgan.middleware';
 import errorMiddleware from '@middlewares/error.middleware';
 import IRoute from '@interfaces/routes.interface';
 import logger from '@utils/logger';
-import morgan from 'morgan';
 import mongoClient from '@datasource/database';
 import unknownRoute from '@controllers/unknownRoute.controller';
+import swaggerOption from '@utils/swaggerOptions';
 
 export default class App {
   private app: Application;
@@ -21,6 +24,7 @@ export default class App {
     this.inititializeDatabase();
     this.inititializeMiddlewares();
     this.inititializeRoutes(routes);
+    this.initializeSwaggerUi();
     this.handleUnknownRoute();
     this.initializeGlobalErrorHandler();
   }
@@ -60,5 +64,10 @@ export default class App {
 
   private initializeGlobalErrorHandler(): void {
     this.app.use(errorMiddleware);
+  }
+
+  private initializeSwaggerUi(): void {
+    const specs = swaggerJSDOC(swaggerOption);
+    this.app.use('/v1/docs', swaggerUi.serve, swaggerUi.setup(specs));
   }
 }

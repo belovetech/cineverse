@@ -41,7 +41,7 @@ class Logger {
       datePattern: 'YYYY-MM-DD-HH',
       zippedArchive: true,
       maxSize: '20m',
-      maxFiles: '1m',
+      maxFiles: '1d',
       format: format.prettyPrint(),
     });
     const transport3 = new transports.File({
