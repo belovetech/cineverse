@@ -14,7 +14,7 @@ describe('Customer Endpoint Testing', function () {
     await Customer.deleteMany({});
   });
 
-  afterEach(async () => {
+  after(async () => {
     await mongoClient.disconnect();
   });
 
@@ -29,6 +29,7 @@ describe('Customer Endpoint Testing', function () {
   };
   let id;
 
+  // [POST] request
   describe('[POST] Create a new customer', function () {
     it('Create a new customer', async function () {
       const res = await chai.request(url).post('/customers').send(data);
@@ -48,10 +49,25 @@ describe('Customer Endpoint Testing', function () {
       expect(res.body).to.have.property('message').to.equal(errorMessage);
       expect(res.body).to.have.property('name').to.equal('ConflictException');
     });
+
+    it('Invalid request payload', async function () {
+      const emptyData = {};
+      const res = await chai.request(url).post('/customers').send(emptyData);
+      expect(res.status).to.be.equal(400);
+      expect(res.body).to.be.an('object');
+      expect(res.body).to.have.property('message');
+      expect(res.body.message).to.be.an('array');
+      expect(res.body.message[0]).to.have.property('firstName');
+      expect(res.body.message[1]).to.have.property('lastName');
+      expect(res.body.message[2]).to.have.property('email');
+      expect(res.body.message[3]).to.have.property('password');
+      expect(res.body).to.have.property('name').to.equal('ValidationException');
+    });
   });
 
+  // [GET] request
   describe('[GET] get customer', function () {
-    it('[GET] get customer by id', async function () {
+    it('Get customer by id', async function () {
       const res = await chai.request(url).get(`/customers/${id}`);
       expect(res.status).to.equal(200);
       expect(res.body).to.be.an('object');
@@ -62,23 +78,44 @@ describe('Customer Endpoint Testing', function () {
       expect(res.body).to.not.have.property('password');
     });
 
-    it('[GET] get all customers', async function () {
+    it('Get all customers', async function () {
       const res = await chai.request(url).get('/customers');
       expect(res.status).to.equal(200);
       expect(res.body).to.be.an('array');
     });
   });
 
+  // [UPDATE] request
   describe('[Update] get customer', function () {
     it('Update customer data', async function () {
       const data = { firstName: 'Karl', lastName: 'Mark' };
       const keys = ['customerId', 'firstName', 'lastName', 'email', 'isVerified'];
-
       const res = await chai.request(url).patch(`/customers/${id}`).send(data);
       expect(res.status).to.equal(200);
       expect(res.body).to.have.property('firstName').deep.equal(data.firstName);
       expect(res.body).to.have.property('lastName').deep.equal(data.lastName);
       expect(res.body).to.include.all.keys(...keys);
+    });
+
+    it('Update password or email using wrong endpoint', async function () {
+      const data = { email: 'Karl@email.com', password: 'Mark123' };
+      const res = await chai.request(url).patch(`/customers/${id}`).send(data);
+      expect(res.status).to.equal(400);
+      expect(res.body.name).to.equal('BadRequestException');
+    });
+  });
+
+  // [DELETE] request
+  describe('[DELETE] delete customer', function () {
+    it('Delete customer by id', async function () {
+      const res = await chai.request(url).delete(`/customers/${id}`);
+      expect(res.status).to.equal(204);
+    });
+
+    it('Delete customer by wrong id', async function () {
+      const res = await chai.request(url).delete(`/customers/${id}`);
+      expect(res.status).to.equal(404);
+      expect(res.body.name).to.equal('NotFoundException');
     });
   });
 });
