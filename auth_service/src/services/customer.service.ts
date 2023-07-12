@@ -30,7 +30,7 @@ export default class CustomerService {
     const filteredData = filteredCustomerData(data);
     const customerExist = await this.findCustomerById(customerId);
     if (!customerExist) throw new NotFoundException();
-    const updatedCustomer = await Customer.findByIdAndUpdate(customerId, filteredData).exec();
+    const updatedCustomer = await Customer.findByIdAndUpdate(customerId, filteredData, { new: true }).exec();
     updatedCustomer.save();
     return updatedCustomer;
   }
