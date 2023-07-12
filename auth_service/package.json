@@ -8,7 +8,7 @@
   "scripts": {
     "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "pre:test": "cross-env NODE_ENV=test nodemon",
+    "start:test": "cross-env NODE_ENV=test nodemon",
     "build": "tsc && npx tsc-alias",
     "test": "mocha NODE_ENV=test -r ts-node/register  --extension ts '__tests__/**/*.ts'",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",

@@ -1,4 +1,4 @@
-import { BadRequestException } from '@exceptions';
+import { ValidationException } from '@exceptions';
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
@@ -23,6 +23,6 @@ export function validateCustomerInput(requestBody) {
   }
 
   if (errorMessages.length > 0) {
-    throw new BadRequestException(JSON.stringify(errorMessages));
+    throw new ValidationException(JSON.stringify(errorMessages));
   }
 }

@@ -10,7 +10,7 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
 
     logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
-    if (err.name === 'BadRequestException') {
+    if (err.name === 'ValidationException') {
       message = JSON.parse(message);
     }
 
