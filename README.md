@@ -2,12 +2,6 @@
 
 The Distributed Movie Ticketing System is a distributed application that allows users to browse and book movie tickets. It is divided into several microservices to handle specific functionalities.
 
-### ERD
-
-![ERD](movie-ticketing-system-ERD.jpg)
-
-### Microservice Design
-
 ![DESIGN](movie-ticketing-system-design.jpeg)
 
 #### The system consists of the following services:
@@ -51,7 +45,7 @@ The Distributed Movie Ticketing System is a distributed application that allows 
 To get started with the Distributed Movie Ticketing System, follow the instructions provided in the respective README files for each service:
 
 - Authentication Service: [Readme](https://github.com/belovetech/movie-ticketing-system/tree/main/auth_service)
-- Movie Service: [Readme](https://github.com/belovetech/movie-ticketing-system/tree/main/movies_service)
+- Movie Service: [Readme](https://github.com/belovetech/movie-ticketing-system/tree/main/movie_service)
 - Ticket Service: [Readme](https://github.com/belovetech/movie-ticketing-system/tree/main/ticket_service)
 - Notification Service: [Readme](https://github.com/belovetech/movie-ticketing-system/tree/main/notification_service)
   Each service has its own set of dependencies and instructions for installation and configuration.
@@ -61,12 +55,16 @@ To get started with the Distributed Movie Ticketing System, follow the instructi
 - Typescript
 - Node.js
 - Express.js
-- MongoDB
-- PostgreSQL
+- MongoDB (Mongoose)
+- PostgreSQL (Sequelizer)
 - RabbitMQ (Message Queue)
 - JSON Web Tokens (JWT)
 - bcrypt.js
 - SMTP and SMS providers (for the Notification Service)
+
+### ERD
+
+![ERD](movie-ticketing-system-ERD.jpg)
 
 ### Contributing
 
