@@ -9,3 +9,9 @@ A movie ticketing system is a ticketing system that allows moviegoers to choose 
 ### Microservice Design
 
 ![](movie-ticketing-system-design.jpeg)
+
+### App Services
+- Auth service
+- Movie service
+- Ticket service
+
