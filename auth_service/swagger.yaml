@@ -11,7 +11,8 @@ paths:
   /ping:
     get:
       summary: Get server health status
-      tags: [Healthcheck]
+      tags:
+        - Healthcheck
       responses:
         200:
           description: Server is running smoothly
@@ -33,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/customers'
+              $ref: '#/definitions/customers'
       responses:
         '201':
           $ref: '#/definitions/responses/created'
