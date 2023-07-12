@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 import { ICustomer } from '@interfaces/customers.interface';
 
-const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
+export const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
   {
     _id: {
       type: String,
@@ -58,4 +58,5 @@ customerSchema.pre('save', function (next) {
 });
 
 const Customer = model<ICustomer>('Customer', customerSchema);
+
 export default Customer;

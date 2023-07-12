@@ -10,13 +10,14 @@ const config = {
   },
   test: {
     uri: process.env.TEST_DB_URL,
-    port: process.env.TEST_DB_PORT || 5000,
+    port: process.env.DB_PORT || 5000,
   },
   redis: {
     host: process.env.REDIS_HOST,
     port: parseInt(process.env.REDIS_PORT),
   },
   baseUrl: process.env.BASE_URL,
+  api_Url: process.env.API_URL,
   secret: 'S3cr3tK3y!',
 };
 

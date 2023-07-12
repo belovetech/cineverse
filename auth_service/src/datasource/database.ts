@@ -1,7 +1,7 @@
-import config from '@config';
-import { IConnectionOptionExtend } from '@interfaces/connection.interface';
-import logger from '@utils/logger';
 import mongoose, { ConnectOptions, Connection } from 'mongoose';
+import config from '@config';
+import logger from '@utils/logger';
+import { IConnectionOptionExtend } from '@interfaces/connection.interface';
 
 class MongoClient {
   private connection: Connection;
@@ -35,14 +35,14 @@ class MongoClient {
   }
 }
 
-function getUrl(env: string): string {
+export function getUrl(env: string): string {
   if (env === 'test') {
     return config.test.uri;
   }
   return config.development.uri;
 }
 
-const options: ConnectOptions & IConnectionOptionExtend = {
+export const options: ConnectOptions & IConnectionOptionExtend = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };

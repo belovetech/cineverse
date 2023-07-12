@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "description": "movie ticketing system authentication service",
   "main": "server.ts",
+  "author": "Abeeb Raheem",
+  "license": "ISC",
   "scripts": {
     "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
+    "pre:test": "cross-env NODE_ENV=test nodemon",
     "build": "tsc && npx tsc-alias",
-    "test": "mocha -r ts-node/register NODE_ENV=testing --extension ts '__tests__/**/*.ts'",
+    "test": "mocha NODE_ENV=test -r ts-node/register  --extension ts '__tests__/**/*.ts'",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
     "swagger:autogen": "ts-node ./src/swagger.ts"
   },
-  "author": "Abeeb Raheem",
-  "license": "ISC",
   "dependencies": {
     "and": "^0.0.3",
     "bcrypt": "^5.1.0",
@@ -39,11 +40,13 @@
     "@types/mocha": "^10.0.1",
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.4",
+    "@types/sinon": "^10.0.15",
     "@types/winston": "^2.4.4",
     "chai": "^4.3.7",
     "chai-http": "^4.4.0",
     "dotenv": "^16.3.1",
     "mocha": "^10.2.0",
+    "sinon": "^15.2.0",
     "stub": "^0.3.2",
     "tsconfig-paths": "^4.2.0"
   }
