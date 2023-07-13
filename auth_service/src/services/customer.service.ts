@@ -3,11 +3,12 @@ import Customer from '@models/customers.model';
 import filteredCustomerData from '@utils/filterCustomerData';
 import { ICustomer } from '@interfaces/customers.interface';
 import { NotFoundException, ConflictException } from '@exceptions';
-import { validateCustomerInput } from '@utils/validateCustomerInput';
+import { CustomerDataValidator } from '@utils/customerPayloadValidator';
 
 export default class CustomerService {
   public static async createCustomer(data: ICustomer): Promise<ICustomer> {
-    validateCustomerInput(data);
+    const validator: CustomerDataValidator<ICustomer> = new CustomerDataValidator<ICustomer>(data);
+    validator.validate(data);
     const customerExist = await Customer.findOne({ email: data.email }).exec();
     if (customerExist) throw new ConflictException();
     const hashPassword: string = await bcrypt.hash(data.email, 12);

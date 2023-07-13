@@ -9,3 +9,11 @@ export interface ICustomer extends Document {
   passwordConfirm: string;
   isVerified?: boolean;
 }
+
+export interface IPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
