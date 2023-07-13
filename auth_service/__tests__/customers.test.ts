@@ -41,12 +41,12 @@ describe('Customer Endpoint Testing', function () {
       id = res.body.customerId; // store customer id
     });
 
-    it('Customer already exist', async function () {
+    it('Customer already exists', async function () {
       const errorMessage = 'Conflict:: Customer already exists.';
       const res = await chai.request(url).post('/customers').send(data);
       expect(res.status).to.be.equal(409);
       expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('message').to.equal(errorMessage);
+      expect(res.body).to.have.property('error').to.equal(errorMessage);
       expect(res.body).to.have.property('name').to.equal('ConflictException');
     });
 
@@ -55,12 +55,12 @@ describe('Customer Endpoint Testing', function () {
       const res = await chai.request(url).post('/customers').send(emptyData);
       expect(res.status).to.be.equal(400);
       expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('message');
-      expect(res.body.message).to.be.an('array');
-      expect(res.body.message[0]).to.have.property('firstName');
-      expect(res.body.message[1]).to.have.property('lastName');
-      expect(res.body.message[2]).to.have.property('email');
-      expect(res.body.message[3]).to.have.property('password');
+      expect(res.body).to.have.property('error');
+      expect(res.body.error).to.be.an('array');
+      expect(res.body.error[0]).to.have.property('firstName');
+      expect(res.body.error[1]).to.have.property('lastName');
+      expect(res.body.error[2]).to.have.property('email');
+      expect(res.body.error[3]).to.have.property('password');
       expect(res.body).to.have.property('name').to.equal('ValidationException');
     });
   });
