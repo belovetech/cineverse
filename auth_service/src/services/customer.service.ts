@@ -3,7 +3,7 @@ import Customer from '@models/customers.model';
 import filteredCustomerData from '@utils/filterCustomerData';
 import { ICustomer } from '@interfaces/customers.interface';
 import { NotFoundException, ConflictException } from '@exceptions';
-import { CustomerDataValidator } from '@utils/customerPayloadValidator';
+import { CustomerDataValidator } from '@validators/customerPayloadValidator';
 
 export default class CustomerService {
   public static async createCustomer(data: ICustomer): Promise<ICustomer> {
