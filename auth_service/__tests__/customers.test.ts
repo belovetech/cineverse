@@ -2,22 +2,10 @@ import { describe, it } from 'mocha';
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import config from '../src/config';
-import Customer from '../src/models/customers.model';
-import mongoClient from '../src/datasource/database';
 
 chai.use(chaiHttp);
 
 describe('Customer Endpoint Testing', function () {
-  before(async () => {
-    this.timeout(5000);
-    await mongoClient.connect();
-    await Customer.deleteMany({});
-  });
-
-  after(async () => {
-    await mongoClient.disconnect();
-  });
-
   const url = config.api_Url || 'http://localhost:8000/v1';
 
   const data = {
