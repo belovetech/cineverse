@@ -1,7 +1,7 @@
 import Validator from '@validators/validator';
-import { IPayload } from '@interfaces/customers.interface';
+import { CustomerDto } from '@dtos/customers.dto';
 
-export class CustomerDataValidator<T extends IPayload> extends Validator<T> {
+export class CustomerDataValidator<T extends CustomerDto> extends Validator<T> {
   constructor(payload: T) {
     super(payload);
   }
