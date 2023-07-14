@@ -10,7 +10,6 @@ export default class AuthService {
     validator.validate();
     const customerExist = await Customer.findOne({ email: payload.email }).exec();
     if (customerExist) throw new ConflictException();
-    // const hashPassword: string = await bcrypt.hash(payload.password, 12);
     const customer = await Customer.create({ ...payload });
     return customer;
   }
