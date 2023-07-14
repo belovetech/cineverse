@@ -1,45 +1,57 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import Customer from '@models/customers.model';
+import redisClient from '@datasource/redis';
+import config from '@config';
 import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from '@exceptions';
 import { CustomerDataValidator } from '@validators/customerPayloadValidator';
-import { ICustomer, IPayload } from '@interfaces/customers.interface';
-import redisClient from '@datasource/redis';
-import VerifyOtpDto from '@dtos/verifyOtp.dto';
+import { ICustomer } from '@interfaces/customers.interface';
+import { LoginDto, TokenDto, VerifyOtpDto } from '@dtos/auth.dto';
+import { CustomerDto } from '@dtos/customers.dto';
 
 export default class AuthService {
-  public static async signup(payload: IPayload): Promise<ICustomer> {
-    const validator: CustomerDataValidator<IPayload> = new CustomerDataValidator<IPayload>(payload);
+  public static async signup(payload: CustomerDto): Promise<ICustomer> {
+    const validator: CustomerDataValidator<CustomerDto> = new CustomerDataValidator<CustomerDto>(payload);
     validator.validate();
     const customerExist = await Customer.findOne({ email: payload.email }).exec();
     if (customerExist) throw new ConflictException();
     const customer = await Customer.create({ ...payload });
 
-    const otp = await bcrypt.hash(JSON.stringify(this.generateOTP()), 2);
-    const key = `otp_${customer.email}`;
+    const otp = this.generateOTP();
+    const hashedOtp = await bcrypt.hash(JSON.stringify(otp), 2);
+    const key = `x-otp_${customer.email}`;
     await redisClient.del(key);
-    redisClient.set(key, otp, 60 * 10); // 10mins
+    redisClient.set(key, hashedOtp, 60 * 10); // 10mins
     // send otp to the customer's email
     console.log(otp);
     return customer;
   }
 
-  public static async signin(loginCredentials: { email: string; password: string }) {
-    const customerExist = await Customer.findOne({ email: loginCredentials.email }).select('password').exec();
+  public static async signin(payload: LoginDto): Promise<ICustomer & { token: string }> {
+    const customerExist = await Customer.findOne({ email: payload.email }).select('password').exec();
     if (!customerExist) throw new NotFoundException();
-    const isCorrectPassword = await bcrypt.compare(loginCredentials.password, customerExist.password);
+    const isCorrectPassword = await bcrypt.compare(payload.password, customerExist.password);
     if (!isCorrectPassword) throw new AuthenticationException();
-    // generate auth token
-    // store token in the redis server
+
+    const token = await this.generateToken(customerExist);
+    const key = `x-token_${customerExist.customerId}`;
+    await redisClient.del(key);
+    await redisClient.set(key, token, 60 * 60); // 1hr
+    return { ...customerExist, token };
   }
 
-  public static async verifyOtp(data: VerifyOtpDto): Promise<ICustomer> {
-    if (!data) throw new BadRequestException('Invalid OTP credentials');
-    const storedOtp = await redisClient.get(`otp_${data.email}`);
+  public static async verifyOtp(payload: VerifyOtpDto): Promise<ICustomer> {
+    if (!payload?.otp || !payload?.email) throw new BadRequestException('Invalid OTP credentials');
+    const customer = await Customer.findOne({ email: payload.email }).exec();
+    if (!customer) throw new NotFoundException('Provided email was not found');
+    if (customer.isVerified) throw new ConflictException('You are already being verified');
+
+    const storedOtp = await redisClient.get(`x-otp_${payload.email}`);
     if (!storedOtp) throw new AuthenticationException('OTP token has expired');
-    const validOtp = await bcrypt.compare(data.otp, storedOtp);
+    const validOtp = await bcrypt.compare(payload.otp, storedOtp);
     if (!validOtp) throw new AuthenticationException('Invalid OTP token');
-    const customer = await Customer.findOne({ email: data.email }).exec();
-    await redisClient.del(`otp_${data.email}`);
+    await redisClient.del(`x-otp_${payload.email}`);
+
     customer.isVerified = true;
     customer.save();
     return customer;
@@ -49,5 +61,11 @@ export default class AuthService {
     const min = 100000;
     const max = 999999;
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  private static async generateToken(payload: CustomerDto): Promise<string> {
+    const payloadStoredInToken: TokenDto = { customerId: payload.customerId };
+    const token = await jwt.sign({ exp: '1h', payloadStoredInToken }, config.secret);
+    return token;
   }
 }
