@@ -1,4 +1,3 @@
-// import bcrypt from 'bcrypt';
 import Customer from '@models/customers.model';
 import { ConflictException } from '@exceptions';
 import { CustomerDataValidator } from '@validators/customerPayloadValidator';
