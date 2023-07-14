@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-export interface ICustomer extends Document {
+export interface ICustomer {
   customerId: string;
   firstName: string;
   lastName: string;
@@ -10,10 +10,12 @@ export interface ICustomer extends Document {
   isVerified?: boolean;
 }
 
-export interface IPayload {
+export interface CustomerModel extends Document {
+  customerId: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   passwordConfirm: string;
+  isVerified?: boolean;
 }
