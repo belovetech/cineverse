@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
-import { ICustomer } from '@interfaces/customers.interface';
+import { CustomerModel } from '@interfaces/customers.interface';
 
-export const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
+export const customerSchema: Schema<CustomerModel> = new Schema<CustomerModel>(
   {
     _id: {
       type: String,
@@ -60,6 +60,6 @@ customerSchema.pre('save', async function (next) {
   next();
 });
 
-const Customer = model<ICustomer>('Customer', customerSchema);
+const Customer = model<CustomerModel>('Customer', customerSchema);
 
 export default Customer;
