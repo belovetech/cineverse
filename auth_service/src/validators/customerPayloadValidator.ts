@@ -8,7 +8,7 @@ export class CustomerDataValidator<T extends IPayload> extends Validator<T> {
 
   public validate(): void {
     this.validateString('firstName', this.payload.firstName);
-    this.validateString('firstName', this.payload.firstName);
+    this.validateString('lastName', this.payload.firstName);
     this.validateEmail('email', this.payload.email);
     this.validatePassword('password', this.payload.password);
 

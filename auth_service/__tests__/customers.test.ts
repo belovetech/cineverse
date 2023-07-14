@@ -24,8 +24,8 @@ describe('Customer Endpoint Testing', function () {
     firstName: 'Unit',
     lastName: 'Test',
     email: 'unitest@gmail.com',
-    password: 'Password!',
-    passwordConfirm: 'Password!',
+    password: 'P@ssw0rd!',
+    passwordConfirm: 'P@ssw0rd!',
   };
   let id;
 
@@ -55,12 +55,12 @@ describe('Customer Endpoint Testing', function () {
       const res = await chai.request(url).post('/customers').send(emptyData);
       expect(res.status).to.be.equal(400);
       expect(res.body).to.be.an('object');
-      expect(res.body).to.have.property('error');
-      expect(res.body.error).to.be.an('array');
-      expect(res.body.error[0]).to.have.property('firstName');
-      expect(res.body.error[1]).to.have.property('lastName');
-      expect(res.body.error[2]).to.have.property('email');
-      expect(res.body.error[3]).to.have.property('password');
+      expect(res.body).to.have.property('errors');
+      expect(res.body.errors).to.be.an('array');
+      expect(res.body.errors[0]).to.have.property('firstName');
+      expect(res.body.errors[1]).to.have.property('lastName');
+      expect(res.body.errors[2]).to.have.property('email');
+      expect(res.body.errors[3]).to.have.property('password');
       expect(res.body).to.have.property('name').to.equal('ValidationException');
     });
   });

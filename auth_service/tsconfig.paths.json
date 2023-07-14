@@ -8,6 +8,7 @@
       "@interfaces/*": ["interfaces/*"],
       "@middlewares/*": ["middlewares/*"],
       "@exceptions/*": ["exceptions/*"],
+      "@validators/*": ["validators/*"],
       "@services/*": ["services/*"],
       "@routes/*": ["routes/*"],
       "@models/*": ["models/*"],
