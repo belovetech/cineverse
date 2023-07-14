@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import Customer from '@models/customers.model';
 import filteredCustomerData from '@utils/filterCustomerData';
 import { ICustomer } from '@interfaces/customers.interface';
@@ -8,11 +7,10 @@ import { CustomerDataValidator } from '@validators/customerPayloadValidator';
 export default class CustomerService {
   public static async createCustomer(data: ICustomer): Promise<ICustomer> {
     const validator: CustomerDataValidator<ICustomer> = new CustomerDataValidator<ICustomer>(data);
-    validator.validate(data);
+    validator.validate();
     const customerExist = await Customer.findOne({ email: data.email }).exec();
     if (customerExist) throw new ConflictException();
-    const hashPassword: string = await bcrypt.hash(data.email, 12);
-    const customer = await Customer.create({ ...data, password: hashPassword });
+    const customer = await Customer.create({ ...data });
     return customer;
   }
 

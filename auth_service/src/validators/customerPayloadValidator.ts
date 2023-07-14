@@ -1,4 +1,4 @@
-import Validator from '@utils/validator';
+import Validator from '@validators/validator';
 import { IPayload } from '@interfaces/customers.interface';
 
 export class CustomerDataValidator<T extends IPayload> extends Validator<T> {
@@ -6,14 +6,14 @@ export class CustomerDataValidator<T extends IPayload> extends Validator<T> {
     super(payload);
   }
 
-  public validate(data: T): void {
-    this.validateString('firstName', data.firstName);
-    this.validateString('firstName', data.firstName);
-    this.validateEmail('email', data.email);
-    this.validatePassword('password', data.password);
+  public validate(): void {
+    this.validateString('firstName', this.payload.firstName);
+    this.validateString('firstName', this.payload.firstName);
+    this.validateEmail('email', this.payload.email);
+    this.validatePassword('password', this.payload.password);
 
-    for (const key in data) {
-      if (data.hasOwnProperty(key) && !this.isValidKey(key as keyof T)) {
+    for (const key in this.payload) {
+      if (this.payload.hasOwnProperty(key) && !this.isValidKey(key as keyof T)) {
         this.validateUnknownType(key as keyof T);
       }
     }

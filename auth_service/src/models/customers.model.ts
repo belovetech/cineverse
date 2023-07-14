@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcrypt';
 import { ICustomer } from '@interfaces/customers.interface';
 
 export const customerSchema: Schema<ICustomer> = new Schema<ICustomer>(
@@ -52,7 +53,9 @@ customerSchema.set('toJSON', {
   },
 });
 
-customerSchema.pre('save', function (next) {
+customerSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
   next();
 });
