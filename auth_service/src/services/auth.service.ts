@@ -27,17 +27,19 @@ export default class AuthService {
     return customer;
   }
 
-  public static async signin(payload: LoginDto): Promise<ICustomer & { token: string }> {
-    const customerExist = await Customer.findOne({ email: payload.email }).select('password').exec();
-    if (!customerExist) throw new NotFoundException();
-    const isCorrectPassword = await bcrypt.compare(payload.password, customerExist.password);
+  public static async signin(payload: LoginDto): Promise<ICustomer> {
+    const customer: ICustomer = await Customer.findOne({ email: payload.email }).select('+password');
+    if (!customer) throw new NotFoundException();
+    if (!customer.isVerified) throw new BadRequestException('Verify your account before signing in.');
+    const isCorrectPassword = await bcrypt.compare(payload.password, customer.password);
     if (!isCorrectPassword) throw new AuthenticationException();
 
-    const token = await this.generateToken(customerExist);
-    const key = `x-token_${customerExist.customerId}`;
+    const token = await this.generateToken(customer);
+    const key = `x-token_${customer.customerId}`;
     await redisClient.del(key);
     await redisClient.set(key, token, 60 * 60); // 1hr
-    return { ...customerExist, token };
+    customer.token = token;
+    return customer;
   }
 
   public static async verifyOtp(payload: VerifyOtpDto): Promise<ICustomer> {
@@ -65,7 +67,7 @@ export default class AuthService {
 
   private static async generateToken(payload: CustomerDto): Promise<string> {
     const payloadStoredInToken: TokenDto = { customerId: payload.customerId };
-    const token = await jwt.sign({ exp: '1h', payloadStoredInToken }, config.secret);
+    const token = await jwt.sign(payloadStoredInToken, config.secret, { expiresIn: '1h' });
     return token;
   }
 }

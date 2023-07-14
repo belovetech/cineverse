@@ -1,8 +1,13 @@
 import { IResponse, ILink } from '@interfaces/response.interface';
 import { ICustomer } from '@interfaces/customers.interface';
-import CustomerDto from '@dtos/customers.dto';
 
-type Customer = ICustomer & { createdAt?: string; updatedAt?: string };
+interface ICustomerOptional {
+  createdAt?: string;
+  updatedAt?: string;
+  token?: string;
+}
+
+type Customer = ICustomer & ICustomerOptional;
 
 export default class ApiResponseFormatter {
   private customer: ICustomer;
@@ -15,13 +20,14 @@ export default class ApiResponseFormatter {
     this.customerId = this.customer?.customerId || '';
   }
 
-  private getData(customer: Customer): CustomerDto {
+  private getData(customer: Customer): Customer {
     return {
-      customerId: customer._id,
+      customerId: customer.customerId,
       firstName: customer.firstName,
       lastName: customer.lastName,
       email: customer.email,
       isVerified: customer.isVerified,
+      token: customer?.token,
     };
   }
 

@@ -3,7 +3,7 @@ export interface CustomerDto {
   readonly firstName: string;
   readonly lastName: string;
   readonly email: string;
-  readonly password: string;
+  readonly password?: string;
   readonly passwordConfirm?: string;
   readonly isVerified?: boolean;
 }

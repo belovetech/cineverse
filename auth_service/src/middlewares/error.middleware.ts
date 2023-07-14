@@ -15,6 +15,8 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
       return res.status(statusCode).json({ statusCode, name, ...parsedMessage });
     }
 
+    // console.log(err);
+
     return res.status(statusCode).json({ statusCode, name, error: message });
   } catch (error) {
     return next(error);
