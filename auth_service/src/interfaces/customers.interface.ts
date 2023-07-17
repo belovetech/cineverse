@@ -8,7 +8,7 @@ export interface ICustomer {
   password?: string;
   passwordConfirm?: string;
   isVerified?: boolean;
-  token?: string;
+  // token?: string;
 }
 
 export interface CustomerModel extends Document {

@@ -4,7 +4,6 @@ import { ICustomer } from '@interfaces/customers.interface';
 interface ICustomerOptional {
   createdAt?: string;
   updatedAt?: string;
-  token?: string;
 }
 
 type Customer = ICustomer & ICustomerOptional;
@@ -27,7 +26,6 @@ export default class ApiResponseFormatter {
       lastName: customer.lastName,
       email: customer.email,
       isVerified: customer.isVerified,
-      token: customer?.token,
     };
   }
 

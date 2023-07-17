@@ -20,8 +20,9 @@ export class AuthController {
   public async login(req: Request, res: Response, next: NextFunction) {
     try {
       const payload: LoginDto = req.body;
-      const customer: ICustomer = await AuthService.signin(payload);
+      const { customer, cookie } = await AuthService.signin(payload);
       const apiResponseFormatter = new ApiResponseFormatter(customer);
+      res.setHeader('Set-Cookie', [cookie]);
       return res.status(200).json(apiResponseFormatter.format());
     } catch (error) {
       return next(error);

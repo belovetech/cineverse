@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDOC from 'swagger-jsdoc';
@@ -52,6 +53,7 @@ export default class App {
     this.app.use(morgan('combined'));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cookieParser());
   }
 
   private inititializeRoutes(routes: IRoute[]): void {

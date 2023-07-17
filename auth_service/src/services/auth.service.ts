@@ -27,7 +27,7 @@ export default class AuthService {
     return customer;
   }
 
-  public static async signin(payload: LoginDto): Promise<ICustomer> {
+  public static async signin(payload: LoginDto): Promise<{ cookie: string; customer: ICustomer }> {
     const customer: ICustomer = await Customer.findOne({ email: payload.email }).select('+password');
     if (!customer) throw new NotFoundException();
     if (!customer.isVerified) throw new BadRequestException('Verify your account before signing in.');
@@ -35,12 +35,11 @@ export default class AuthService {
     if (!isCorrectPassword) throw new AuthenticationException();
 
     const token = await this.generateToken(customer);
+    const cookie = this.setCookies(token);
     const key = `x-token_${customer.customerId}`;
     await redisClient.del(key);
     await redisClient.set(key, token, 60 * 60); // 1hr
-    // customer.token = token;
-    customer.token = this.setCookies(token);
-    return customer;
+    return { cookie, customer };
   }
 
   public static async verifyOtp(payload: VerifyOtpDto): Promise<ICustomer> {
@@ -73,6 +72,6 @@ export default class AuthService {
   }
 
   private static setCookies(token: string): string {
-    return `Authorization=${token}, httpOnly:${true};  x-cookies=${token}`;
+    return `Authorization=${token}; Secure; HttpOnly; SameSite=strict; Max-Age=${60 * 60}`;
   }
 }
