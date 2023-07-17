@@ -38,7 +38,8 @@ export default class AuthService {
     const key = `x-token_${customer.customerId}`;
     await redisClient.del(key);
     await redisClient.set(key, token, 60 * 60); // 1hr
-    customer.token = token;
+    // customer.token = token;
+    customer.token = this.setCookies(token);
     return customer;
   }
 
@@ -69,5 +70,9 @@ export default class AuthService {
     const payloadStoredInToken: TokenDto = { customerId: payload.customerId };
     const token = await jwt.sign(payloadStoredInToken, config.secret, { expiresIn: '1h' });
     return token;
+  }
+
+  private static setCookies(token: string): string {
+    return `Authorization=${token}, httpOnly:${true};  x-cookies=${token}`;
   }
 }
