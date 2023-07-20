@@ -4,7 +4,14 @@
   "description": "Distributed movie ticketing system - movie service",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon",
+    "test:server": "cross-env NODE_ENV=test nodemon",
+    "build": "tsc && npx tsc-alias",
+    "test": "mocha NODE_ENV=test -r ts-node/register  --extension ts '__tests__/**/*.ts'",
+    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
+    "lint:fix": "npm run lint -- --fix",
+    "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "repository": {
     "type": "git",
@@ -24,8 +31,12 @@
   "dependencies": {
     "@types/express": "^4.17.17",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "tsconfig-paths": "^4.2.0"
   }
 }
