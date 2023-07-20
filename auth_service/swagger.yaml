@@ -28,7 +28,7 @@ paths:
       summary: Create a new customer
       description: Endpoint to create a new customer.
       tags:
-        - customers
+        - Customer
       requestBody:
         required: true
         content:
@@ -37,17 +37,17 @@ paths:
               $ref: '#/definitions/customers'
       responses:
         '201':
-          $ref: '#/definitions/responses/created'
+          $ref: '#/components/responses/created'
         '400':
-          $ref: '#/definitions/exceptions/badRequest'
+          $ref: '#/components/exceptions/badRequest'
         '500':
-          $ref: '#/definitions/exceptions/serverError'
+          $ref: '#/components/exceptions/serverError'
 
     get:
       summary: Get all customers
       description: Endpoint to get all the customers
       tags:
-        - customers
+        - Customer
       responses:
         '200':
           $ref: '#/definition/responses/ok'
@@ -57,7 +57,7 @@ paths:
       summary: Get customer by id
       description: Endpoint to get a single customer by id
       tags:
-        - customers
+        - Customer
       parameters:
         - name: id
           in: path
@@ -68,17 +68,17 @@ paths:
           example: 'c85aedc9c339491cb2c0560359c9b7ec'
       responses:
         '200':
-          $ref: '#/definitions/responses/ok'
+          $ref: '#/components/responses/ok'
         '409':
-          $ref: '#/definitions/exceptions/conflict'
+          $ref: '#/components/exceptions/conflict'
         '500':
-          $ref: '#/definitions/exceptions/serverError'
+          $ref: '#/components/exceptions/serverError'
 
     patch:
       summary: Update customer by id
       description: Endpoint to update a customer's details by id
       tags:
-        - customers
+        - Customer
       parameters:
         - name: id
           in: path
@@ -95,19 +95,19 @@ paths:
               $ref: '#/definitions/updatecustomer'
       responses:
         '200':
-          $ref: '#/definitions/responses/ok'
+          $ref: '#/components/responses/ok'
         '400':
-          $ref: '#/definitions/exceptions/badRequest'
+          $ref: '#/components/exceptions/badRequest'
         '409':
-          $ref: '#/definitions/exceptions/conflict'
+          $ref: '#/components/exceptions/conflict'
         '500':
-          $ref: '#/definitions/exceptions/serverError'
+          $ref: '#/components/exceptions/serverError'
 
     delete:
       summary: Delete customer by id
       description: Endpoint to delete a customer's details by id
       tags:
-        - customers
+        - Customer
       parameters:
         - name: id
           in: path
@@ -121,6 +121,129 @@ paths:
           $ref: '#/definitions/responses/noContent'
         '500':
           $ref: '#/definitions/exceptions/serverError'
+
+  /auth/signup:
+    post:
+      summary: Signup a new customer
+      description: Endpoint to create a new customer.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/customers'
+      responses:
+        '201':
+          $ref: '#/components/responses/created'
+        '400':
+          $ref: '#/components/exceptions/badRequest'
+        '500':
+          $ref: '#/components/exceptions/serverError'
+
+  /auth/login:
+    post:
+      summary: Login a customer
+      description: Endpoint to login a customer.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/login'
+      responses:
+        '200':
+          $ref: '#/components/responses/ok'
+        '400':
+          $ref: '#/components/exceptions/badRequest'
+        '500':
+          $ref: '#/components/exceptions/serverError'
+
+  /auth/logout:
+    post:
+      summary: logout current customer
+      description: Endpoint to logout a customer and delete the auth token.
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/ok'
+        '400':
+          $ref: '#/components/exceptions/badRequest'
+        '500':
+          $ref: '#/components/exceptions/serverError'
+
+  /auth/otp:
+    post:
+      summary: Send  OTP
+      description: Endpoint to send verification OTP to the customer email.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/sendotp'
+      responses:
+        '200':
+          $ref: '#/components/responses/ok'
+        '400':
+          $ref: '#/components/exceptions/badRequest'
+        '500':
+          $ref: '#/components/exceptions/serverError'
+
+  /auth/verify:
+    post:
+      summary: Verify  OTP
+      description: Endpoint to verify OTP sent to the customer email.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/verifyotp'
+      responses:
+        '200':
+          $ref: '#/components/responses/ok'
+        '400':
+          $ref: '#/components/exceptions/badRequest'
+        '500':
+          $ref: '#/components/exceptions/serverError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Enter the token with the `Bearer: ` prefix, e.g. "Bearer abcde12345".
+
+  responses:
+    created:
+      description: Customer successfully created
+    ok:
+      description: Ok!
+    noContent:
+      description: Customer successfully deleted
+
+  exceptions:
+    badRequest:
+      description: 'Bad Request:: Invalid request payload'
+    notFound:
+      description: 'Not found:: Customer not found'
+    serverError:
+      description: 'Server Error:: Internal Server Error'
+    conflict:
+      description: 'Conflict:: Customer already exists.'
 
 definitions:
   customers:
@@ -159,20 +282,32 @@ definitions:
       - firstName
       - lastName
 
-  responses:
-    created:
-      description: Customer successfully created
-    ok:
-      description: Ok!
-    noContent:
-      description: Customer successfully deleted
+  login:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - email
+      - password
 
-  exceptions:
-    badRequest:
-      description: 'Bad Request:: Invalid request payload'
-    notFound:
-      description: 'Not found:: Customer not found'
-    serverError:
-      description: 'Server Error:: Internal Server Error'
-    conflict:
-      description: 'Conflict:: Customer already exists.'
+  sendotp:
+    type: object
+    properties:
+      email:
+        type: string
+    required:
+      - email
+
+  verifyotp:
+    type: object
+    properties:
+      email:
+        type: string
+      otp:
+        type: string
+    required:
+      - email
+      - otp
