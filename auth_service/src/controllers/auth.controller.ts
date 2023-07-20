@@ -35,7 +35,7 @@ export class AuthController {
       await AuthService.signout(req?.customer);
       res.setHeader('Set-Cookie', ['Authorization=; Max-Age=0']);
       res.setHeader('Authorization', '');
-      return res.status(200).json({ message: 'succefullly logout' });
+      return res.status(200).json({ message: 'Logout Successfully' });
     } catch (error) {
       return next(error);
     }
@@ -43,8 +43,8 @@ export class AuthController {
 
   public async sendOtp(req: Request, res: Response, next: NextFunction) {
     try {
-      const Otp = await AuthService.sendOtp(req.body?.email);
-      return res.status(200).json({ Otp });
+      const otp = await AuthService.sendOtp(req.body?.email);
+      return res.status(200).json({ otp });
     } catch (error) {
       return next(error);
     }

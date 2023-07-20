@@ -24,11 +24,12 @@ export default class AuthService {
   }
 
   public static async signin(payload: LoginDto): Promise<{ cookie: string; customer: ICustomer }> {
+    if (!payload.email || !payload.password) throw new BadRequestException();
     const customer: ICustomer = await Customer.findOne({ email: payload.email }).select('+password');
     if (!customer) throw new NotFoundException();
-    if (!customer.isVerified) throw new BadRequestException('Verify your account before signing in.');
+    if (!customer.isVerified) throw new AuthenticationException('Verify your account before signing in.');
     const isCorrectPassword = await bcrypt.compare(payload.password, customer.password);
-    if (!isCorrectPassword) throw new AuthenticationException();
+    if (!isCorrectPassword) throw new AuthenticationException('Please check your email and password');
 
     const token = await this.generateToken(customer);
     const cookie = this.setCookies(token);
