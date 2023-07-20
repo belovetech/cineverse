@@ -74,7 +74,7 @@ describe('Customer Endpoint Testing', function () {
   });
 
   // [UPDATE] request
-  describe('[Update] get customer', function () {
+  describe('[UPDATE] get customer', function () {
     it('Update customer data', async function () {
       const data = { firstName: 'Karl', lastName: 'Mark' };
       const keys = ['customerId', 'firstName', 'lastName', 'email', 'isVerified'];
