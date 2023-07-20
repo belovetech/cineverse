@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import IRoute from '@interfaces/routes.interface';
 import { AuthController } from '@controllers/auth.controller';
+import { authMiddleware } from '@middlewares/auth.middleware';
 
 export default class AuthRoute implements IRoute {
   public path: string = '/auth';
@@ -14,6 +15,8 @@ export default class AuthRoute implements IRoute {
   private initializeRouter() {
     this.router.post(`${this.path}/signup`, this.authController.signup);
     this.router.post(`${this.path}/login`, this.authController.login);
+    this.router.get(`${this.path}/logout`, authMiddleware, this.authController.logout);
     this.router.post(`${this.path}/verify`, this.authController.verifyOtp);
+    this.router.post(`${this.path}/otp`, this.authController.sendOtp);
   }
 }

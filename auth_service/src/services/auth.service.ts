@@ -17,12 +17,8 @@ export default class AuthService {
     if (customerExist) throw new ConflictException();
     const customer = await Customer.create({ ...payload });
 
-    const otp = this.generateOTP();
-    const hashedOtp = await bcrypt.hash(JSON.stringify(otp), 2);
-    const key = `x-otp_${customer.email}`;
-    await redisClient.del(key);
-    redisClient.set(key, hashedOtp, 60 * 10); // 10mins
     // send otp to the customer's email
+    const otp: number = await this.sendOtp(customer.email);
     console.log(otp);
     return customer;
   }
@@ -42,6 +38,13 @@ export default class AuthService {
     return { cookie, customer };
   }
 
+  public static async signout(payload: CustomerDto): Promise<ICustomer> {
+    if (!payload) throw new NotFoundException();
+    const key = `x-token_${payload.customerId}`;
+    await redisClient.del(key);
+    return payload;
+  }
+
   public static async verifyOtp(payload: VerifyOtpDto): Promise<ICustomer> {
     if (!payload?.otp || !payload?.email) throw new BadRequestException('Invalid OTP credentials');
     const customer = await Customer.findOne({ email: payload.email }).exec();
@@ -57,6 +60,17 @@ export default class AuthService {
     customer.isVerified = true;
     customer.save();
     return customer;
+  }
+
+  public static async sendOtp(email: string): Promise<number> {
+    const customer = await Customer.findOne({ email }).exec();
+    if (!customer) throw new NotFoundException();
+    const otp = this.generateOTP();
+    const hashedOtp = await bcrypt.hash(JSON.stringify(otp), 2);
+    const key = `x-otp_${email}`;
+    await redisClient.del(key);
+    redisClient.set(key, hashedOtp, 60 * 10); // 10mins
+    return otp;
   }
 
   private static generateOTP(): number {
