@@ -6,13 +6,13 @@
   "author": "Abeeb Raheem",
   "license": "ISC",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+    "start": "yarn run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "test:server": "cross-env NODE_ENV=test nodemon",
     "build": "tsc && npx tsc-alias",
     "test": "mocha NODE_ENV=test -r ts-node/register  --extension ts '__tests__/**/*.ts'",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn run lint -- --fix",
     "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "dependencies": {

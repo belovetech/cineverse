@@ -19,7 +19,7 @@ export default class App {
 
   constructor(routes: IRoute[]) {
     this.app = express();
-    this.port = config.development.port;
+    this.port = config.development.port || 3000;
     this.env = config.node_env;
 
     this.inititializeDatabase();
