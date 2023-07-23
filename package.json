@@ -6,11 +6,8 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "auth-service",
     "movie-service",
-    "ticket-service",
-    "notification-service",
-    "packages/**/**"
+    "packages/*"
   ],
   "packageManager": "yarn@3.6.1"
 }

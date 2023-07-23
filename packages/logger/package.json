@@ -2,15 +2,18 @@
   "name": "@cineverse/logger",
   "version": "1.0.0",
   "description": "utility logger",
-  "main": "index.ts",
-  "repository": "https://github.com/belovetech/cineverse/packages/logger",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "repository": "https://github.com/belovetech/cineverse.git",
   "author": "Abeeb Raheem",
   "license": "MIT",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=development nodemon",
+    "start": "yarn run build && cross-env NODE_ENV=development nodemon dist/index.js",
     "build": "tsc && npx tsc-alias  ./src/index.ts",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "npm run lint --fix"
+    "lint:fix": "yarn run lint --fix",
+    "clean": "yarn cache clean"
   },
   "dependencies": {
     "winston": "^3.10.0",
