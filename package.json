@@ -1,0 +1,16 @@
+{
+  "name": "cineverse",
+  "description": "Cineverse APIs",
+  "repository": "git@github.com:belovetech/cineverse.git",
+  "author": "Abeeb Raheem <belovetech@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "auth-service",
+    "movie-service",
+    "ticket-service",
+    "notification-service",
+    "packages/**/**"
+  ],
+  "packageManager": "yarn@3.6.1"
+}

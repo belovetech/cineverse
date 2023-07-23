@@ -16,3 +16,6 @@ dist/
 
 # esbuild directories
 .esbuild
+
+# yarn
+.yarn
