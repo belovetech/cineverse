@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@*": ["*"],
+      "@controllers/*": ["controllers/*"],
+      "@datasource/*": ["datasource/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@exceptions/*": ["exceptions/*"],
+      "@validators/*": ["validators/*"],
+      "@services/*": ["services/*"],
+      "@routes/*": ["routes/*"],
+      "@models/*": ["models/*"],
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"],
+      "@dtos/*": ["dtos/*"],
+      "@cineverse/logger": ["../packages/logger/*"]
+    }
+  }
+}

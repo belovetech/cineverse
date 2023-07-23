@@ -1,0 +1,21 @@
+# package directories
+node_modules
+jspm_packages
+.nyc_output
+coverage
+
+.DS_Store
+.env
+.env.test
+.eslintcache
+
+
+.vscode/
+logs/
+dist/
+
+# esbuild directories
+.esbuild
+
+# yarn
+.yarn
