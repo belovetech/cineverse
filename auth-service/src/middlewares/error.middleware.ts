@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { Exception } from '@exceptions';
-import logger from '@utils/logger';
+import { logger } from '@cineverse/logger';
 
 function errorMiddleware(err: Exception, req: Request, res: Response, next: NextFunction) {
   try {
@@ -14,8 +14,6 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
       const parsedMessage = JSON.parse(message);
       return res.status(statusCode).json({ statusCode, name, ...parsedMessage });
     }
-
-    // console.log(err);
 
     return res.status(statusCode).json({ statusCode, name, error: message });
   } catch (error) {

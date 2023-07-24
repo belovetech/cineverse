@@ -1,6 +1,6 @@
 import Redis, { RedisOptions, RedisKey, RedisValue } from 'ioredis';
 import config from '@config';
-import logger from '@utils/logger';
+import { logger } from '@cineverse/logger';
 
 class RedisClient {
   private redis: Redis;

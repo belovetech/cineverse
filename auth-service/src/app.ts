@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import { logger } from '@cineverse/logger';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
@@ -7,7 +8,6 @@ import config from '@config';
 import customMorgan from '@middlewares/morgan.middleware';
 import errorMiddleware from '@middlewares/error.middleware';
 import IRoute from '@interfaces/routes.interface';
-import logger from '@utils/logger';
 import mongoClient from '@datasource/database';
 import unknownRoute from '@controllers/unknownRoute.controller';
 import swaggerOption from '@utils/swaggerOptions';

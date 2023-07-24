@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import config from '@config';
 import IRoute from '@interfaces/route.interface';
+import { logger } from '@cineverse/logger';
 
 export default class App {
   private app: Application;
@@ -15,9 +16,9 @@ export default class App {
 
   public listen(): void {
     this.app.listen(this.port, () => {
-      console.info('==================================');
-      console.info(`App listening on localhost:${this.port} 🚀`);
-      console.info('==================================');
+      logger.info('==================================');
+      logger.info(`App listening on localhost:${this.port} 🚀`);
+      logger.info('==================================');
     });
   }
 
