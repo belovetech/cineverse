@@ -3,19 +3,21 @@
   "version": "1.0.0",
   "description": "Utility logger for cineverse microservices",
   "packageManager": "yarn@3.6.1",
-  "dependencies": {
-    "winston": "^3.10.0",
-    "winston-daily-rotate-file": "^4.7.1"
-  },
+  "main": "./dist/src/logger.js",
   "scripts": {
-    "start": "yarn run build && cross-env NODE_ENV=development nodemon dist/index.js",
-    "build": "tsc && npx tsc-alias nodemon dist/index.js",
+    "start": "yarn run build && cross-env NODE_ENV=development nodemon dist/src/logger.js",
+    "build": "tsc && npx tsc-alias",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "yarn run lint --fix",
     "clean": "yarn cache clean"
   },
+  "dependencies": {
+    "winston": "^3.10.0",
+    "winston-daily-rotate-file": "4.7.1"
+  },
   "devDependencies": {
     "@types/node": "^20.4.4",
+    "cross-env": "^7.0.3",
     "tsconfig-paths": "^4.2.0"
   }
 }
