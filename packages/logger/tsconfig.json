@@ -4,7 +4,7 @@
     "outDir": "./dist"
   },
   "extends": "../../shared/tsconfig.shared.json",
-  "include": ["src/**/*.ts", "src/**/*.json", ".env"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules/**/*", ".vscode/**/*", "__tests__"],
   "ts-node": { "require": ["tsconfig-paths/register"] }
 }
