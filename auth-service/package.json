@@ -16,6 +16,7 @@
     "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "dependencies": {
+    "@cineverse/logger": "file:../packages/logger",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
