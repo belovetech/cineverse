@@ -15,9 +15,9 @@ The authentication service is a crucial component of the Movie Ticketing System,
 ## Installation
 
 1. Clone the repository: git clone [link](https://github.com/belovetech/movie-ticketing-system/tree/main/auth_service)
-2. Install dependencies: npm install
+2. Install dependencies: yarn install
 3. Set up the environment variables: Create a .env file based on the provided environment variable in the config directory and update the values accordingly.
-4. Start the server: npm start
+4. Start the server: yarn run dev
 5. Click [here](http://localhost:8000/v1/docs) for interactive swagger UI
 
 ### Technologies Used
