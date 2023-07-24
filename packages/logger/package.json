@@ -1,23 +1,18 @@
 {
   "name": "@cineverse/logger",
   "version": "1.0.0",
-  "description": "utility logger",
-  "exports": {
-    ".": "./src/index.ts"
-  },
-  "repository": "https://github.com/belovetech/cineverse.git",
-  "author": "Abeeb Raheem",
-  "license": "MIT",
-  "scripts": {
-    "start": "yarn run build && cross-env NODE_ENV=development nodemon dist/index.js",
-    "build": "tsc && npx tsc-alias  ./src/index.ts",
-    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "yarn run lint --fix",
-    "clean": "yarn cache clean"
-  },
+  "description": "Utility logger for cineverse microservices",
+  "packageManager": "yarn@3.6.1",
   "dependencies": {
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
+  },
+  "scripts": {
+    "start": "yarn run build && cross-env NODE_ENV=development nodemon dist/index.js",
+    "build": "tsc && npx tsc-alias nodemon dist/index.js",
+    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
+    "lint:fix": "yarn run lint --fix",
+    "clean": "yarn cache clean"
   },
   "devDependencies": {
     "@types/node": "^20.4.4",
