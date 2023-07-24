@@ -23,11 +23,10 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "composite": true
   },
   "include": ["src/**/*.ts", "src/**/*.json", ".env"],
   "exclude": ["node_modules/**/*", ".vscode/**/*", "__tests__"],
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
-  }
+  "ts-node": { "require": ["tsconfig-paths/register"] }
 }

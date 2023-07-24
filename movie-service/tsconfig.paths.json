@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       "@*": ["*"],
       "@controllers/*": ["controllers/*"],
@@ -14,8 +14,8 @@
       "@models/*": ["models/*"],
       "@utils/*": ["utils/*"],
       "@config/*": ["config/*"],
-      "@dtos/*": ["dtos/*"],
-      "@cineverse/logger": ["../packages/logger/*"]
+      "@dtos/*": ["dtos/*"]
     }
-  }
+  },
+  "reference": [{ "path": "../packages/logger" }]
 }
