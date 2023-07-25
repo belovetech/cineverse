@@ -1,5 +1,3 @@
 node_modules
 logs
 .env
-types
-dist
