@@ -7,10 +7,11 @@ class PostgresClient {
   private sequelize: Sequelize;
 
   constructor(db: DB, options?: Options) {
+    options = options || {};
     options.host = config.host;
     options.dialect = 'postgres';
     options.logging = msg => logger.debug(msg);
-    this.sequelize = new Sequelize(db.database, db.username, db.password);
+    this.sequelize = new Sequelize(db.database, db.username, db.password, { ...options });
   }
 
   public async connect(): Promise<void> {
@@ -19,37 +20,55 @@ class PostgresClient {
       logger.info('Connection has been established successfully');
     } catch (error) {
       logger.error('Unable to connect to the database: ', error);
+      throw error;
     }
   }
 
   public async disconnect(): Promise<void> {
-    await this.sequelize.close();
-    logger.info('Database has been successfully disconnected');
+    try {
+      await this.sequelize.close();
+      logger.info('Database has been successfully disconnected');
+    } catch (error) {
+      logger.error('Error disconnecting from the database:', error);
+      throw error;
+    }
   }
 
   public async dropDatabase(): Promise<void> {
-    await this.sequelize.sync({ force: true });
-    logger.info('Database has been successfully dropped');
+    try {
+      await this.sequelize.sync({ force: true });
+      logger.info('Database has been successfully dropped');
+    } catch (error) {
+      logger.error('Error dropping the database:', error);
+      throw error;
+    }
   }
 
   public async alterDatabase(): Promise<void> {
-    await this.sequelize.sync({ alter: true });
-    logger.info('Database has been successfully altered');
+    try {
+      await this.sequelize.sync({ alter: true });
+      logger.info('Database has been successfully altered');
+    } catch (error) {
+      logger.error('Error altering the database:', error);
+      throw error;
+    }
   }
 }
 
 function setUpDatabase() {
-  let database: DB;
+  let db: DB = {} as DB;
   if (process.env.NODE_ENV === 'test') {
-    database.database = config.test.db_name;
-    database.username = config.test.db_username;
-    database.password = config.test.db_password;
+    db.database = config.test.db_name;
+    db.username = config.test.db_username;
+    db.password = config.test.db_password;
   } else {
-    database.database = config.development.db_name;
-    database.username = config.development.db_username;
-    database.password = config.development.db_password;
+    console.log(config.development.db_name);
+    db.database = config.development.db_name;
+    db.username = config.development.db_username;
+    db.password = config.development.db_password;
   }
-  return database;
+
+  return db;
 }
 
 const database = new PostgresClient(setUpDatabase());
