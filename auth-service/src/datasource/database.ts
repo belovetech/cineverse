@@ -35,14 +35,14 @@ class MongoClient {
   }
 }
 
-export function getUrl(env: string): string {
+function getUrl(env: string): string {
   if (env === 'test') {
     return config.test.uri;
   }
   return config.development.uri;
 }
 
-export const options: ConnectOptions & IConnectionOptionExtend = {
+const options: ConnectOptions & IConnectionOptionExtend = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };

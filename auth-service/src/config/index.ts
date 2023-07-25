@@ -18,7 +18,7 @@ const config = {
   },
   baseUrl: process.env.BASE_URL,
   api_Url: process.env.API_URL,
-  secret: 'S3cr3tK3y!',
+  secret: process.env.SECRET,
 };
 
 export default config;
