@@ -2,7 +2,7 @@ import Customer from '@models/customers.model';
 import filteredCustomerData from '@utils/filterCustomerData';
 import { ICustomer } from '@interfaces/customers.interface';
 import { CustomerDto } from '@dtos/customers.dto';
-import { NotFoundException, ConflictException } from '@exceptions';
+import { NotFoundException, ConflictException } from '@cineverse/exceptions';
 import { CustomerDataValidator } from '@validators/customerPayloadValidator';
 
 export default class CustomerService {

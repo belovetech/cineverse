@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@cineverse/logger": "1.0.0",
+    "@cineverse/exceptions":"1.0.0",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",

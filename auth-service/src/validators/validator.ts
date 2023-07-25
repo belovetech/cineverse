@@ -1,4 +1,4 @@
-import { ValidationException } from '@exceptions';
+import { ValidationException } from '@cineverse/exceptions';
 
 export default abstract class Validator<T> {
   protected payload: T;

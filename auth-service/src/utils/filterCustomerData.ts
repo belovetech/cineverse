@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { BadRequestException } from '@exceptions';
+import { BadRequestException } from '@cineverse/exceptions';
 import { CustomerDto } from '@dtos/customers.dto';
 
 export default function filterCustomerData(data: CustomerDto) {
