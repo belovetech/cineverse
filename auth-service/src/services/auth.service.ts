@@ -59,7 +59,7 @@ export default class AuthService {
     await redisClient.del(`x-otp_${payload.email}`);
 
     customer.isVerified = true;
-    customer.save();
+    await customer.save();
     return customer;
   }
 
