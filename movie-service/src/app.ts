@@ -1,7 +1,8 @@
 import express, { Application } from 'express';
+import { logger } from '@cineverse/logger';
 import config from '@config';
 import IRoute from '@interfaces/route.interface';
-import { logger } from '@cineverse/logger';
+import database from '@datasource/database';
 
 export default class App {
   private app: Application;
@@ -9,8 +10,9 @@ export default class App {
 
   constructor(routes: IRoute[]) {
     this.app = express();
-    this.port = config.development.port || 5000;
+    this.port = config.port || 5000;
 
+    this.initializeDatabase();
     this.initializeRoutes(routes);
   }
 
@@ -20,6 +22,10 @@ export default class App {
       logger.info(`App listening on localhost:${this.port} 🚀`);
       logger.info('==================================');
     });
+  }
+
+  private async initializeDatabase(): Promise<void> {
+    await database.connect();
   }
 
   private initializeRoutes(routes: IRoute[]): void {
