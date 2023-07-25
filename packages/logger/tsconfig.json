@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "declarationDir": "./types"
   },
   "extends": "../../shared/tsconfig.shared.json",
   "include": ["src/**/*.ts"],
