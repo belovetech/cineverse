@@ -8,17 +8,15 @@ import ShowTime from '@models/showtime';
 import Theater from '@models/theater';
 import TheaterSeat from '@models/theaterSeat';
 
-export function sequelizeLogger(msg: string) {
-  logger.debug(msg);
-}
-
 class PostgresClient {
   private sequelize: Sequelize;
 
   constructor(db: DB) {
     this.sequelize = new Sequelize({
       dialect: 'postgres',
-      ...db,
+      database: db.database,
+      username: db.username,
+      password: db.password,
       models: [Movie, Theater, Seat, TheaterSeat, ShowTime],
       logging: msg => logger.debug(msg),
     });
