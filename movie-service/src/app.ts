@@ -12,7 +12,7 @@ export default class App {
     this.app = express();
     this.port = config.port || 5000;
 
-    this.initializeDatabase();
+    // this.initializeDatabase();
     this.initializeRoutes(routes);
   }
 

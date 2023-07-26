@@ -53,6 +53,15 @@ class PostgresClient {
       throw error;
     }
   }
+
+  public getInstance() {
+    try {
+      return this.sequelize;
+    } catch (error) {
+      logger.error('Error creating the sequelize instance');
+      throw error;
+    }
+  }
 }
 
 function setUpDatabase() {
