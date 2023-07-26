@@ -8,18 +8,19 @@ import ShowTime from '@models/showtime';
 import Theater from '@models/theater';
 import TheaterSeat from '@models/theaterSeat';
 
+export function sequelizeLogger(msg: string) {
+  logger.debug(msg);
+}
+
 class PostgresClient {
   private sequelize: Sequelize;
 
   constructor(db: DB) {
     this.sequelize = new Sequelize({
       dialect: 'postgres',
-      database: db.database,
-      username: db.username,
-      password: db.password,
+      ...db,
       models: [Movie, Theater, Seat, TheaterSeat, ShowTime],
-      // logging: msg => logger.debug(msg),
-      logging: false,
+      logging: msg => logger.debug(msg),
     });
   }
 
@@ -75,15 +76,11 @@ class PostgresClient {
 }
 
 function setUpDatabase() {
-  let db: DB = {} as DB;
+  let db: DB;
   if (process.env.NODE_ENV === 'test') {
-    db.database = config.test.db_name;
-    db.username = config.test.db_username;
-    db.password = config.test.db_password;
+    db = { ...config.test };
   } else {
-    db.database = config.development.db_name;
-    db.username = config.development.db_username;
-    db.password = config.development.db_password;
+    db = { ...config.development };
   }
 
   return db;
