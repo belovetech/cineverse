@@ -5,10 +5,11 @@ import ShowTime from './showtime';
 @DefaultScope(() => ({
   attributes: ['movieId', 'title', 'genre', 'description', 'duration'],
 }))
-@Table
+@Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Column({ primaryKey: true, type: DataType.UUID })
   @Default(() => uuidv4().replace(/-/g, ''))
+  @Column
   movieId: string;
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { len: [1, 255] } })

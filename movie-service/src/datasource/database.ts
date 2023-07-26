@@ -1,21 +1,31 @@
-import { Options, Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
+import { logger } from '@cineverse/logger';
 import config from '@config';
-import logger from '@cineverse/logger';
 import DB from '@interfaces/db.interface';
+import Movie from '@models/movies';
+import Seat from '@models/seat';
+import ShowTime from '@models/showtime';
+import Theater from '@models/theater';
+import TheaterSeat from '@models/theaterSeat';
 
 class PostgresClient {
   private sequelize: Sequelize;
 
-  constructor(db: DB, options?: Options) {
-    options = options || {};
-    options.host = config.host;
-    options.dialect = 'postgres';
-    options.logging = msg => logger.debug(msg);
-    this.sequelize = new Sequelize(db.database, db.username, db.password, { ...options });
+  constructor(db: DB) {
+    this.sequelize = new Sequelize({
+      dialect: 'postgres',
+      database: db.database,
+      username: db.username,
+      password: db.password,
+      models: [Movie, Theater, Seat, TheaterSeat, ShowTime],
+      // logging: msg => logger.debug(msg),
+      logging: false,
+    });
   }
 
   public async connect(): Promise<void> {
     try {
+      await this.sequelize.sync({ alter: true });
       await this.sequelize.authenticate();
       logger.info('Connection has been established successfully');
     } catch (error) {
@@ -36,8 +46,8 @@ class PostgresClient {
 
   public async dropDatabase(): Promise<void> {
     try {
-      await this.sequelize.sync({ force: true });
-      logger.info('Database has been successfully dropped');
+      await this.sequelize.sync({ force: true, match: /_test$/ });
+      logger.info('Test database has been successfully dropped');
     } catch (error) {
       logger.error('Error dropping the database:', error);
       throw error;
@@ -71,7 +81,6 @@ function setUpDatabase() {
     db.username = config.test.db_username;
     db.password = config.test.db_password;
   } else {
-    console.log(config.development.db_name);
     db.database = config.development.db_name;
     db.username = config.development.db_username;
     db.password = config.development.db_password;

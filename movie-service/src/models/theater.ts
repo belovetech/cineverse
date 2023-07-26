@@ -1,13 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Model, Table, Column, Default, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
+import { Model, Table, Column, Default, DataType, HasMany, BelongsToMany, PrimaryKey } from 'sequelize-typescript';
 import Seat from './seat';
 import ShowTime from './showtime';
 import TheaterSeat from './theaterSeat';
 
-@Table
+@Table({ tableName: 'theaters' })
 export default class Theater extends Model<Theater> {
-  @Column({ primaryKey: true, type: DataType.UUID })
+  @PrimaryKey
   @Default(() => uuidv4().replace(/-/g, ''))
+  @Column(DataType.UUID)
   theaterId: string;
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true })
@@ -25,5 +26,3 @@ export default class Theater extends Model<Theater> {
   @BelongsToMany(() => Seat, () => TheaterSeat)
   seats: Seat[];
 }
-
-

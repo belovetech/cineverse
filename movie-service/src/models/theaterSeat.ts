@@ -2,13 +2,13 @@ import { Table, Model, Column, DataType, ForeignKey } from 'sequelize-typescript
 import Theater from './theater';
 import Seat from './seat';
 
-@Table
+@Table({ tableName: 'theaterSeats' })
 export default class TheaterSeat extends Model {
   @ForeignKey(() => Theater)
-  @Column({ type: DataType.UUID })
+  @Column(DataType.UUID)
   theaterId: string;
 
   @ForeignKey(() => Seat)
-  @Column({ type: DataType.UUID })
+  @Column(DataType.UUID)
   seatId: string;
 }

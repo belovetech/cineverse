@@ -1,14 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Table, Model, Column, Default, DataType, BelongsToMany } from 'sequelize-typescript';
+import { Table, Model, Column, Default, DataType, BelongsToMany, PrimaryKey } from 'sequelize-typescript';
 import Theater from './theater';
 import TheaterSeat from './theaterSeat';
 
 const AVAILABLESTATUS = ['available', 'booked', 'cancelled'];
 
-@Table
+@Table({ tableName: 'seats' })
 export default class Seat extends Model<Seat> {
-  @Column({ primaryKey: true, type: DataType.UUID })
+  @PrimaryKey
   @Default(() => uuidv4().replace(/-/g, ''))
+  @Column(DataType.UUID)
   seatId: string;
 
   @Column({ type: DataType.INTEGER })
