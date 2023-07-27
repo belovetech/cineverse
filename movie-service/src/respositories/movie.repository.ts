@@ -1,7 +1,7 @@
 import Movie from '@models/movies';
 import { FindOptions } from 'sequelize';
 
-export class MovieRepository {
+export default class MovieRepository {
   public async createMovie(movieData: Partial<Movie>): Promise<Movie> {
     return await Movie.create(movieData);
   }
