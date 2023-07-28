@@ -1,8 +1,9 @@
 import express, { Application } from 'express';
 import { logger } from '@cineverse/logger';
 import config from '@config';
-import IRoute from '@interfaces/route.interface';
 import database from '@datasource/database';
+import errorMiddleware from '@middlewares/error.middleware';
+import IRoute from '@interfaces/route.interface';
 
 export default class App {
   private app: Application;
@@ -15,6 +16,7 @@ export default class App {
     this.initializeDatabase();
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
+    this.initializeGlobalErrorHandler();
   }
 
   public listen(): void {
@@ -36,5 +38,9 @@ export default class App {
   private initializeMiddlewares(): void {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+  }
+
+  private initializeGlobalErrorHandler() {
+    this.app.use(errorMiddleware);
   }
 }
