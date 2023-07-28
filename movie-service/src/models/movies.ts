@@ -8,9 +8,14 @@ import ShowTime from './showtime';
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Column({ primaryKey: true, type: DataType.UUID })
-  @Default(() => uuidv4().replace(/-/g, ''))
   @Column
   movieId: string;
+
+  @BeforeCreate
+  static setDefaultMovieId(instance: Movie) {
+    const id = () => uuidv4().replace(/-/g, '');
+    instance.movieId = JSON.stringify(id);
+  }
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { len: [1, 255] } })
   title: string;
@@ -21,8 +26,8 @@ export default class Movie extends Model<Movie> {
   @Column({ type: DataType.TEXT })
   description: string;
 
-  @Column({ type: DataType.INTEGER, defaultValue: 0, allowNull: false })
-  duration: number;
+  @Column({ type: DataType.STRING, defaultValue: 0, allowNull: false })
+  duration: string;
 
   @Column({ type: DataType.STRING })
   photo: string;

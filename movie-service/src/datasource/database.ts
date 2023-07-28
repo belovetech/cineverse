@@ -18,7 +18,8 @@ class PostgresClient {
       username: db.username,
       password: db.password,
       models: [Movie, Theater, Seat, TheaterSeat, ShowTime],
-      logging: msg => logger.debug(msg),
+      // logging: msg => logger.debug(msg),
+      logging: false,
     });
   }
 

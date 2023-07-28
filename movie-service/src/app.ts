@@ -13,6 +13,7 @@ export default class App {
     this.port = config.port || 5000;
 
     this.initializeDatabase();
+    this.initializeMiddlewares();
     this.initializeRoutes(routes);
   }
 
@@ -30,5 +31,10 @@ export default class App {
 
   private initializeRoutes(routes: IRoute[]): void {
     routes.forEach(route => this.app.use('/v1', route.router));
+  }
+
+  private initializeMiddlewares(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
   }
 }
