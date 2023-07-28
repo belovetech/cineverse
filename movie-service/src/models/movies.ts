@@ -7,15 +7,9 @@ import ShowTime from './showtime';
 }))
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
+  @Default(() => uuidv4().replace(/-/g, ''))
   @Column({ primaryKey: true, type: DataType.UUID })
-  @Column
   movieId: string;
-
-  @BeforeCreate
-  static setDefaultMovieId(instance: Movie) {
-    const id = () => uuidv4().replace(/-/g, '');
-    instance.movieId = JSON.stringify(id);
-  }
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { len: [1, 255] } })
   title: string;

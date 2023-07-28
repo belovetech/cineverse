@@ -1,13 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Table, Model, Column, Default, DataType, BelongsTo, ForeignKey, PrimaryKey } from 'sequelize-typescript';
+import { Table, Model, Column, Default, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript';
 import Movie from './movies';
 import Theater from './theater';
 
 @Table({ tableName: 'showTimes' })
 export default class ShowTime extends Model<ShowTime> {
-  @PrimaryKey
   @Default(() => uuidv4().replace(/-/g, ''))
-  @Column(DataType.UUID)
+  @Column({ primaryKey: true, type: DataType.UUID })
   showTimeId: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
