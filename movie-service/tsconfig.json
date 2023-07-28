@@ -17,7 +17,8 @@
       "@utils/*": ["utils/*"],
       "@config/*": ["config/*"],
       "@dtos/*": ["dtos/*"],
-      "@cineverse/logger": ["../packages/logger"]
+      "@cineverse/logger": ["../packages/logger"],
+      "@cineverse/exceptions": ["../packages/exceptions/index"]
     }
   },
   "extends": "../shared/tsconfig.shared.json",
