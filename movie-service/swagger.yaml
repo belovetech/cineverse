@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Movie Service
+  version: 1.0.0
+  description: cineverse movie service documentation
+schemes:
+  - http
+  - https
+
+paths:
+  /ping:
+    get:
+      summary: Get server health status
+      tags:
+        - Healthcheck
+      responses:
+        200:
+          description: Server is running smoothly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /movies:
+    post:
+      summary: Create a new movie
+      tags:
+        - Movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/movies'
+      responses:
+        '201':
+          $ref: '#/components/responses/created'
+        '400':
+          $ref: '#/components/exceptions/badRequest'
+        '500':
+          $ref: '#/components/exceptions/serverError'
+
+definitions:
+  movies:
+    type: object
+    properties:
+      title:
+        type: string
+      genre:
+        type: string
+      description:
+        type: string
+      duration:
+        type: string
+    required:
+      - title
+      - genre
+      - definitions
+      - duration
+
+components:
+  responses:
+    created:
+      description: Movie successfully created
+    ok:
+      description: Ok!
+    noContent:
+      description: Movie successfully deleted
+
+  exceptions:
+    badRequest:
+      description: 'Bad Request:: Invalid request payload'
+    notFound:
+      description: 'Not found:: Movie not found'
+    serverError:
+      description: 'Server Error:: Internal Server Error'
+    conflict:
+      description: 'Conflict:: Movie already exists.'
