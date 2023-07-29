@@ -3,17 +3,8 @@
   "version": "1.0.0",
   "description": "Distributed movie ticketing system - movie service",
   "main": "server.ts",
-  "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
-    "dev": "cross-env NODE_ENV=development nodemon",
-    "test:server": "cross-env NODE_ENV=test nodemon",
-    "build": "tsc && npx tsc-alias",
-    "test": "mocha NODE_ENV=test -r ts-node/register  --extension ts '__tests__/**/*.ts'",
-    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "npm run lint -- --fix",
-    "clean": "yarn cache clean",
-    "swagger:autogen": "ts-node ./src/swagger.ts"
-  },
+  "author": "Abeeb Raheem",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/belovetech/CineVerse.git#main"
@@ -23,12 +14,21 @@
     "microservice",
     "movie"
   ],
-  "author": "Abeeb Raheem",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/belovetech/CineVerse/issues"
   },
   "homepage": "https://github.com/belovetech/CineVerse/tree/main#readme",
+  "scripts": {
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon",
+    "test:server": "cross-env NODE_ENV=test nodemon",
+    "build": "tsc && npx tsc-alias",
+    "test": "mocha -r ts-node/register  --extension ts --timeout 5000 '__tests__/**/*.ts'",
+    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
+    "lint:fix": "npm run lint -- --fix",
+    "clean": "yarn cache clean",
+    "swagger:autogen": "ts-node ./src/swagger.ts"
+  },
   "dependencies": {
     "@cineverse/logger": "1.0.0",
     "@types/express": "^4.17.17",
@@ -46,7 +46,12 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/chai-http": "^4.2.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.5",
+    "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
     "tsconfig-paths": "^4.2.0"
   }
 }
