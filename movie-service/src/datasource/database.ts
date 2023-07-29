@@ -18,8 +18,7 @@ class PostgresClient {
       username: db.username,
       password: db.password,
       models: [Movie, Theater, Seat, TheaterSeat, ShowTime],
-      // logging: msg => logger.debug(msg),
-      logging: false,
+      logging: msg => logger.debug(msg),
     });
   }
 
@@ -64,9 +63,9 @@ class PostgresClient {
     }
   }
 
-  public getInstance() {
+  public async getInstance(): Promise<Sequelize> {
     try {
-      return this.sequelize;
+      return await this.sequelize;
     } catch (error) {
       logger.error('Error creating the sequelize instance');
       throw error;
@@ -74,14 +73,13 @@ class PostgresClient {
   }
 }
 
-function setUpDatabase() {
+function setUpDatabase(): DB {
   let db: DB;
   if (process.env.NODE_ENV === 'test') {
     db = { ...config.test };
   } else {
     db = { ...config.development };
   }
-
   return db;
 }
 
