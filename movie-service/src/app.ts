@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import { logger } from '@cineverse/logger';
 import config from '@config';
-import database from '@datasource/database';
+import { PostgresClient } from '@datasource/database';
 import errorMiddleware from '@middlewares/error.middleware';
 import IRoute from '@interfaces/route.interface';
 
@@ -28,6 +28,12 @@ export default class App {
   }
 
   private async initializeDatabase(): Promise<void> {
+    let database;
+    if (config.node_env === 'test') {
+      database = new PostgresClient({ ...config.test });
+    } else {
+      database = new PostgresClient({ ...config.development });
+    }
     await database.connect();
   }
 

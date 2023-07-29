@@ -17,7 +17,7 @@ const config = {
     host: process.env.REDIS_HOST,
     port: parseInt(process.env.REDIS_PORT),
   },
-  node_env: 'development',
+  node_env: process.env.NODE_ENV || 'development',
   host: process.env.DB_HOST,
   port: process.env.DB_PORT || 3000,
   dialect: process.env.DB_DIALECT,

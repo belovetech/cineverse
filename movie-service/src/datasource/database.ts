@@ -1,6 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
 import { logger } from '@cineverse/logger';
-import config from '@config';
 import DB from '@interfaces/db.interface';
 import Movie from '@models/movies';
 import Seat from '@models/seat';
@@ -22,9 +21,17 @@ class PostgresClient {
     });
   }
 
+  public async getInstance(): Promise<Sequelize> {
+    try {
+      return this.sequelize;
+    } catch (error) {
+      logger.error('Error creating the sequelize instance');
+      throw error;
+    }
+  }
+
   public async connect(): Promise<void> {
     try {
-      await this.sequelize.sync({ alter: true });
       await this.sequelize.authenticate();
       logger.info('Connection has been established successfully');
     } catch (error) {
@@ -43,16 +50,6 @@ class PostgresClient {
     }
   }
 
-  public async dropDatabase(): Promise<void> {
-    try {
-      await this.sequelize.sync({ force: true, match: /_test$/ });
-      logger.info('Test database has been successfully dropped');
-    } catch (error) {
-      logger.error('Error dropping the database:', error);
-      throw error;
-    }
-  }
-
   public async alterDatabase(): Promise<void> {
     try {
       await this.sequelize.sync({ alter: true });
@@ -63,25 +60,15 @@ class PostgresClient {
     }
   }
 
-  public async getInstance(): Promise<Sequelize> {
+  public async dropDatabase(): Promise<void> {
     try {
-      return await this.sequelize;
+      await this.sequelize.sync({ force: true });
+      logger.info('Test database has been successfully dropped');
     } catch (error) {
-      logger.error('Error creating the sequelize instance');
+      logger.error('Error dropping the database:', error);
       throw error;
     }
   }
 }
 
-function setUpDatabase(): DB {
-  let db: DB;
-  if (process.env.NODE_ENV === 'test') {
-    db = { ...config.test };
-  } else {
-    db = { ...config.development };
-  }
-  return db;
-}
-
-const database = new PostgresClient(setUpDatabase());
-export default database;
+export { PostgresClient };
