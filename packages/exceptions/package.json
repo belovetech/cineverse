@@ -1,7 +1,7 @@
 {
   "name": "@cineverse/exceptions",
   "version": "1.0.0",
-  "description": "Utility logger for cineverse microservices",
+  "description": "Utility exceptions for cineverse microservices",
   "packageManager": "yarn@3.6.1",
   "main": "./dist/src/index.js",
   "license": "MIT",
