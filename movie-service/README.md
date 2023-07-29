@@ -12,7 +12,7 @@ The Movie Service is a fundamental part of the Movie Ticketing System, responsib
 
 ## Installation
 
-1. Clone the repository: `git clone [link](https://github.com/belovetech/cineverse/tree/main/movie_service)`
+1. Clone the repository: `git clone`[link](https://github.com/belovetech/cineverse/tree/main/movie_service)
 2. Install dependencies: `yarn install`
 3. Set up the environment variables: Create a `.env` file in the root directory and define the following variables:
 
