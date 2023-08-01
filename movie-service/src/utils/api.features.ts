@@ -56,9 +56,7 @@ export default class ApiFeaturesHandler {
 
   public getMetadata(option: Metadata) {
     const [_offset, limit] = this.paginate();
-
     let totalPage = Math.ceil(option.total / limit);
-
     const currentPage = this.page;
     const previousPage = currentPage <= 1 ? null : currentPage - 1;
     const nextPage = totalPage <= currentPage ? null : currentPage + 1;
