@@ -1,7 +1,8 @@
-import MovieRepository from '@respositories/movie.repository';
 import { ConflictException } from '@cineverse/exceptions';
 import { MovieDto } from '@dtos/movie.dto';
 import { MovieDataValidator } from '@validators/movieDataValidator';
+import { IGetMovie } from '@interfaces/movie.interface';
+import MovieRepository from '@respositories/movie.repository';
 
 export default class MovieService {
   private static movieRepository = new MovieRepository();
@@ -13,5 +14,9 @@ export default class MovieService {
 
     const newMovie: MovieDto = await this.movieRepository.createMovie(movieData);
     return newMovie;
+  }
+
+  public static async getMovies(reqQuery: Record<string, any>): Promise<IGetMovie> {
+    return this.movieRepository.getMovies(reqQuery);
   }
 }
