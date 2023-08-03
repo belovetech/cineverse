@@ -5,6 +5,8 @@ import ShowTime from './showtime';
 @DefaultScope(() => ({
   attributes: ['movieId', 'title', 'genre', 'description', 'duration'],
 }))
+
+
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Default(() => uuidv4().replace(/-/g, ''))

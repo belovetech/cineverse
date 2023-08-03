@@ -58,16 +58,14 @@ export default class ApiFeaturesHandler {
     const [_offset, limit] = this.paginate();
     let totalPage = Math.ceil(option.total / limit);
     const currentPage = this.page;
-    const previousPage = currentPage <= 1 ? null : currentPage - 1;
-    const nextPage = totalPage <= currentPage ? null : currentPage + 1;
 
     const metadata = {
       total_items: option.total,
       item_per_page: option.itemPerPage,
       total_page: totalPage,
-      previous_page: previousPage,
+      previous_page: currentPage <= 1 ? null : currentPage - 1,
       current_page: currentPage,
-      next_page: nextPage,
+      next_page: totalPage <= currentPage ? null : currentPage + 1,
     };
     return metadata;
   }
