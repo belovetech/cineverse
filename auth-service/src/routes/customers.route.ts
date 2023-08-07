@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import IRoute from '@interfaces/routes.interface';
-import { CustomerController } from '@controllers/customer.controller';
+import { Router } from "express";
+import IRoute from "@interfaces/routes.interface";
+import { CustomerController } from "@controllers/customer.controller";
 
 export default class CustomerRoute implements IRoute {
-  public path = '/customers';
+  public path = "/customers";
   public router = Router();
   public customerController = new CustomerController();
 

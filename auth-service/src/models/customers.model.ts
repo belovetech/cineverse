@@ -1,14 +1,14 @@
-import { Schema, model } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
-import bcrypt from 'bcrypt';
-import { CustomerModel } from '@interfaces/customers.interface';
+import { Schema, model } from "mongoose";
+import { v4 as uuidv4 } from "uuid";
+import bcrypt from "bcrypt";
+import { CustomerModel } from "@interfaces/customers.interface";
 
 export const customerSchema: Schema<CustomerModel> = new Schema<CustomerModel>(
   {
     _id: {
       type: String,
-      default: () => uuidv4().replace(/-/g, ''),
-      alias: 'customerId',
+      default: () => uuidv4().replace(/-/g, ""),
+      alias: "customerId",
     },
     firstName: {
       type: String,
@@ -40,26 +40,26 @@ export const customerSchema: Schema<CustomerModel> = new Schema<CustomerModel>(
   {
     timestamps: true,
     versionKey: false,
-    collection: 'customers',
+    collection: "customers",
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   },
 );
 
-customerSchema.set('toJSON', {
+customerSchema.set("toJSON", {
   virtuals: true,
   transform: function (_doc, ret) {
     delete ret._id;
   },
 });
 
-customerSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+customerSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
   next();
 });
 
-const Customer = model<CustomerModel>('Customer', customerSchema);
+const Customer = model<CustomerModel>("Customer", customerSchema);
 
 export default Customer;

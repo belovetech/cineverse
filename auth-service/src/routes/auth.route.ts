@@ -1,11 +1,11 @@
-import { Router } from 'express';
-import IRoute from '@interfaces/routes.interface';
-import { AuthController } from '@controllers/auth.controller';
-import { authMiddleware } from '@middlewares/auth.middleware';
-import { loginThrottleMiddleware } from '@middlewares/loginThrottle.middleware';
+import { Router } from "express";
+import IRoute from "@interfaces/routes.interface";
+import { AuthController } from "@controllers/auth.controller";
+import { authMiddleware } from "@middlewares/auth.middleware";
+import { loginThrottleMiddleware } from "@middlewares/loginThrottle.middleware";
 
 export default class AuthRoute implements IRoute {
-  public path: string = '/auth';
+  public path: string = "/auth";
   public router: Router = Router();
   private authController = new AuthController();
 

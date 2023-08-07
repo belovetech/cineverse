@@ -1,13 +1,13 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import Customer from '@models/customers.model';
-import redisClient from '@datasource/redis';
-import config from '@config';
-import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from '@cineverse/exceptions';
-import { CustomerDataValidator } from '@validators/customerPayloadValidator';
-import { ICustomer } from '@interfaces/customers.interface';
-import { LoginDto, TokenDto, VerifyOtpDto } from '@dtos/auth.dto';
-import { CustomerDto } from '@dtos/customers.dto';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import Customer from "@models/customers.model";
+import redisClient from "@datasource/redis";
+import config from "@config";
+import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "@cineverse/exceptions";
+import { CustomerDataValidator } from "@validators/customerPayloadValidator";
+import { ICustomer } from "@interfaces/customers.interface";
+import { LoginDto, TokenDto, VerifyOtpDto } from "@dtos/auth.dto";
+import { CustomerDto } from "@dtos/customers.dto";
 
 export default class AuthService {
   public static async signup(payload: CustomerDto): Promise<ICustomer> {
@@ -25,11 +25,11 @@ export default class AuthService {
 
   public static async signin(payload: LoginDto): Promise<{ cookie: string; customer: ICustomer }> {
     if (!payload.email || !payload.password) throw new BadRequestException();
-    const customer: ICustomer = await Customer.findOne({ email: payload.email }).select('+password');
+    const customer: ICustomer = await Customer.findOne({ email: payload.email }).select("+password");
     if (!customer) throw new NotFoundException();
-    if (!customer.isVerified) throw new AuthenticationException('Verify your account before signing in.');
+    if (!customer.isVerified) throw new AuthenticationException("Verify your account before signing in.");
     const isCorrectPassword = await bcrypt.compare(payload.password, customer.password);
-    if (!isCorrectPassword) throw new AuthenticationException('Please check your email and password');
+    if (!isCorrectPassword) throw new AuthenticationException("Please check your email and password");
 
     const token = await this.generateToken(customer);
     const cookie = this.setCookies(token);
@@ -47,15 +47,15 @@ export default class AuthService {
   }
 
   public static async verifyOtp(payload: VerifyOtpDto): Promise<ICustomer> {
-    if (!payload?.otp || !payload?.email) throw new BadRequestException('Invalid OTP credentials');
+    if (!payload?.otp || !payload?.email) throw new BadRequestException("Invalid OTP credentials");
     const customer = await Customer.findOne({ email: payload.email }).exec();
-    if (!customer) throw new NotFoundException('Provided email was not found');
-    if (customer.isVerified) throw new ConflictException('You are already being verified');
+    if (!customer) throw new NotFoundException("Provided email was not found");
+    if (customer.isVerified) throw new ConflictException("You are already being verified");
 
     const storedOtp = await redisClient.get(`x-otp_${payload.email}`);
-    if (!storedOtp) throw new AuthenticationException('OTP token has expired');
+    if (!storedOtp) throw new AuthenticationException("OTP token has expired");
     const validOtp = await bcrypt.compare(payload.otp, storedOtp);
-    if (!validOtp) throw new AuthenticationException('Invalid OTP token');
+    if (!validOtp) throw new AuthenticationException("Invalid OTP token");
     await redisClient.del(`x-otp_${payload.email}`);
 
     customer.isVerified = true;
@@ -82,7 +82,7 @@ export default class AuthService {
 
   private static async generateToken(payload: CustomerDto): Promise<string> {
     const payloadStoredInToken: TokenDto = { customerId: payload.customerId };
-    const token = await jwt.sign(payloadStoredInToken, config.secret, { expiresIn: '1h' });
+    const token = await jwt.sign(payloadStoredInToken, config.secret, { expiresIn: "1h" });
     return token;
   }
 

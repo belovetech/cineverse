@@ -1,6 +1,6 @@
-import Redis, { RedisOptions, RedisKey, RedisValue } from 'ioredis';
-import config from '@config';
-import { logger } from '@cineverse/logger';
+import Redis, { RedisOptions, RedisKey, RedisValue } from "ioredis";
+import config from "@config";
+import { logger } from "@cineverse/logger";
 
 class RedisClient {
   private redis: Redis;
@@ -25,16 +25,16 @@ class RedisClient {
   public async connect(): Promise<void> {
     try {
       await this.redis.connect();
-      logger.info(`Connect to redis server succesfully`);
+      logger.info("Connect to redis server succesfully");
     } catch (error) {
-      logger.error(`Unable to connect to the redis server: ${error}`);
+      logger.error("Unable to connect to the redis server: ${error}");
       process.exit(1);
     }
   }
 
   public disconnect(): void {
     this.redis.disconnect();
-    logger.info(`Redis server succesfully disconncted`);
+    logger.info("Redis server succesfully disconncted");
   }
 
   public isAlive(): boolean {

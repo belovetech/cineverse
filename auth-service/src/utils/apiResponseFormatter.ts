@@ -1,5 +1,5 @@
-import { IResponse, ILink } from '@interfaces/response.interface';
-import { ICustomer } from '@interfaces/customers.interface';
+import { IResponse, ILink } from "@interfaces/response.interface";
+import { ICustomer } from "@interfaces/customers.interface";
 
 interface ICustomerOptional {
   createdAt?: string;
@@ -16,7 +16,7 @@ export default class ApiResponseFormatter {
   constructor(customer: Customer, linkOptions?: Array<ILink>) {
     this.customer = customer;
     this.linkOptions = linkOptions;
-    this.customerId = this.customer?.customerId || '';
+    this.customerId = this.customer?.customerId || "";
   }
 
   private getData(customer: Customer): Customer {
@@ -33,10 +33,10 @@ export default class ApiResponseFormatter {
     if (!this.linkOptions) return [];
     const links = this.linkOptions.map(link => {
       return {
-        rel: link.rel || 'self',
-        href: `${link.href}/${link.action != 'POST' ? this.customerId : ''}`,
+        rel: link.rel || "self",
+        href: `${link.href}/${link.action != "POST" ? this.customerId : ""}`,
         action: link.action,
-        types: link.types || ['text/xml', 'application/json'],
+        types: link.types || ["text/xml", "application/json"],
       };
     });
     return links;

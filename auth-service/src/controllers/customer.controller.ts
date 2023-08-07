@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import { ICustomer } from '@interfaces/customers.interface';
-import CustomerService from '@services/customer.service';
-import ApiResponseFormatter from '@utils/apiResponseFormatter';
-import { GET_links, UPDATE_links, POST_links } from '@utils/responseLink';
+import { Request, Response, NextFunction } from "express";
+import { ICustomer } from "@interfaces/customers.interface";
+import CustomerService from "@services/customer.service";
+import ApiResponseFormatter from "@utils/apiResponseFormatter";
+import { GET_links, UPDATE_links, POST_links } from "@utils/responseLink";
 
 export class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {

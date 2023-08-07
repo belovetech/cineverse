@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import HealthCheck from '@controllers/healthcheck.controller';
-import IRoute from '@interfaces/routes.interface';
+import { Router } from "express";
+import HealthCheck from "@controllers/healthcheck.controller";
+import IRoute from "@interfaces/routes.interface";
 
 export default class HealthCheckRoute implements IRoute {
-  public path? = '/ping';
+  public path? = "/ping";
   public router = Router();
   public healthcheck = new HealthCheck();
 

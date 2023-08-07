@@ -1,7 +1,7 @@
-import mongoose, { ConnectOptions, Connection } from 'mongoose';
-import config from '@config';
-import { logger } from '@cineverse/logger';
-import { IConnectionOptionExtend } from '@interfaces/connection.interface';
+import mongoose, { ConnectOptions, Connection } from "mongoose";
+import config from "@config";
+import { logger } from "@cineverse/logger";
+import { IConnectionOptionExtend } from "@interfaces/connection.interface";
 
 class MongoClient {
   private connection: Connection;
@@ -12,19 +12,19 @@ class MongoClient {
   }
 
   public async connect(): Promise<void> {
-    this.connection.on('error', () => {
-      logger.error('Unable to connect to the database');
+    this.connection.on("error", () => {
+      logger.error("Unable to connect to the database");
       process.exit(1);
     });
 
-    this.connection.once('open', () => {
-      logger.info('Database connection has been established successfully');
+    this.connection.once("open", () => {
+      logger.info("Database connection has been established successfully");
     });
   }
 
   public async disconnect(): Promise<void> {
     await this.connection.close();
-    logger.info('Database connection has been disconnected.');
+    logger.info("Database connection has been disconnected.");
   }
 
   public isAlive(): boolean {
@@ -36,7 +36,7 @@ class MongoClient {
 }
 
 function getUrl(env: string): string {
-  if (env === 'test') {
+  if (env === "test") {
     return config.test.uri;
   }
   return config.development.uri;

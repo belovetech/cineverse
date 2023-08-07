@@ -1,6 +1,8 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-export default interface IRoute {
+interface IRoute {
   path?: string;
   router: Router;
 }
+
+export default IRoute;

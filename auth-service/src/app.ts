@@ -1,16 +1,16 @@
-import express, { Application } from 'express';
-import { logger } from '@cineverse/logger';
-import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
-import swaggerUi from 'swagger-ui-express';
-import swaggerJSDOC from 'swagger-jsdoc';
-import config from '@config';
-import customMorgan from '@middlewares/morgan.middleware';
-import errorMiddleware from '@middlewares/error.middleware';
-import IRoute from '@interfaces/routes.interface';
-import mongoClient from '@datasource/database';
-import unknownRoute from '@controllers/unknownRoute.controller';
-import swaggerOption from '@utils/swaggerOptions';
+import express, { Application } from "express";
+import { logger } from "@cineverse/logger";
+import cookieParser from "cookie-parser";
+import morgan from "morgan";
+import swaggerUi from "swagger-ui-express";
+import swaggerJSDOC from "swagger-jsdoc";
+import config from "@config";
+import customMorgan from "@middlewares/morgan.middleware";
+import errorMiddleware from "@middlewares/error.middleware";
+import IRoute from "@interfaces/routes.interface";
+import mongoClient from "@datasource/database";
+import unknownRoute from "@controllers/unknownRoute.controller";
+import swaggerOption from "@utils/swaggerOptions";
 
 export default class App {
   private app: Application;
@@ -32,9 +32,9 @@ export default class App {
 
   public listen(): void {
     this.app.listen(this.port, () => {
-      logger.info('==================================');
+      logger.info("==================================");
       logger.info(`App listening on localhost:${this.port} 🚀`);
-      logger.info('==================================');
+      logger.info("==================================");
     });
   }
 
@@ -47,21 +47,21 @@ export default class App {
   }
 
   private inititializeMiddlewares(): void {
-    if (this.env === 'development') {
+    if (this.env === "development") {
       this.app.use(customMorgan());
     }
-    this.app.use(morgan('combined'));
+    this.app.use(morgan("combined"));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
   }
 
   private inititializeRoutes(routes: IRoute[]): void {
-    routes.forEach(route => this.app.use('/v1', route.router));
+    routes.forEach(route => this.app.use("/v1", route.router));
   }
 
   private handleUnknownRoute() {
-    this.app.all('*', unknownRoute.handler);
+    this.app.all("*", unknownRoute.handler);
   }
 
   private initializeGlobalErrorHandler(): void {
@@ -70,6 +70,6 @@ export default class App {
 
   private initializeSwaggerUi(): void {
     const specs = swaggerJSDOC(swaggerOption);
-    this.app.use('/v1/docs', swaggerUi.serve, swaggerUi.setup(specs));
+    this.app.use("/v1/docs", swaggerUi.serve, swaggerUi.setup(specs));
   }
 }
