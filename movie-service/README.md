@@ -44,6 +44,71 @@ REDIS_PORT=6379
    - `GET /movies`: Retrieve a list of all movies.
    - `GET /movies/:id`: Get detailed information about a specific movie.
 
+   ```JSON
+         {
+      "metadata": {
+         "total_items": 6,
+         "item_per_page": 5,
+         "total_page": 2,
+         "previous_page": null,
+         "current_page": 1,
+         "next_page": 2
+      },
+      "data": [
+         {
+            "movieId": "acb5808e-030d-482d-8280-cb0ae60d7d37",
+            "title": "Extraction 4",
+            "genre": "Action",
+            "description": "After a series of deaths in a small provincial town.",
+            "duration": "120m",
+            "photo": "default.jpg",
+            "createdAt": "2023-08-01T10:23:39.992Z",
+            "links": []
+         },
+         {
+            "movieId": "968bd57c-b05a-4351-b9be-947fbe114797",
+            "title": "Extraction 3",
+            "genre": "Action",
+            "description": "After a series of deaths in a small provincial town.",
+            "duration": "120m",
+            "photo": "default.jpg",
+            "createdAt": "2023-08-01T10:23:30.727Z",
+            "links": []
+         },
+         {
+            "movieId": "fc896773-25b1-4a1d-9ef3-eed50408edff",
+            "title": "Extraction 2",
+            "genre": "Action",
+            "description": "After a series of deaths in a small provincial town.",
+            "duration": "120m",
+            "photo": "default.jpg",
+            "createdAt": "2023-08-01T10:23:23.633Z",
+            "links": []
+         },
+         {
+            "movieId": "ecc9f0df-4c94-46ff-870c-a49ec5717425",
+            "title": "Extraction 1",
+            "genre": "Action",
+            "description": "After a series of deaths in a small provincial town.",
+            "duration": "120m",
+            "photo": "default.jpg",
+            "createdAt": "2023-08-01T10:23:12.918Z",
+            "links": []
+         },
+         {
+            "movieId": "d9fdabe7-48be-4525-b193-74e9adc66ea9",
+            "title": "The murderer",
+            "genre": "comedy",
+            "description": "comedy movies",
+            "duration": "50m",
+            "photo": "default.jpg",
+            "createdAt": "2023-07-29T12:10:16.952Z",
+            "links": []
+         }
+      ]
+      }
+   ```
+
 2. **Theaters**
 
    - `GET /theaters`: Retrieve a list of all theaters.
