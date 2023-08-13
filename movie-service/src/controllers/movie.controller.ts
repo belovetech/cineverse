@@ -28,4 +28,15 @@ export default class MovieController {
       return next(error);
     }
   }
+
+  public async getMovie(req: Request, res: Response, next: NextFunction) {
+    try {
+      const movie = (await MovieService.getMovie(req.params?.id)) as MovieDto;
+      const response = new ApiResponseFormatter<MovieDto>(movie, movieLinks.get);
+      return res.status(200).json(response.format());
+    } catch (error) {
+      logger.error(`Get Movie Error: ${error}`);
+      return next(error);
+    }
+  }
 }
