@@ -22,7 +22,7 @@ export default class App {
     this.port = config.development.port || 3000;
     this.env = config.node_env;
 
-    this.inititializeDatabase();
+    void this.inititializeDatabase();
     this.inititializeMiddlewares();
     this.inititializeRoutes(routes);
     this.initializeSwaggerUi();
