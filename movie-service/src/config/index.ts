@@ -22,7 +22,7 @@ const config = {
   port: process.env.DB_PORT || 3000,
   dialect: process.env.DB_DIALECT,
   baseUrl: process.env.BASE_URL,
-  api_Url: process.env.API_URL,
+  apiUrl: process.env.API_URL,
 };
 
 export default config;

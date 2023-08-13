@@ -2,12 +2,11 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import { describe, it } from 'mocha';
 import config from '../src/config';
-import { PostgresClient } from '../src/datasource/database';
+import database from '../src/datasource/index';
 
 chai.use(chaiHttp);
 
-describe('Movies Endpoint Testing', function () {
-  const database = new PostgresClient({ ...config.test });
+describe('[POST] Create Movie', function () {
   let sequelize;
 
   before(async function () {
@@ -20,20 +19,30 @@ describe('Movies Endpoint Testing', function () {
     await sequelize.close();
   });
 
-  const url = config.api_Url || 'http://localhost:3000/v1';
-  it('[POST], create a new movie', async function () {
-    const data = {
-      title: 'The Murderer',
-      genre: 'Action',
-      description: 'After a series of deaths in a small provincial town.',
-      duration: '120m',
-    };
+  const url = config.apiUrl || 'http://localhost:3000/v1';
+  const data = {
+    title: 'The Murderer',
+    genre: 'Action',
+    description: 'After a series of deaths in a small provincial town.',
+    duration: '120m',
+  };
 
-    const res = await chai.request(url).post('/movies').send(data);
+  console.log(config.node_env);
+  it('should create a new movie', async function () {
     const expectedProperties = ['movieId', 'title', 'genre', 'description', 'duration', 'photo', 'links'];
+    const res = await chai.request(url).post('/movies').send(data);
     expect(res.status).to.equal(201);
     expect(res.body).to.include.keys(...expectedProperties);
     expect(res.body).to.haveOwnProperty('links');
     expect(res.body.links[0]).to.include.keys('rel', 'href', 'action', 'types');
+  });
+
+  it('should return conflict error', async function () {
+    try {
+      chai.request(url).post('/movies').send(data);
+    } catch (error) {
+      console.log(error);
+      expect(error.status).to.equal(409);
+    }
   });
 });

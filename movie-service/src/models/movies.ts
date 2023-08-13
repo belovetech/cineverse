@@ -8,7 +8,7 @@ import ShowTime from './showtime';
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Default(() => uuidv4().replace(/-/g, ''))
-  @Column({ primaryKey: true, type: DataType.UUIDV4 })
+  @Column({ primaryKey: true, type: DataType.UUID })
   movieId: string;
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { len: [1, 255] } })
