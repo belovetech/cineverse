@@ -1,7 +1,7 @@
 import { ILink } from '@interfaces/link.interface';
 import { Exception } from '@cineverse/exceptions';
 
-export default class ApiResponseFormatter<T extends Record<string, any>> {
+export default class ApiResponseFormatter<T extends Record<string, unknown>> {
   private data: T;
   private linkOptions?: ILink[];
   private id: string | undefined;
@@ -21,7 +21,7 @@ export default class ApiResponseFormatter<T extends Record<string, any>> {
     }
     const keys = Object.keys(dataValues);
     this.id = dataValues[keys[0]];
-    return dataValues;
+    return dataValues as T;
   }
 
   private getLinks(): ILink[] {
@@ -37,7 +37,7 @@ export default class ApiResponseFormatter<T extends Record<string, any>> {
     return links;
   }
 
-  public format(): Record<string, any> {
+  public format(): Record<string, unknown> {
     const response = {
       ...this.getData(this.data),
       links: this.getLinks(),

@@ -17,11 +17,11 @@ export default class MovieRepository {
     return await Movie.findOne(options);
   }
 
-  public async getMovies(reqQuery: Record<string, any>): Promise<IGetMovie> {
-    const query = new ApiFeaturesHandler(reqQuery);
+  public async getMovies(reqQuery: Record<string, unknown>): Promise<IGetMovie> {
+    const query = new ApiFeaturesHandler(reqQuery as Record<string, string>);
     const [offset, limit] = query.paginate();
 
-    const { count, rows } = await Movie.findAndCountAll({
+    const rows = await Movie.findAll({
       where: query.filter(),
       attributes: query.getFieldsQuery(),
       order: query.sort(),
@@ -29,7 +29,7 @@ export default class MovieRepository {
       limit: limit,
     });
 
-    const metadata = query.getMetadata({ total: count, itemPerPage: rows.length });
+    const metadata = query.getMetadata({ total: rows.length, itemPerPage: rows.length });
     return { movies: rows, metadata };
   }
 

@@ -1,5 +1,6 @@
-type QueryType = Record<string, any>;
+import { FindAttributeOptions, Order } from 'sequelize';
 
+type QueryType = Record<string, string>;
 type PaginateResult = [number, number];
 
 export interface Metadata {
@@ -22,8 +23,8 @@ export default class ApiFeaturesHandler {
     return filteredQuery;
   }
 
-  public getFieldsQuery(): any {
-    let fieldsQuery: QueryType | string[];
+  public getFieldsQuery(): string[] | FindAttributeOptions {
+    let fieldsQuery: QueryType | FindAttributeOptions;
     if (this.queryString.fields) {
       fieldsQuery = this.queryString.fields.split(',');
     } else {
@@ -32,7 +33,7 @@ export default class ApiFeaturesHandler {
     return fieldsQuery;
   }
 
-  public sort(): any {
+  public sort(): Order {
     const sortQuery = [];
     if (this.queryString.sort) {
       sortQuery.push(this.queryString.sort);
@@ -40,7 +41,7 @@ export default class ApiFeaturesHandler {
       sortQuery.push('updatedAt');
     }
     sortQuery.push('DESC');
-    return [sortQuery];
+    return [sortQuery] as Order;
   }
 
   public paginate(): PaginateResult {
@@ -55,8 +56,8 @@ export default class ApiFeaturesHandler {
   }
 
   public getMetadata(option: Metadata) {
-    const [_offset, limit] = this.paginate();
-    let totalPage = Math.ceil(option.total / limit);
+    const limit = this.paginate()[1];
+    const totalPage = Math.ceil(option.total / limit);
     const currentPage = this.page;
 
     const metadata = {

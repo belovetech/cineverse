@@ -1,6 +1,6 @@
 import { MovieDto } from '@dtos/movie.dto';
 
-export default interface IMovie {
+interface IMovie {
   movieId?: string;
   title: string;
   genre: string;
@@ -22,3 +22,5 @@ export interface IGetMovie {
   movies: MovieDto[];
   metadata: PaginationMetadata;
 }
+
+export default IMovie;
