@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import IRoute from '@interfaces/route.interface';
-import HealthCheckController from '@controllers/healthcheck';
+import HealthCheckController from '@controllers/healthcheck.controller';
 
 export default class HealthCheckRoute implements IRoute {
   public path = '/ping';

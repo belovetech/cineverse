@@ -1,8 +1,8 @@
-import { TheaterDto } from '@dtos/theater.dto';
+import { FindOptions } from 'sequelize';
 import { IgetTheaters } from '@interfaces/theater.interface';
+import { TheaterDto } from '@dtos/theater.dto';
 import Theater from '@models/theater';
 import ApiFeaturesHandler from '@utils/api.features';
-import { FindOptions } from 'sequelize';
 
 export default class TheaterRepository {
   public async createTheather(theaterData: TheaterDto): Promise<TheaterDto> {

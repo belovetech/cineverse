@@ -1,11 +1,11 @@
-import MovieController from '@controllers/movie.controller';
+import { movieController } from '@controllers';
 import IRoute from '@interfaces/route.interface';
 import { Router } from 'express';
 
 export default class MovieRoute implements IRoute {
   public path? = '/movies';
   public router = Router();
-  public movieController = new MovieController();
+  private readonly movieController = movieController;
 
   constructor() {
     this.initializeRoutes();
