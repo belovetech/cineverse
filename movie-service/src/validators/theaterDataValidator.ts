@@ -1,0 +1,20 @@
+import { TheaterDto } from '@dtos/theater.dto';
+import Validator from '@validators/validator';
+
+export class TheaterDataValidator<T extends TheaterDto> extends Validator<T> {
+  public validate(): void {
+    this.validateString('name', this.payload.name);
+    this.validateString('location', this.payload.location);
+    this.validateNumber('seatingCapacity', this.payload.seatingCapacity);
+
+    for (const key in this.payload) {
+      if (this.payload.hasOwnProperty(key) && !this.isValidKey(key as keyof T)) {
+        this.validateUnknownType(key as keyof T);
+      }
+    }
+
+    if (this.errorCounter > 0) {
+      this.printErrors();
+    }
+  }
+}

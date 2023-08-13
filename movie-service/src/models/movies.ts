@@ -5,12 +5,10 @@ import ShowTime from './showtime';
 @DefaultScope(() => ({
   attributes: ['movieId', 'title', 'genre', 'description', 'duration'],
 }))
-
-
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Default(() => uuidv4().replace(/-/g, ''))
-  @Column({ primaryKey: true, type: DataType.UUID })
+  @Column({ primaryKey: true, type: DataType.UUIDV4 })
   movieId: string;
 
   @Column({ type: DataType.STRING, allowNull: false, unique: true, validate: { len: [1, 255] } })
@@ -28,11 +26,11 @@ export default class Movie extends Model<Movie> {
   @Column({ type: DataType.STRING })
   photo: string;
 
+  @HasMany(() => ShowTime)
+  showTimes: ShowTime[];
+
   @BeforeCreate
   static setDefaultPhoto(instance: Movie) {
     instance.photo = 'default.jpg';
   }
-
-  @HasMany(() => ShowTime)
-  showTimes: ShowTime[];
 }
