@@ -68,8 +68,10 @@ describe('Movies', function () {
     });
 
     it('should return null ', async () => {
-      const res = await chai.request(url).get('/movies/abfkgkkke');
+      const res = await chai.request(url).get('/movies/avsbdhhdryurjjw');
       expect(res.status).to.be.equal(500);
+      expect(res.body.name).to.be.equal('SequelizeDatabaseError');
+      expect(res.body.error).to.be.equal('invalid input syntax for type uuid: "avsbdhhdryurjjw"');
     });
   });
 });
