@@ -5,5 +5,5 @@ import UnknownEndpoint from './unknownendpoint';
 
 export const theaterController = new TheaterController();
 export const movieController = new MovieController();
-export const healthcheck = new HealthCheckController();
+export const healthcheckController = new HealthCheckController();
 export const unknownendpoint = new UnknownEndpoint();
