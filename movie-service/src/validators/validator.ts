@@ -1,13 +1,15 @@
 import { ValidationException } from '@cineverse/exceptions';
 
+const KEYS = ['title', 'genre', 'description', 'duration'];
+
 export default abstract class Validator<T> {
   protected payload: T;
-  protected validates: Array<object>;
-  protected errorCounter = 0;
+  protected errors: object;
+  protected errorCounter: number;
 
   constructor(payload: T) {
     this.payload = payload;
-    this.validates = [];
+    this.errors = {};
   }
 
   protected isValidKey(key: keyof T): boolean {
@@ -15,35 +17,40 @@ export default abstract class Validator<T> {
   }
 
   protected printErrors(): void {
-    const message = { message: `You have (${this.errorCounter}) errors to fix`, errors: this.validates };
+    const message = { message: `You have (${this.errorCounter}) errors to fix`, errors: { ...this.errors } };
     throw new ValidationException(JSON.stringify(message));
   }
 
   protected validateString(key: keyof T, value: string): void {
     if (!value || typeof value !== 'string' || value.trim().length < 3) {
-      this.validates.push({ [key]: 'Please provide a valid string' });
-      this.errorCounter += 1;
+      this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
   protected validateNumber(key: keyof T, value: number): void {
     if (!value || typeof value !== 'number' || isNaN(value)) {
-      this.validates.push({ [key]: 'Please provide a valid number [0-9]' });
-      this.errorCounter += 1;
+      this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
   protected validateEmail(key: keyof T, value: string): void {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (typeof value !== 'string' || !emailRegex.test(value)) {
-      this.validates.push({ [key]: 'Please provide a valid email' });
-      this.errorCounter += 1;
+      this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
-  protected validateUnknownType(key: keyof T): void {
-    this.validates.push({ [key]: 'Please provide a required data' });
-    this.errorCounter += 1;
+  protected validateUnknownType(): void {
+    for (const key in this.payload) {
+      if (!KEYS.includes(key)) {
+        this.addError({ [key]: `${[key]} is not part of the required data` });
+      }
+    }
+  }
+
+  protected addError(error: Record<string, string>): void {
+    this.errors = { ...this.errors, ...error };
+    this.errorCounter = Object.keys(this.errors).length;
   }
 
   abstract validate(data: T): void;
