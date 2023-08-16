@@ -1,1 +1,0 @@
-{"version":3,"file":"server.js","sourceRoot":"","sources":["../../../../../auth-service/src/server.ts"],"names":[],"mappings":";;;;;AAAA,gDAAuB;AACvB,oEAA2C;AAC3C,8EAAoD;AACpD,kFAAyD;AAGzD,MAAM,MAAM,GAAa,CAAC,IAAI,2BAAgB,EAAE,EAAE,IAAI,yBAAa,EAAE,EAAE,IAAI,oBAAS,EAAE,CAAC,CAAC;AACxF,MAAM,GAAG,GAAG,IAAI,cAAG,CAAC,MAAM,CAAC,CAAC;AAC5B,GAAG,CAAC,MAAM,EAAE,CAAC"}
