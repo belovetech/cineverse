@@ -7,12 +7,6 @@ export class TheaterDataValidator<T extends TheaterDto> extends Validator<T> {
     this.validateString('location', this.payload.location);
     this.validateNumber('seatingCapacity', this.payload.seatingCapacity);
 
-    for (const key in this.payload) {
-      if (Object.prototype.hasOwnProperty.call(this.payload, key) && !this.isValidKey(key as keyof T)) {
-        this.validateUnknownType(key as keyof T);
-      }
-    }
-
     if (this.errorCounter > 0) {
       this.printErrors();
     }

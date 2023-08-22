@@ -7,7 +7,6 @@ export class MovieDataValidator<T extends MovieDto> extends Validator<T> {
     this.validateString('genre', this.payload.genre);
     this.validateString('description', this.payload.description);
     this.validateString('duration', this.payload.duration);
-    // this.validateUnknownType();
 
     if (this.errorCounter > 0) {
       this.printErrors();

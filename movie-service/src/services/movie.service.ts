@@ -15,7 +15,7 @@ export default class MovieService {
   }
 
   public static async getMovies(reqQuery: Record<string, unknown>): Promise<IGetMovie> {
-    return movieRepository.getMovies(reqQuery);
+    return movieRepository.getMovies(reqQuery as Record<string, string>);
   }
 
   public static async getMovie(movieId: string): Promise<IMovie> {

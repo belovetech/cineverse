@@ -16,7 +16,7 @@ export default class TheaterService {
   }
 
   public async getTheaters(reqQuery: Record<string, unknown>): Promise<IgetTheaters> {
-    return await theaterRepository.getTheaters(reqQuery);
+    return await theaterRepository.getTheaters(reqQuery as Record<string, string>);
   }
 
   public async getTheater(theaterId: string): Promise<Theater | null> {

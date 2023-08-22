@@ -17,7 +17,7 @@ export default class TheaterRepository {
     return await Theater.findOne(options);
   }
 
-  public async getTheaters(reqQuery: Record<string, unknown>): Promise<IgetTheaters> {
+  public async getTheaters(reqQuery: Record<string, string>): Promise<IgetTheaters> {
     const query = new ApiFeaturesHandler(reqQuery);
 
     const [offset, limit] = query.paginate();

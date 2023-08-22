@@ -17,8 +17,8 @@ export default class MovieRepository {
     return await Movie.findOne(options);
   }
 
-  public async getMovies(reqQuery: Record<string, unknown>): Promise<IGetMovie> {
-    const query = new ApiFeaturesHandler(reqQuery as Record<string, string>);
+  public async getMovies(reqQuery: Record<string, string>): Promise<IGetMovie> {
+    const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
     const rows = await Movie.findAll({

@@ -1,7 +1,7 @@
 import { ILink } from '@interfaces/link.interface';
 import { Exception } from '@cineverse/exceptions';
 
-export default class ApiResponseFormatter<T extends Record<string, unknown>> {
+export default class ApiResponseFormatter<T> {
   private data: T;
   private linkOptions?: ILink[];
   private id: string | undefined;
