@@ -1,4 +1,4 @@
-import { ConflictException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/exceptions';
 import { ShowtimeDataValidator } from '@validators/showtimeDataValidator';
 import { ShowTimeDto } from '@dtos/showtime.dto';
 import { showtimeRepository } from '@respositories';
@@ -23,7 +23,7 @@ export default class ShowtimeService {
 
   public async getShowtime(showTimeId: string): Promise<ShowTime | null> {
     const showtime = await showtimeRepository.findByPk(showTimeId);
-    if (showtime === null) throw new ConflictException('Show time not found');
+    if (showtime === null) throw new NotFoundException('Show time not found');
     return showtime;
   }
 }

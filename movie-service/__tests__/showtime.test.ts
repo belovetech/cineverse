@@ -4,15 +4,20 @@ import { describe, it } from 'mocha';
 import config from '../src/config';
 import database from '../src/datasource/index';
 import Showtime from '../src/models/showtime';
+import Movie from '../src/models/movies';
+import Theater from '../src/models/theater';
 
 chai.use(chaiHttp);
 
+let showTimeId: string;
 describe('#Showtime', () => {
   let sequelize;
 
   before(async () => {
     sequelize = await database.getInstance();
     sequelize.options.logging = false;
+    Movie.drop();
+    Theater.drop();
     Showtime.drop();
   });
 
@@ -32,9 +37,9 @@ describe('#Showtime', () => {
         duration: '120m',
       };
       const theater = {
-        name: 'MovieStar',
+        name: '24/7 Cinema',
         location: 'No 24 Tanke fante, Ilorin , Kwara state.',
-        seatingCapacity: 1500,
+        seatingCapacity: 200,
       };
       const [movieResponse, theaterResponse] = await Promise.all([
         await chai.request(url).post('/movies').send(movie),
@@ -56,6 +61,7 @@ describe('#Showtime', () => {
       expect(res.body.movieId).to.be.equal(data.movieId);
       expect(res.body.theaterId).to.be.equal(data.theaterId);
       expect(res.body).to.haveOwnProperty('links');
+      showTimeId = res.body.showTimeId;
     });
 
     it('should return conflict error', async () => {
@@ -66,15 +72,13 @@ describe('#Showtime', () => {
     });
   });
 
-  let showTimeId: string;
-  describe('[GET] Get Showtime', () => {
+  describe('[GET] Get all Showtimes', () => {
     it('should get showtimes', async () => {
       const res = await chai.request(url).get('/showtimes');
       expect(res.status).to.be.equal(200);
       expect(res.body).to.haveOwnProperty('metadata');
       expect(res.body).to.haveOwnProperty('data');
       expect(res.body.data).to.be.an('array');
-      showTimeId = res.body.data[0]?.showTimeId;
     });
   });
 
@@ -85,11 +89,11 @@ describe('#Showtime', () => {
       expect(res.body.showTimeId).to.be.equal(showTimeId);
     });
 
-    it('should return null ', async () => {
-      const res = await chai.request(url).get('/showtimes/abfkgkkke');
-      expect(res.status).to.be.equal(500);
-      expect(res.body.name).to.be.equal('SequelizeDatabaseError');
-      expect(res.body.error).to.be.equal('invalid input syntax for type uuid: "abfkgkkke"');
+    it('should return NotFoundException ', async () => {
+      const res = await chai.request(url).get('/showtimes/1e8265cf-1607-4543-8110-f27c9ea9aa67');
+      expect(res.status).to.be.equal(404);
+      expect(res.body.name).to.be.equal('NotFoundException');
+      expect(res.body.error).to.be.equal('Show time not found');
     });
   });
 });

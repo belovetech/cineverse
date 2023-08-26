@@ -46,8 +46,8 @@ describe('#Theater', function () {
     });
   });
 
-  describe('[GET] Get Theater', () => {
-    it('should get theaters', async () => {
+  describe('[GET] Get Theaters', () => {
+    it('should get all theaters', async () => {
       const res = await chai.request(url).get('/theaters');
       expect(res.status).to.be.equal(200);
       expect(res.body).to.haveOwnProperty('metadata');
@@ -64,11 +64,11 @@ describe('#Theater', function () {
       expect(res.body.theaterId).to.be.equal(theaterId);
     });
 
-    it('should return null ', async () => {
-      const res = await chai.request(url).get('/theaters/abfkgkkke');
-      expect(res.status).to.be.equal(500);
-      expect(res.body.name).to.be.equal('SequelizeDatabaseError');
-      expect(res.body.error).to.be.equal('invalid input syntax for type uuid: "abfkgkkke"');
+    it('should return NotFoundException ', async () => {
+      const res = await chai.request(url).get('/theaters/1e8265cf-1607-4543-8110-f27c9ea9aa67');
+      expect(res.status).to.be.equal(404);
+      expect(res.body.name).to.be.equal('NotFoundException');
+      expect(res.body.error).to.be.equal('Theater not found');
     });
   });
 });

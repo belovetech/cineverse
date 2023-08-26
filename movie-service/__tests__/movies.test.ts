@@ -46,14 +46,15 @@ describe('#Movies', function () {
       try {
         chai.request(url).post('/movies').send(data);
       } catch (error) {
-        console.log(error);
         expect(error.status).to.equal(409);
+        expect(error.body.name).to.equal('ConflictException');
+        expect(error.body.error).to.equal('seat already exist');
       }
     });
   });
 
   describe('[GET] Get movies', () => {
-    it('should get movies', async () => {
+    it('should get all movies', async () => {
       const res = await chai.request(url).get('/movies');
       expect(res.status).to.be.equal(200);
       expect(res.body).to.haveOwnProperty('metadata');
@@ -71,11 +72,11 @@ describe('#Movies', function () {
       expect(res.body.genre).to.be.equal('Action');
     });
 
-    it('should return null ', async () => {
-      const res = await chai.request(url).get('/movies/avsbdhhdryurjjw');
-      expect(res.status).to.be.equal(500);
-      expect(res.body.name).to.be.equal('SequelizeDatabaseError');
-      expect(res.body.error).to.be.equal('invalid input syntax for type uuid: "avsbdhhdryurjjw"');
+    it('should return NotFoundException ', async () => {
+      const res = await chai.request(url).get('/movies/1e8265cf-1607-4543-8110-f27c9ea9aa67');
+      expect(res.status).to.be.equal(404);
+      expect(res.body.name).to.be.equal('NotFoundException');
+      expect(res.body.error).to.be.equal('Movie not found');
     });
   });
 });
