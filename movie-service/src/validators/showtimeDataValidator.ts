@@ -46,7 +46,7 @@ export class ShowtimeDataValidator<T extends ShowTimeDto> extends Validator<T> {
       this.addError({ date: 'Please provide a valid date' });
     } else {
       const [year, month, day] = date.split('-').map(part => parseInt(part, 10));
-      console.log(year, month, day);
+
       const currentDate = new Date();
       const inputDate = new Date(year, month - 1, day); // month is 0-indexed
 
