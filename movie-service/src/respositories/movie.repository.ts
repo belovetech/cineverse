@@ -21,7 +21,7 @@ export default class MovieRepository {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
-    const rows = await Movie.findAll({
+    const { count, rows } = await Movie.findAndCountAll({
       where: query.filter(),
       attributes: query.getFieldsQuery(),
       order: query.sort(),
@@ -29,7 +29,7 @@ export default class MovieRepository {
       limit: limit,
     });
 
-    const metadata = query.getMetadata({ total: rows.length, itemPerPage: rows.length });
+    const metadata = query.getMetadata({ total: count, itemPerPage: rows.length });
     return { movies: rows, metadata };
   }
 

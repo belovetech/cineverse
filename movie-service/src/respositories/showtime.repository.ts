@@ -1,9 +1,10 @@
 import { FindOptions } from 'sequelize';
 import ApiFeaturesHandler from '@utils/api.features';
+import { ShowTimeDto } from '@dtos/showtime.dto';
 import ShowTime from '@models/showtime';
 
 export default class ShowtimeRepository {
-  public async create(data: ShowTime): Promise<ShowTime> {
+  public async create(data: ShowTimeDto): Promise<ShowTimeDto> {
     return await ShowTime.create(data);
   }
 
@@ -19,7 +20,7 @@ export default class ShowtimeRepository {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
-    const rows = await ShowTime.findAll({
+    const { count, rows } = await ShowTime.findAndCountAll({
       where: query.filter(),
       attributes: query.getFieldsQuery(),
       order: query.sort(),
@@ -27,7 +28,7 @@ export default class ShowtimeRepository {
       limit: limit,
     });
 
-    const metadata = query.getMetadata({ total: rows.length, itemPerPage: rows.length });
+    const metadata = query.getMetadata({ total: count, itemPerPage: rows.length });
     return { showtimes: rows, metadata };
   }
 

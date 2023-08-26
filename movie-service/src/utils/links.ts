@@ -94,3 +94,48 @@ export const theaterLinks: Record<LinkMethods, ILink[]> = {
     },
   ],
 };
+
+export const showtimeLinks: Record<LinkMethods, ILink[]> = {
+  post: [
+    {
+      rel: 'self',
+      href: `${baseUrl}/showtimes`,
+      action: 'POST',
+      types: ['text/xml', 'application/json'],
+    },
+    {
+      rel: 'showtime',
+      href: `${baseUrl}/showtimes`,
+      action: 'UPDATE',
+      types: ['text/xml', 'application/json'],
+    },
+  ],
+  get: [
+    {
+      rel: 'self',
+      href: `${baseUrl}/showtimes`,
+      action: 'GET',
+      types: ['text/xml', 'application/json'],
+    },
+    {
+      rel: 'showtime',
+      href: `${baseUrl}/showtimes`,
+      action: 'UPDATE',
+      types: ['text/xml', 'application/json'],
+    },
+  ],
+  update: [
+    {
+      rel: 'self',
+      href: `${baseUrl}/showtimes`,
+      action: 'UPDATE',
+      types: ['text/xml', 'application/json'],
+    },
+    {
+      rel: 'showtime',
+      href: `${baseUrl}/showtimes`,
+      action: 'GET',
+      types: ['text/xml', 'application/json'],
+    },
+  ],
+};

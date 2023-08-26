@@ -16,7 +16,7 @@ export default class ShowTime extends Model<ShowTime> {
   endTime: string;
 
   @Column({ type: DataType.DATE })
-  date: Date;
+  date: string;
 
   @ForeignKey(() => Movie)
   @Column({ type: DataType.UUID })

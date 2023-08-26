@@ -1,22 +1,24 @@
 import { ConflictException } from '@cineverse/exceptions';
 import { showtimeRepository } from '@respositories';
-import ShowTimeDto from '@dtos/showtime.dto';
+import { ShowtimeDataValidator } from '@validators/showtimeDataValidator';
+import { ShowTimeDto } from '@dtos/showtime.dto';
 
 export default class ShowtimeService {
-  public static async createShowtime(showtime: ShowTimeDto): Promise<ShowTimeDto> {
+  public async createShowtime(showtime: ShowTimeDto): Promise<ShowTimeDto> {
     new ShowtimeDataValidator<ShowTimeDto>(showtime).validate();
-    const movieExist = await showtimeRepository.findOne({ where: { title: showtime.title } });
-    if (movieExist) throw new ConflictException('Movie with this title already exist');
+    const { startTime, movieId, theaterId } = showtime;
+    const showtimeExist = await showtimeRepository.findOne({ where: { movieId, theaterId, startTime } });
+    if (showtimeExist) throw new ConflictException('Show time  already exist');
 
-    const newMovie: ShowTimeDto = await showtimeRepository.create(showtime);
-    return newMovie;
+    const newShowtime = await showtimeRepository.create(showtime);
+    return newShowtime;
   }
 
-  public static async getShowtime(reqQuery: Record<string, unknown>): Promise<IGetMovie> {
-    return showtimeRepository.getMovies(reqQuery as Record<string, string>);
+  public async getAllShowtime(reqQuery: Record<string, unknown>): Promise<{ showtimes: ShowTimeDto[]; metadata: object }> {
+    return showtimeRepository.findAll(reqQuery as Record<string, string>);
   }
 
-  public static async getMovie(movieId: string): Promise<IMovie> {
-    return showtimeRepository.getMovieById(movieId);
+  public async getShowtime(showtimeId: string): Promise<ShowTimeDto> {
+    return showtimeRepository.findByPk(showtimeId);
   }
 }

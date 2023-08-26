@@ -40,6 +40,14 @@ export default abstract class Validator<T> {
     }
   }
 
+  protected validateUUIDv4(key: keyof T, uuid: string): void {
+    const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+
+    if (!uuidRegex.test(uuid)) {
+      this.addError({ [key]: 'Please provide a valid uuid string ID' });
+    }
+  }
+
   protected validateUnknownType(): void {
     for (const key in this.payload) {
       if (!KEYS.includes(key)) {
