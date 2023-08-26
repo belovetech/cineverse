@@ -3,7 +3,7 @@ import { FindAttributeOptions, Order } from 'sequelize';
 type QueryType = Record<string, string>;
 type PaginateResult = [number, number];
 
-export interface Metadata {
+interface Metadata {
   total: number;
   itemPerPage: number;
 }
@@ -55,14 +55,14 @@ export default class ApiFeaturesHandler {
     return [offset, limit];
   }
 
-  public getMetadata(option: Metadata) {
+  public getMetadata({ total, itemPerPage }: Metadata) {
     const limit = this.paginate()[1];
-    const totalPage = Math.ceil(option.total / limit);
+    const totalPage = Math.ceil(total / limit);
     const currentPage = this.page;
 
     const metadata = {
-      total_items: option.total,
-      item_per_page: option.itemPerPage,
+      total_items: total,
+      item_per_page: itemPerPage,
       total_page: totalPage,
       previous_page: currentPage <= 1 ? null : currentPage - 1,
       current_page: currentPage,
