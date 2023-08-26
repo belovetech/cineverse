@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsNumber, IsEnum } from 'class-validator';
+import { IsOptional, IsString, IsNumber, IsEnum, IsNotEmpty } from 'class-validator';
 
 export enum Status {
   AVAILABLE = 'available',
@@ -17,6 +17,7 @@ export class SeatDto {
   @IsNumber()
   readonly rowNumber: string;
 
+  @IsNotEmpty()
   @IsEnum(Status)
   readonly availableStatus: Status = Status.AVAILABLE;
 }

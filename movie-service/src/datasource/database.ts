@@ -5,7 +5,6 @@ import Movie from '@models/movies';
 import Seat from '@models/seat';
 import ShowTime from '@models/showtime';
 import Theater from '@models/theater';
-import TheaterSeat from '@models/theaterSeat';
 
 class PostgresClient {
   private sequelize: Sequelize;
@@ -16,7 +15,7 @@ class PostgresClient {
       database: db.database,
       username: db.username,
       password: db.password,
-      models: [Movie, Theater, Seat, TheaterSeat, ShowTime],
+      models: [Movie, Theater, Seat, ShowTime],
       logging: msg => logger.debug(msg),
     });
   }

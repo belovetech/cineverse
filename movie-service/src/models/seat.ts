@@ -23,7 +23,6 @@ export default class Seat extends Model<Seat> {
   rowNumber: string;
 
   @Column(DataType.ENUM({ values: AVAILABLESTATUS }))
-  @Default(() => Status.AVAILABLE)
   availableStatus: string;
 
   @ForeignKey(() => Theater)

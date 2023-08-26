@@ -5,7 +5,7 @@ import config from '../src/config';
 
 chai.use(chaiHttp);
 
-describe('HealthCheck of the movie-service server', function () {
+describe('#HealthCheck', function () {
   it('[GET] should return pong', async function () {
     const url = config.apiUrl || 'http://localhost:3000/v1';
     const res = await chai.request(url).get('/ping');
