@@ -36,8 +36,10 @@ describe('#Showtime', () => {
 
   describe('[POST] Create Showtime', () => {
     it('should create a new showtime', async () => {
-      const movieResponse = await chai.request(url).post('/movies').send(movie);
-      const theaterResponse = await chai.request(url).post('/theaters').send(theater);
+      const [movieResponse, theaterResponse] = await Promise.all([
+        await chai.request(url).post('/movies').send(movie),
+        await chai.request(url).post('/theaters').send(theater),
+      ]);
 
       data = {
         startTime: '12:00',
