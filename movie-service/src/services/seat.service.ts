@@ -11,11 +11,11 @@ export default class SeatService {
     const seatExist = await seatRepository.findOne({ where: { seatNumber, rowNumber, theaterId } });
     if (seatExist) throw new ConflictException('seat already exist');
 
-    const newShowtime = await seatRepository.create(seat);
-    return newShowtime;
+    const newSeat = await seatRepository.create(seat);
+    return newSeat;
   }
 
-  public async getSeats(reqQuery: Record<string, unknown>): Promise<{ showtimes: Seat[]; metadata: object }> {
+  public async getSeats(reqQuery: Record<string, unknown>): Promise<{ seats: Seat[]; metadata: object }> {
     return seatRepository.findAll(reqQuery as Record<string, string>);
   }
 

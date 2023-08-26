@@ -139,3 +139,48 @@ export const showtimeLinks: Record<LinkMethods, ILink[]> = {
     },
   ],
 };
+
+export const seatLinks: Record<LinkMethods, ILink[]> = {
+  post: [
+    {
+      rel: 'self',
+      href: `${baseUrl}/seats`,
+      action: 'POST',
+      types: ['text/xml', 'application/json'],
+    },
+    {
+      rel: 'seat',
+      href: `${baseUrl}/seats`,
+      action: 'UPDATE',
+      types: ['text/xml', 'application/json'],
+    },
+  ],
+  get: [
+    {
+      rel: 'self',
+      href: `${baseUrl}/seats`,
+      action: 'GET',
+      types: ['text/xml', 'application/json'],
+    },
+    {
+      rel: 'seat',
+      href: `${baseUrl}/seats`,
+      action: 'UPDATE',
+      types: ['text/xml', 'application/json'],
+    },
+  ],
+  update: [
+    {
+      rel: 'self',
+      href: `${baseUrl}/seats`,
+      action: 'UPDATE',
+      types: ['text/xml', 'application/json'],
+    },
+    {
+      rel: 'seat',
+      href: `${baseUrl}/seats`,
+      action: 'GET',
+      types: ['text/xml', 'application/json'],
+    },
+  ],
+};

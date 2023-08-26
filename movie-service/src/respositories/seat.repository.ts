@@ -16,7 +16,7 @@ export default class SeatRepository {
     return await Seat.findOne(options);
   }
 
-  public async findAll(reqQuery: Record<string, string>): Promise<{ showtimes: Seat[]; metadata: object }> {
+  public async findAll(reqQuery: Record<string, string>): Promise<{ seats: Seat[]; metadata: object }> {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
@@ -29,7 +29,7 @@ export default class SeatRepository {
     });
 
     const metadata = query.getMetadata({ total: count, itemPerPage: rows.length });
-    return { showtimes: rows, metadata };
+    return { seats: rows, metadata };
   }
 
   public async update(seatId: string, options: Partial<Seat>): Promise<Seat> {
