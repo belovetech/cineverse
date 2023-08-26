@@ -10,5 +10,8 @@
     "packages/*",
     "auth-service",
     "movie-service"
-  ]
+  ],
+  "devDependencies": {
+    "tsconfig-paths": "^4.2.0"
+  }
 }
