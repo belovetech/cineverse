@@ -1,6 +1,7 @@
 import { FindOptions } from 'sequelize';
-import ApiFeaturesHandler from '@utils/api.features';
+import { Metadata } from '@interfaces/pagination.interface';
 import { SeatDto } from '@dtos/seat.dto';
+import ApiFeaturesHandler from '@utils/api.features';
 import Seat from '@models/seat';
 
 export default class SeatRepository {
@@ -8,15 +9,15 @@ export default class SeatRepository {
     return await Seat.create(data);
   }
 
-  public async findByPk(movieId: string, options?: FindOptions): Promise<Seat | null> {
-    return await Seat.findByPk(movieId, options);
+  public async findByPk(seatId: string, options?: FindOptions): Promise<Seat | null> {
+    return await Seat.findByPk(seatId, options);
   }
 
   public async findOne(options: FindOptions): Promise<Seat | null> {
     return await Seat.findOne(options);
   }
 
-  public async findAll(reqQuery: Record<string, string>): Promise<{ seats: Seat[]; metadata: object }> {
+  public async findAll(reqQuery: Record<string, string>): Promise<{ seats: Seat[]; metadata: Metadata }> {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 

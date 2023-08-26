@@ -1,22 +1,23 @@
 import { FindOptions } from 'sequelize';
-import ApiFeaturesHandler from '@utils/api.features';
+import { Metadata } from '@interfaces/pagination.interface';
 import { ShowTimeDto } from '@dtos/showtime.dto';
+import ApiFeaturesHandler from '@utils/api.features';
 import ShowTime from '@models/showtime';
 
 export default class ShowtimeRepository {
-  public async create(data: ShowTimeDto): Promise<ShowTimeDto> {
+  public async create(data: ShowTimeDto): Promise<ShowTime> {
     return await ShowTime.create(data);
   }
 
-  public async findByPk(movieId: string, options?: FindOptions): Promise<ShowTime | null> {
-    return await ShowTime.findByPk(movieId, options);
+  public async findByPk(showtimeId: string, options?: FindOptions): Promise<ShowTime | null> {
+    return await ShowTime.findByPk(showtimeId, options);
   }
 
   public async findOne(options: FindOptions): Promise<ShowTime | null> {
     return await ShowTime.findOne(options);
   }
 
-  public async findAll(reqQuery: Record<string, string>): Promise<{ showtimes: ShowTime[]; metadata: object }> {
+  public async findAll(reqQuery: Record<string, string>): Promise<{ showtimes: ShowTime[]; metadata: Metadata }> {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
@@ -32,12 +33,12 @@ export default class ShowtimeRepository {
     return { showtimes: rows, metadata };
   }
 
-  public async update(movieId: string, options: Partial<ShowTime>): Promise<ShowTime> {
-    await ShowTime.update({ ...options }, { where: { movieId } });
-    return await this.findByPk(movieId);
+  public async update(showTimeId: string, options: Partial<ShowTime>): Promise<ShowTime> {
+    await ShowTime.update({ ...options }, { where: { showTimeId } });
+    return await this.findByPk(showTimeId);
   }
 
-  public async delete(movieId: string): Promise<ShowTime | number> {
-    return await ShowTime.destroy({ where: { movieId: movieId } });
+  public async delete(showTimeId: string): Promise<ShowTime | number> {
+    return await ShowTime.destroy({ where: { showTimeId } });
   }
 }

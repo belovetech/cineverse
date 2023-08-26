@@ -1,11 +1,11 @@
 import { FindOptions } from 'sequelize';
 import { MovieDto } from '@dtos/movie.dto';
-import { IGetMovie } from '@interfaces/movie.interface';
+import { Metadata } from '@interfaces/pagination.interface';
 import ApiFeaturesHandler from '@utils/api.features';
 import Movie from '@models/movies';
 
 export default class MovieRepository {
-  public async create(movieData: MovieDto): Promise<MovieDto> {
+  public async create(movieData: MovieDto): Promise<Movie> {
     return await Movie.create(movieData);
   }
 
@@ -17,7 +17,7 @@ export default class MovieRepository {
     return await Movie.findOne(options);
   }
 
-  public async findAll(reqQuery: Record<string, string>): Promise<IGetMovie> {
+  public async findAll(reqQuery: Record<string, string>): Promise<{ movies: Movie[]; metadata: Metadata }> {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
