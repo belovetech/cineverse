@@ -21,21 +21,21 @@ describe('#Showtime', () => {
   });
 
   const url = config.apiUrl || 'http://localhost:3000/v1';
-  const movie = {
-    title: 'The Murderer2',
-    genre: 'Action',
-    description: 'After a series of deaths in a small provincial town.',
-    duration: '120m',
-  };
-  const theater = {
-    name: 'MovieStar',
-    location: 'No 24 Tanke fante, Ilorin , Kwara state.',
-    seatingCapacity: 1500,
-  };
   let data;
 
   describe('[POST] Create Showtime', () => {
     it('should create a new showtime', async () => {
+      const movie = {
+        title: 'The Murderer2',
+        genre: 'Action',
+        description: 'After a series of deaths in a small provincial town.',
+        duration: '120m',
+      };
+      const theater = {
+        name: 'MovieStar',
+        location: 'No 24 Tanke fante, Ilorin , Kwara state.',
+        seatingCapacity: 1500,
+      };
       const [movieResponse, theaterResponse] = await Promise.all([
         await chai.request(url).post('/movies').send(movie),
         await chai.request(url).post('/theaters').send(theater),
