@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Table, Model, Column, Default, DataType, BelongsToMany } from 'sequelize-typescript';
+import { ForeignKey, Table, Model, Column, Default, DataType } from 'sequelize-typescript';
 import Theater from './theater';
-import TheaterSeat from './theaterSeat';
 
 const AVAILABLESTATUS = ['available', 'booked', 'cancelled'];
 
@@ -14,9 +13,13 @@ export default class Seat extends Model<Seat> {
   @Column({ type: DataType.INTEGER })
   seatNumber: number;
 
+  @Column({ type: DataType.CHAR(1) })
+  rowNumber: string;
+
   @Column(DataType.ENUM({ values: AVAILABLESTATUS }))
   availableStatus: string;
 
-  @BelongsToMany(() => Theater, () => TheaterSeat)
-  theaters: Theater[];
+  @ForeignKey(() => Theater)
+  @Column({ type: DataType.UUID })
+  theaterId: string;
 }

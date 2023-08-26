@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Model, Table, Column, Default, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
+import { Model, Table, Column, Default, DataType, HasMany } from 'sequelize-typescript';
 import Seat from './seat';
 import ShowTime from './showtime';
-import TheaterSeat from './theaterSeat';
 
 @Table({ tableName: 'theaters' })
 export default class Theater extends Model<Theater> {
@@ -22,6 +21,6 @@ export default class Theater extends Model<Theater> {
   @HasMany(() => ShowTime)
   showTimes: ShowTime[];
 
-  @BelongsToMany(() => Seat, () => TheaterSeat)
-  seats: Seat[];
+  @HasMany(() => Seat)
+  seat: Seat[];
 }
