@@ -44,7 +44,7 @@ export default abstract class Validator<T> {
     const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
 
     if (!uuidRegex.test(uuid)) {
-      this.addError({ [key]: 'Please provide a valid uuid string ID' });
+      this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
