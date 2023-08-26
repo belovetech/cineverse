@@ -22,7 +22,7 @@ export class SeatDataValidator<T extends SeatDto> extends Validator<T> {
   }
 
   private validateRowNumber(rowNumber: string): void {
-    const rowNumberREgex = /^\[A-Z]+$/;
+    const rowNumberREgex = /^[A-Z]+$/;
 
     if (!rowNumber || !rowNumberREgex.test(rowNumber)) {
       this.addError({ rowNumber: 'Please provide a valid row Number' });
@@ -30,7 +30,7 @@ export class SeatDataValidator<T extends SeatDto> extends Validator<T> {
   }
 
   private validateEnum(status: string): void {
-    if (!status || !Object.values(Status).includes(status as Status)) {
+    if (!Object.values(Status).includes(status as Status)) {
       this.addError({ status: 'Please provide a valid seat status' });
     }
   }
