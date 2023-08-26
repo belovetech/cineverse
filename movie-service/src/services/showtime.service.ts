@@ -8,7 +8,7 @@ export default class ShowtimeService {
     new ShowtimeDataValidator<ShowTimeDto>(showtime).validate();
     const { startTime, movieId, theaterId } = showtime;
     const showtimeExist = await showtimeRepository.findOne({ where: { movieId, theaterId, startTime } });
-    if (showtimeExist) throw new ConflictException('Show time  already exist');
+    if (showtimeExist) throw new ConflictException('Show time already exist');
 
     const newShowtime = await showtimeRepository.create(showtime);
     return newShowtime;

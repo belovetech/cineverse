@@ -7,7 +7,8 @@ import Theater from '../src/models/theater';
 
 chai.use(chaiHttp);
 
-describe('Theater', function () {
+let theaterId: string;
+describe('#Theater', function () {
   let sequelize;
 
   before(async function () {
@@ -27,8 +28,8 @@ describe('Theater', function () {
     seatingCapacity: 1500,
   };
 
-  describe('[POST] Create Theater', async () => {
-    it('should create a new theater', async function () {
+  describe('[POST] Create Theater', () => {
+    it('should create a new theater', async () => {
       const res = await chai.request(url).post('/theaters').send(data);
       expect(res.status).to.equal(201);
       expect(res.body.name).to.be.equal(data.name);
@@ -37,7 +38,7 @@ describe('Theater', function () {
       expect(res.body).to.haveOwnProperty('links');
     });
 
-    it('should return conflict error', async function () {
+    it('should return conflict error', async () => {
       const res = await chai.request(url).post('/theaters').send(data);
       expect(res.status).to.equal(409);
       expect(res.body.name).to.equal('ConflictException');
@@ -45,8 +46,7 @@ describe('Theater', function () {
     });
   });
 
-  let theaterId: string;
-  describe('[GET] Get Theater', async () => {
+  describe('[GET] Get Theater', () => {
     it('should get theaters', async () => {
       const res = await chai.request(url).get('/theaters');
       expect(res.status).to.be.equal(200);
@@ -57,7 +57,7 @@ describe('Theater', function () {
     });
   });
 
-  describe('[GET] Get Theater', async () => {
+  describe('[GET] Get Theater', () => {
     it('should get a theater', async () => {
       const res = await chai.request(url).get(`/theaters/${theaterId}`);
       expect(res.status).to.be.equal(200);

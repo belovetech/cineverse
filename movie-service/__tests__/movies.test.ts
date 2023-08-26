@@ -6,7 +6,8 @@ import database from '../src/datasource/index';
 
 chai.use(chaiHttp);
 
-describe('Movies', function () {
+let movieId: string;
+describe('#Movies', function () {
   let sequelize;
 
   before(async function () {
@@ -19,6 +20,10 @@ describe('Movies', function () {
     await sequelize.close();
   });
 
+  after(async function () {
+    exports.movieId = movieId;
+  });
+
   const url = config.apiUrl || 'http://localhost:3000/v1';
   const data = {
     title: 'The Murderer',
@@ -27,8 +32,8 @@ describe('Movies', function () {
     duration: '120m',
   };
 
-  describe('[POST] Create Movie', async () => {
-    it('should create a new movie', async function () {
+  describe('[POST] Create Movie', () => {
+    it('should create a new movie', async () => {
       const expectedProperties = ['movieId', 'title', 'genre', 'description', 'duration', 'photo', 'links'];
       const res = await chai.request(url).post('/movies').send(data);
       expect(res.status).to.equal(201);
@@ -37,7 +42,7 @@ describe('Movies', function () {
       expect(res.body.links[0]).to.include.keys('rel', 'href', 'action', 'types');
     });
 
-    it('should return conflict error', async function () {
+    it('should return conflict error', async () => {
       try {
         chai.request(url).post('/movies').send(data);
       } catch (error) {
@@ -47,8 +52,7 @@ describe('Movies', function () {
     });
   });
 
-  let movieId: string;
-  describe('[GET] Get movies', async () => {
+  describe('[GET] Get movies', () => {
     it('should get movies', async () => {
       const res = await chai.request(url).get('/movies');
       expect(res.status).to.be.equal(200);
@@ -59,7 +63,7 @@ describe('Movies', function () {
     });
   });
 
-  describe('[GET] Get movie', async () => {
+  describe('[GET] Get movie', () => {
     it('should get a movie', async () => {
       const res = await chai.request(url).get(`/movies/${movieId}`);
       expect(res.status).to.be.equal(200);
