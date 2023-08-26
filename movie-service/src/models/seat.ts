@@ -4,6 +4,12 @@ import Theater from './theater';
 
 const AVAILABLESTATUS = ['available', 'booked', 'cancelled'];
 
+export enum Status {
+  AVAILABLE = 'available',
+  BOOKED = 'booked',
+  CANCELLED = 'cancelled',
+}
+
 @Table({ tableName: 'seats' })
 export default class Seat extends Model<Seat> {
   @Default(() => uuidv4().replace(/-/g, ''))
@@ -17,6 +23,7 @@ export default class Seat extends Model<Seat> {
   rowNumber: string;
 
   @Column(DataType.ENUM({ values: AVAILABLESTATUS }))
+  @Default(() => Status.AVAILABLE)
   availableStatus: string;
 
   @ForeignKey(() => Theater)
