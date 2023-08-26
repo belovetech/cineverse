@@ -22,9 +22,9 @@ export class SeatDataValidator<T extends SeatDto> extends Validator<T> {
   }
 
   private validateRowNumber(rowNumber: string): void {
-    const seatNumberREgex = /^\[A-Z]+$/;
+    const rowNumberREgex = /^\[A-Z]+$/;
 
-    if (!rowNumber || !seatNumberREgex.test(rowNumber)) {
+    if (!rowNumber || !rowNumberREgex.test(rowNumber)) {
       this.addError({ rowNumber: 'Please provide a valid row Number' });
     }
   }
