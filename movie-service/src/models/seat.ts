@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ForeignKey, Table, Model, Column, Default, DataType } from 'sequelize-typescript';
+import { ForeignKey, Table, Model, Column, Default, DataType, DefaultScope } from 'sequelize-typescript';
 import Theater from './theater';
 
 const STATUSES = ['available', 'booked', 'cancelled'];
@@ -10,6 +10,9 @@ export enum Status {
   CANCELLED = 'cancelled',
 }
 
+@DefaultScope(() => ({
+  attributes: ['seatId', 'seatNumber', 'rowNumber', 'status', 'theaterId'],
+}))
 @Table({ tableName: 'seats' })
 export default class Seat extends Model<Seat> {
   @Default(() => uuidv4().replace(/-/g, ''))
