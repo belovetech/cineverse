@@ -25,5 +25,5 @@ export default class Theater extends Model<Theater> {
   showTimes: ShowTime[];
 
   @HasMany(() => Seat)
-  seat: Seat[]; //TODO: pluralized seat
+  seats: Seat[];
 }
