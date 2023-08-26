@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
+import ApiResponseFormatter from '@utils/formatter';
 import { logger } from '@cineverse/logger';
 import { seatService } from '@services';
 import { seatLinks } from '@utils/links';
-import ApiResponseFormatter from '@utils/formatter';
 import { SeatDto } from '@dtos/seat.dto';
 
 export default class SeatController {
@@ -12,6 +12,7 @@ export default class SeatController {
       const seat = await seatService.createSeat(seatData);
 
       const response = new ApiResponseFormatter<SeatDto>(seat as SeatDto, seatLinks.post);
+
       return res.status(201).json(response.format());
     } catch (error) {
       logger.error('CreateSeat', error);

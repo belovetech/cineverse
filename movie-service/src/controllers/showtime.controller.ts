@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
+import ApiResponseFormatter from '@utils/formatter';
 import { logger } from '@cineverse/logger';
 import { showtimeService } from '@services';
 import { showtimeLinks } from '@utils/links';
-import ApiResponseFormatter from '@utils/formatter';
 import { ShowTimeDto } from '@dtos/showtime.dto';
 
 export default class ShowtimeController {

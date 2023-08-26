@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
+import ApiResponseFormatter from '@utils/formatter';
 import { logger } from '@cineverse/logger';
 import { theaterService } from '@services';
-import { TheaterDto } from '@dtos/theater.dto';
 import { theaterLinks } from '@utils/links';
-import ApiResponseFormatter from '@utils/formatter';
+import { TheaterDto } from '@dtos/theater.dto';
 
 export default class TheaterController {
   public async createTheater(req: Request, res: Response, next: NextFunction) {
