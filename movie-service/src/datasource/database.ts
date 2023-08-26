@@ -32,6 +32,7 @@ class PostgresClient {
   public async connect(): Promise<void> {
     try {
       await this.sequelize.authenticate();
+      this.alterDatabase();
       logger.info('Connection has been established successfully');
     } catch (error) {
       logger.error('Unable to connect to the database: ', error);
@@ -51,7 +52,7 @@ class PostgresClient {
 
   public async alterDatabase(): Promise<void> {
     try {
-      await this.sequelize.sync({ alter: true });
+      await this.sequelize.sync({ alter: true, logging: false });
       logger.info('Database has been successfully altered');
     } catch (error) {
       logger.error('Error altering the database:', error);
