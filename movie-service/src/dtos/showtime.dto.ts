@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsDateString } from 'class-validator';
+import { IsOptional, IsString, IsUUID, IsDateString } from 'class-validator';
 
 export class ShowTimeDto {
   @IsString()
@@ -14,9 +14,9 @@ export class ShowTimeDto {
   @IsDateString()
   public date: string;
 
-  @IsString()
+  @IsUUID()
   public movieId: string;
 
-  @IsString()
+  @IsUUID()
   public theaterId: string;
 }
