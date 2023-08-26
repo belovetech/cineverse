@@ -3,21 +3,21 @@ import { IsOptional, IsString } from 'class-validator';
 export class MovieDto {
   @IsString()
   @IsOptional()
-  public movieId: string;
+  readonly movieId: string;
 
   @IsString()
-  public title: string;
+  readonly title: string;
 
   @IsString()
-  public description: string;
+  readonly description: string;
 
   @IsString()
-  public genre: string;
+  readonly genre: string;
 
   @IsString()
-  public duration: string;
+  readonly duration: string;
 
   @IsString()
   @IsOptional()
-  public photo: string;
+  readonly photo: string;
 }

@@ -3,14 +3,14 @@ import { IsOptional, IsString, IsNumber } from 'class-validator';
 export class TheaterDto {
   @IsString()
   @IsOptional()
-  public theaterId: string;
+  readonly theaterId: string;
 
   @IsString()
-  public name: string;
+  readonly name: string;
 
   @IsString()
-  public location: string;
+  readonly location: string;
 
   @IsNumber()
-  public seatingCapacity: number;
+  readonly seatingCapacity: number;
 }

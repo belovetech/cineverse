@@ -3,20 +3,20 @@ import { IsOptional, IsString, IsUUID, IsDateString } from 'class-validator';
 export class ShowTimeDto {
   @IsString()
   @IsOptional()
-  public showTimeId: string;
+  readonly showTimeId: string;
 
   @IsString()
-  public startTime: string;
+  readonly startTime: string;
 
   @IsString()
-  public endTime: string;
+  readonly endTime: string;
 
   @IsDateString()
-  public date: string;
+  readonly date: string;
 
   @IsUUID()
-  public movieId: string;
+  readonly movieId: string;
 
   @IsUUID()
-  public theaterId: string;
+  readonly theaterId: string;
 }
