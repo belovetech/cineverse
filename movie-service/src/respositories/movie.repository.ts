@@ -5,19 +5,19 @@ import ApiFeaturesHandler from '@utils/api.features';
 import Movie from '@models/movies';
 
 export default class MovieRepository {
-  public async createMovie(movieData: MovieDto): Promise<MovieDto> {
+  public async create(movieData: MovieDto): Promise<MovieDto> {
     return await Movie.create(movieData);
   }
 
-  public async getMovieById(movieId: string, options?: FindOptions): Promise<Movie | null> {
+  public async findByPk(movieId: string, options?: FindOptions): Promise<Movie | null> {
     return await Movie.findByPk(movieId, options);
   }
 
-  public async getMovie(options: FindOptions): Promise<Movie | null> {
+  public async findOne(options: FindOptions): Promise<Movie | null> {
     return await Movie.findOne(options);
   }
 
-  public async getMovies(reqQuery: Record<string, string>): Promise<IGetMovie> {
+  public async findAll(reqQuery: Record<string, string>): Promise<IGetMovie> {
     const query = new ApiFeaturesHandler(reqQuery);
     const [offset, limit] = query.paginate();
 
@@ -33,12 +33,12 @@ export default class MovieRepository {
     return { movies: rows, metadata };
   }
 
-  public async updateMovie(movieId: string, options: Partial<Movie>): Promise<Movie> {
+  public async update(movieId: string, options: Partial<Movie>): Promise<Movie> {
     await Movie.update({ ...options }, { where: { movieId } });
-    return await this.getMovieById(movieId);
+    return await this.findByPk(movieId);
   }
 
-  public async deleteMovie(movieId: string): Promise<Movie | number> {
+  public async delete(movieId: string): Promise<Movie | number> {
     return await Movie.destroy({ where: { movieId: movieId } });
   }
 }

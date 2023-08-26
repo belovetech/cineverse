@@ -5,19 +5,19 @@ import Theater from '@models/theater';
 import ApiFeaturesHandler from '@utils/api.features';
 
 export default class TheaterRepository {
-  public async createTheather(theaterData: TheaterDto): Promise<TheaterDto> {
+  public async create(theaterData: TheaterDto): Promise<TheaterDto> {
     return Theater.create(theaterData);
   }
 
-  public async getTheaterById(theaterId: string): Promise<Theater | null> {
+  public async findByPk(theaterId: string): Promise<Theater | null> {
     return await Theater.findByPk(theaterId);
   }
 
-  public async getTheater(options: FindOptions): Promise<Theater | null> {
+  public async findOne(options: FindOptions): Promise<Theater | null> {
     return await Theater.findOne(options);
   }
 
-  public async getTheaters(reqQuery: Record<string, string>): Promise<IgetTheaters> {
+  public async findAll(reqQuery: Record<string, string>): Promise<IgetTheaters> {
     const query = new ApiFeaturesHandler(reqQuery);
 
     const [offset, limit] = query.paginate();
@@ -33,12 +33,12 @@ export default class TheaterRepository {
     return { theaters: rows, metadata };
   }
 
-  public async updateTheater(theaterId: string, options: Partial<Theater>): Promise<Theater> {
+  public async update(theaterId: string, options: Partial<Theater>): Promise<Theater> {
     await Theater.update({ ...options }, { where: { theaterId } });
-    return this.getTheaterById(theaterId);
+    return this.findByPk(theaterId);
   }
 
-  public async deleteTheater(theaterId: string, options?: Partial<Theater>): Promise<number> {
+  public async delete(theaterId: string, options?: Partial<Theater>): Promise<number> {
     if (options) return await Theater.destroy({ where: { ...options } });
     return await Theater.destroy({ where: { theaterId } });
   }

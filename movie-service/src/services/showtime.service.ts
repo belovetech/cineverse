@@ -14,7 +14,7 @@ export default class ShowtimeService {
     return newShowtime;
   }
 
-  public async getAllShowtime(reqQuery: Record<string, unknown>): Promise<{ showtimes: ShowTimeDto[]; metadata: object }> {
+  public async getShowtimes(reqQuery: Record<string, unknown>): Promise<{ showtimes: ShowTimeDto[]; metadata: object }> {
     return showtimeRepository.findAll(reqQuery as Record<string, string>);
   }
 

@@ -32,7 +32,7 @@ export default class ShowtimeRepository {
     return { showtimes: rows, metadata };
   }
 
-  public async updateMovie(movieId: string, options: Partial<ShowTime>): Promise<ShowTime> {
+  public async update(movieId: string, options: Partial<ShowTime>): Promise<ShowTime> {
     await ShowTime.update({ ...options }, { where: { movieId } });
     return await this.findByPk(movieId);
   }

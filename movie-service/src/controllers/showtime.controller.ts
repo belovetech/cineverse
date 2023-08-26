@@ -32,7 +32,7 @@ export default class ShowtimeController {
 
   public async getShowtimes(req: Request, res: Response, next: NextFunction) {
     try {
-      const { showtimes, metadata } = await showtimeService.getAllShowtime(req.query);
+      const { showtimes, metadata } = await showtimeService.getShowtimes(req.query);
       const response = showtimes.map(showtime => new ApiResponseFormatter<ShowTimeDto>(showtime).format());
       return res.status(200).json({ metadata, data: response });
     } catch (error) {
