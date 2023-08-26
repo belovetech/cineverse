@@ -1,4 +1,4 @@
-import { ConflictException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/exceptions';
 import { TheaterDto } from '@dtos/theater.dto';
 import { TheaterDataValidator } from '@validators/theaterDataValidator';
 import { theaterRepository } from '@respositories';
@@ -11,8 +11,8 @@ export default class TheaterService {
 
     const isTheaterExist = await theaterRepository.findOne({ where: { name: theaterData.name } });
     if (isTheaterExist) throw new ConflictException('Theater already exist');
-    const newTheater = await theaterRepository.create(theaterData);
-    return newTheater;
+
+    return await theaterRepository.create(theaterData);
   }
 
   public async getTheaters(reqQuery: Record<string, unknown>): Promise<{ theaters: Theater[]; metadata: Metadata }> {
@@ -20,16 +20,8 @@ export default class TheaterService {
   }
 
   public async getTheater(theaterId: string): Promise<Theater | null> {
-    let theater: Theater | null = null;
-    try {
-      theater = await theaterRepository.findByPk(theaterId, {
-        include: [Theater.associations.seat, Theater.associations.showTimes],
-        rejectOnEmpty: true,
-      });
-      console.log(theater);
-    } catch (error) {
-      throw new ConflictException('Theater not found ', error);
-    }
+    const theater = await theaterRepository.findTheaterWithAssociates(theaterId);
+    if (theater === null) throw new NotFoundException('Theater not found');
     return theater;
   }
 }

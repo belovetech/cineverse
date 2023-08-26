@@ -21,15 +21,8 @@ export default class MovieService {
   }
 
   public async getMovie(movieId: string): Promise<Movie | null> {
-    let movie: Movie | null = null;
-    try {
-      movie = await movieRepository.findByPk(movieId, {
-        include: [Movie.associations.showTimes],
-        rejectOnEmpty: true,
-      });
-    } catch (error) {
-      throw new NotFoundException('Movie not found');
-    }
+    const movie = await movieRepository.findMovieWithAssociates(movieId);
+    if (!movie) throw new NotFoundException('Movie not found');
     return movie;
   }
 }

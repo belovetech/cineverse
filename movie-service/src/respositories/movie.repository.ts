@@ -41,4 +41,21 @@ export default class MovieRepository {
   public async delete(movieId: string): Promise<Movie | number> {
     return await Movie.destroy({ where: { movieId: movieId } });
   }
+
+  public async findMovieWithAssociates(movieId: string): Promise<Movie | null> {
+    let movie: Movie | null = null;
+    try {
+      movie = await Movie.findByPk(movieId, {
+        include: [Movie.associations.showTimes],
+        rejectOnEmpty: true,
+      });
+    } catch (error) {
+      if (error.name === 'SequelizeEmptyResultError') {
+        movie = await Movie.findByPk(movieId);
+      } else {
+        return null;
+      }
+    }
+    return movie;
+  }
 }

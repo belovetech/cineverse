@@ -1,4 +1,3 @@
-import { FindOptions } from 'sequelize';
 import { Metadata } from '@interfaces/pagination.interface';
 import { TheaterDto } from '@dtos/theater.dto';
 import ApiFeaturesHandler from '@utils/api.features';
@@ -13,7 +12,7 @@ export default class TheaterRepository {
     return await Theater.findByPk(theaterId, options);
   }
 
-  public async findOne(options: FindOptions): Promise<Theater | null> {
+  public async findOne(options: unknown): Promise<Theater | null> {
     return await Theater.findOne(options);
   }
 
@@ -41,5 +40,22 @@ export default class TheaterRepository {
   public async delete(theaterId: string, options?: Partial<Theater>): Promise<number> {
     if (options) return await Theater.destroy({ where: { ...options } });
     return await Theater.destroy({ where: { theaterId } });
+  }
+
+  public async findTheaterWithAssociates(theaterId: string): Promise<Theater | null> {
+    let theater: Theater | null = null;
+    try {
+      theater = await Theater.findByPk(theaterId, {
+        include: [Theater.associations.seats, Theater.associations.showTimes],
+        rejectOnEmpty: true,
+      });
+    } catch (error) {
+      if (error.name === 'SequelizeEmptyResultError') {
+        theater = await Theater.findByPk(theaterId);
+      } else {
+        return null;
+      }
+    }
+    return theater;
   }
 }
