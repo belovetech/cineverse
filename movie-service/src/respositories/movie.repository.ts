@@ -9,7 +9,7 @@ export default class MovieRepository {
     return await Movie.create(movieData);
   }
 
-  public async findByPk(movieId: string, options?: FindOptions): Promise<Movie | null> {
+  public async findByPk(movieId: string, options?: unknown): Promise<Movie | null> {
     return await Movie.findByPk(movieId, options);
   }
 
