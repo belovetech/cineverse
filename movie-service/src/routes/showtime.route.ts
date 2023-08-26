@@ -11,7 +11,7 @@ export default class ShowtimeRoute implements IRoute {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     this.router.post(this.path, this.showtimeController.createshowtime);
     this.router.get(this.path, this.showtimeController.getShowtimes);
     this.router.get(`${this.path}/:id`, this.showtimeController.getshowtime);

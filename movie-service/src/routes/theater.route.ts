@@ -11,7 +11,7 @@ export default class TheaterRoute implements IRoute {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     this.router.post(this.path, this.theaterController.createTheater);
     this.router.get(this.path, this.theaterController.getTheaters);
     this.router.get(`${this.path}/:id`, this.theaterController.getTheater);

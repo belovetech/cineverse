@@ -11,7 +11,7 @@ export default class MovieRoute implements IRoute {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
+  private initializeRoutes(): void {
     this.router.post(this.path, this.movieController.createMovie);
     this.router.get(this.path, this.movieController.getMovies);
     this.router.get(`${this.path}/:id`, this.movieController.getMovie);
