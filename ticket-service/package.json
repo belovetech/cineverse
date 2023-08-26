@@ -4,7 +4,20 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon",
+    "test:server": "cross-env NODE_ENV=test nodemon",
+    "build": "tsc && npx tsc-alias",
+    "test": "mocha -r ts-node/register  --extension ts --timeout 5000 '__tests__/**/*.ts'",
+    "lint": "npm run prettier:check && npm run eslint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "clean": "yarn cache clean",
+    "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "keywords": [],
   "author": "",
