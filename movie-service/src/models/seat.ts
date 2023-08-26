@@ -11,7 +11,8 @@ export enum Status {
 }
 
 @DefaultScope(() => ({
-  attributes: ['seatId', 'seatNumber', 'rowNumber', 'status', 'theaterId'],
+  attributes: { exclude: ['createdAt', 'updatedAt'] },
+  where: { status: 'available' },
 }))
 @Table({ tableName: 'seats' })
 export default class Seat extends Model<Seat> {

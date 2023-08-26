@@ -3,9 +3,8 @@ import { Model, Table, Column, Default, DefaultScope, DataType, BeforeCreate, Ha
 import ShowTime from './showtime';
 
 @DefaultScope(() => ({
-  attributes: ['movieId', 'title', 'genre', 'description', 'duration'],
+  attributes: { exclude: ['createdAt', 'updatedAt'] },
 }))
-
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Default(() => uuidv4().replace(/-/g, ''))

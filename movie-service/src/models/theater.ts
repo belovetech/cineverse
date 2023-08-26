@@ -1,8 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Model, Table, Column, Default, DataType, HasMany } from 'sequelize-typescript';
+import { Model, Table, Column, Default, DataType, HasMany, DefaultScope } from 'sequelize-typescript';
 import Seat from './seat';
 import ShowTime from './showtime';
 
+@DefaultScope(() => ({
+  attributes: { exclude: ['createdAt', 'updatedAt'] },
+}))
 @Table({ tableName: 'theaters' })
 export default class Theater extends Model<Theater> {
   @Default(() => uuidv4().replace(/-/g, ''))
