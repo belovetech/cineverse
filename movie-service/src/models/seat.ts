@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ForeignKey, Table, Model, Column, Default, DataType } from 'sequelize-typescript';
 import Theater from './theater';
 
-const AVAILABLESTATUS = ['available', 'booked', 'cancelled'];
+const STATUSES = ['available', 'booked', 'cancelled'];
 
 export enum Status {
   AVAILABLE = 'available',
@@ -16,14 +16,14 @@ export default class Seat extends Model<Seat> {
   @Column({ primaryKey: true, type: DataType.UUID })
   seatId: string;
 
-  @Column({ type: DataType.INTEGER })
-  seatNumber: number;
+  @Column({ type: DataType.STRING })
+  seatNumber: string;
 
   @Column({ type: DataType.CHAR(1) })
   rowNumber: string;
 
-  @Column(DataType.ENUM({ values: AVAILABLESTATUS }))
-  availableStatus: string;
+  @Column(DataType.ENUM({ values: STATUSES }))
+  status: string;
 
   @ForeignKey(() => Theater)
   @Column({ type: DataType.UUID })
