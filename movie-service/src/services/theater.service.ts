@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { TheaterDto } from '@dtos/theater.dto';
 import { TheaterDataValidator } from '@validators/theaterDataValidator';
 import { theaterRepository } from '@respositories';

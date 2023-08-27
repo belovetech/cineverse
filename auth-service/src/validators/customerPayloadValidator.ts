@@ -1,4 +1,4 @@
-import Validator from "@validators/validator";
+import Validator from "@cineverse/lib";
 import { CustomerDto } from "@dtos/customers.dto";
 
 export class CustomerDataValidator<T extends CustomerDto> extends Validator<T> {

@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { MovieDto } from '@dtos/movie.dto';
 import { MovieDataValidator } from '@validators/movieDataValidator';
 import { movieRepository } from '@respositories';

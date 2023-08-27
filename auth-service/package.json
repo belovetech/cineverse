@@ -20,8 +20,6 @@
     "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
-    "@cineverse/exceptions": "1.0.0",
-    "@cineverse/logger": "1.0.0",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
@@ -43,6 +41,7 @@
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
+    "@cineverse/libs": "workspace:*",
     "@types/chai-http": "^4.2.0",
     "@types/express": "^4.17.17",
     "@types/mocha": "^10.0.1",

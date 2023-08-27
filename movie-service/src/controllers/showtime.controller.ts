@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import ApiResponseFormatter from '@utils/formatter';
-import { logger } from '@cineverse/logger';
+import logger from '@cineverse/libs';
 import { showtimeService } from '@services';
 import { showtimeLinks } from '@utils/links';
 import { ShowTimeDto } from '@dtos/showtime.dto';

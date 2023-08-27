@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { ShowtimeDataValidator } from '@validators/showtimeDataValidator';
 import { ShowTimeDto } from '@dtos/showtime.dto';
 import { showtimeRepository } from '@respositories';

@@ -1,17 +1,16 @@
 {
-  "name": "cineverse",
+  "name": "@cineverse/libs",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:belovetech/cineverse.git",
-  "author": "belovetech <belovetech@gmail.com>",
-  "license": "MIT",
+  "author": "Abeeb Raheem",
+  "license": "ISC",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "auth-service",
-    "movie-service"
+    "libs/*"
   ],
-  "devDependencies": {
-    "tsconfig-paths": "^4.2.0"
+  "scripts": {
+    "start": "pnpm -r run start",
+    "auth-service": "pnpm start --filter auth-service",
+    "movie-service": "pnpm start --filter movie-service",
+    "ticket-service": "pnpm start --filter ticket-service"
   }
 }

@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { SeatDataValidator } from '@validators/seatDataValidator';
 import { SeatDto } from '@dtos/seat.dto';
 import { seatRepository } from '@respositories';

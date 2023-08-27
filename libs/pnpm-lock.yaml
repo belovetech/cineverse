@@ -31,6 +31,9 @@ devDependencies:
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
+  uuid:
+    specifier: ^9.0.0
+    version: 9.0.0
   vitest:
     specifier: ^0.34.3
     version: 0.34.3(@vitest/ui@0.34.3)
@@ -1560,6 +1563,11 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
+
+  /uuid@9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: true
 
   /v8-compile-cache@2.4.0:
     resolution: {integrity: sha512-ocyWc3bAHBB/guyqJQVI5o4BZkPhznPYUG2ea80Gond/BgNWpap8TOmLSeeQG7bnh2KMISxskdADG59j7zruhw==}

@@ -39,6 +39,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@cineverse/libs": "workspace:*",
     "@types/express": "^4.17.17",
     "@types/node": "^20.5.6",
     "@types/validator": "^13.11.1",

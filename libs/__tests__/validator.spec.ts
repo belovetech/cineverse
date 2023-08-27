@@ -1,8 +1,7 @@
-import { assert, expect } from 'vitest';
+import { expect } from 'vitest';
+import { v4 as uuidv4 } from 'uuid';
 import { BadRequestException } from '../src/index';
-import { TheaterDataValidator, Theater } from './index';
 import Validator from '../src/validator';
-import exp from 'constants';
 
 describe('#Validator', () => {
   describe('#isValidKey', () => {
@@ -21,16 +20,14 @@ describe('#Validator', () => {
     });
   });
 
-  describe('#printErrors', () => {
-    it('should throw BadRequestException with correct message', () => {
-      const validatorInstance = new Validator({});
-      expect(() => validatorInstance['printErrors']()).toThrow(
-        BadRequestException
-      );
-    });
-  });
-
   describe('#ValidateString', () => {
+    it('should not add error for valid string', () => {
+      const payload = { name: 'name' };
+      const validatorInstance = new Validator(payload);
+      validatorInstance['validateString']('name', 'string');
+      expect(validatorInstance.errorCounter).toBe(0);
+    });
+
     it('should add error for invalid string', () => {
       const payload = { key: 'a' };
       const validatorInstance = new Validator(payload);
@@ -43,51 +40,71 @@ describe('#Validator', () => {
   });
 
   describe('#ValidateNumber', () => {
-    it('should add error for invalid number', () => {
-      const payload = { key: 123 };
+    it('should not add error for valid number', () => {
+      const payload = { age: 25 };
       const validatorInstance = new Validator(payload);
-      validatorInstance['validateNumber']('key', '123');
-      expect(Object.keys(validatorInstance.errors).length).toEqual(1);
+      validatorInstance['validateNumber']('age', 25);
+      expect(validatorInstance.errorCounter).toBe(0);
+    });
+
+    it('should add error for invalid number', () => {
+      const payload = { age: 25 };
+      const validatorInstance = new Validator(payload);
+      validatorInstance['validateNumber']('age', '25');
+      expect(validatorInstance.errorCounter).toBe(1);
     });
   });
+
+  describe('#ValidateEmail', () => {
+    it('should not add error for valid email', () => {
+      const payload = { email: 'test@gmail.com' };
+      const validatorInstance = new Validator(payload);
+      validatorInstance['validateEmail']('email', 'test@gmail.com');
+      expect(validatorInstance.errorCounter).toBe(0);
+    });
+
+    it('should add error for invalid email', () => {
+      const payload = { key: 'test.com' };
+      const validatorInstance = new Validator(payload);
+      validatorInstance['validateEmail']('key', 'test.com');
+      expect(validatorInstance.errorCounter).toBe(1);
+    });
+  });
+
+  describe('#ValidateUUIDv4', () => {
+    it('should not add error for valid uuid', () => {
+      const payload = { uuid: uuidv4() };
+      const validatorInstance = new Validator(payload);
+      validatorInstance['validateUUIDv4']('uuid', uuidv4());
+      expect(validatorInstance.errorCounter).toBe(0);
+    });
+
+    it('should add error for invalid uuid', () => {
+      const payload = { uuid: 'e89b-12d3-a456-426614174000' };
+      const validatorInstance = new Validator(payload);
+      validatorInstance['validateUUIDv4'](
+        'uuid',
+        'e89b-12d3-a456-426614174000'
+      );
+      expect(validatorInstance.errorCounter).toBe(1);
+    });
+  });
+
   describe('#addError', () => {
     it('addError should add an error', () => {
       const payload = { key: 'value' };
       const validatorInstance = new Validator(payload);
       validatorInstance['addError']({ customError: 'custom error' });
-      expect(Object.keys(validatorInstance.errors).length).toEqual(1);
+      expect(validatorInstance.errorCounter).toBe(1);
     });
   });
 
-  describe('#TheaterDataValidator', () => {
-    const theaterData: Theater = {
-      name: 'Theater 1',
-      location: 'Location 1',
-      seatingCapacity: 100,
-    };
-
-    it('should return no errors', () => {
-      const validator = new TheaterDataValidator(theaterData);
-      validator.validate();
-      expect(validator.errorCounter).toBe(0);
-      expect(validator.payload).toEqual(theaterData);
-      expect(validator.errors).toEqual({});
-    });
-
-    it('should return 3 errors', () => {
-      let validator = new TheaterDataValidator({} as any);
-      try {
-        validator.validate();
-      } catch (error) {
-        const { message, errors } = JSON.parse(error.message);
-        expect(message).toBe('You have (3) errors to fix');
-        expect(Object.keys(errors).length).toBe(3);
-      }
-    });
-
-    it('should throw BadRequestException', () => {
-      const validator = new TheaterDataValidator({} as any);
-      expect(() => validator.validate()).toThrow(BadRequestException);
+  describe('#printErrors', () => {
+    it('should throw BadRequestException with correct message', () => {
+      const validatorInstance = new Validator({});
+      expect(() => validatorInstance['printErrors']()).toThrow(
+        BadRequestException
+      );
     });
   });
 });

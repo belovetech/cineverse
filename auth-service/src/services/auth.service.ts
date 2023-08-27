@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import Customer from "@models/customers.model";
 import redisClient from "@datasource/redis";
 import config from "@config";
-import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "@cineverse/exceptions";
+import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "@cineverse/libs";
 import { CustomerDataValidator } from "@validators/customerPayloadValidator";
 import { ICustomer } from "@interfaces/customers.interface";
 import { LoginDto, TokenDto, VerifyOtpDto } from "@dtos/auth.dto";

@@ -1,5 +1,5 @@
 import { ILink } from '@interfaces/link.interface';
-import { Exception } from '@cineverse/exceptions';
+import { Exception } from '@cineverse/libs';
 
 export default class ApiResponseFormatter<T> {
   private data: T;

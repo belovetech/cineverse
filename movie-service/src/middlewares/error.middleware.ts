@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { Exception } from '@cineverse/exceptions';
-import { logger } from '@cineverse/logger';
+import logger from '@cineverse/libs';
+import { Exception } from '@cineverse/libs';
 
 const errorMiddleware = (err: Exception, req: Request, res: Response, next: NextFunction) => {
   try {

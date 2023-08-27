@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import ApiResponseFormatter from '@utils/formatter';
-import { logger } from '@cineverse/logger';
+import logger from '@cineverse/libs';
 import { movieLinks } from '@utils/links';
 import { movieService } from '@services';
 import { MovieDto } from '@dtos/movie.dto';
