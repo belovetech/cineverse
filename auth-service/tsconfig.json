@@ -14,6 +14,7 @@
       "@utils/*": ["utils/*"],
       "@config/*": ["config/*"],
       "@dtos/*": ["dtos/*"],
+      "@cineverse/libs/*": ["libs/*"]
     }
   },
   "extends": "../shared/tsconfig.shared.json",
