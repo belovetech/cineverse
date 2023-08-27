@@ -2,16 +2,17 @@
   "display": "Node LTS",
   "_version": "18.1.0",
   "compilerOptions": {
+    // "types": ["vitest/importMeta"], allow to run test in the source file
     "lib": ["es2023"],
-    "module": "node16",
+    "module": "ES2022",
     "target": "es2022",
-    "strict": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node16"
+    "strict": true,
+    "skipLibCheck": true
   },
-  "include": ["src/*.ts"],
-  "exclude": ["node_modules/**/*", ".vscode/**/*", "__tests__"],
-  "ts-node": { "require": ["tsconfig-paths/register"] }
+  "include": ["src/*.ts"]
 }
