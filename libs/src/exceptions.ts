@@ -5,7 +5,7 @@ export class Exception extends Error {
 
   constructor(message?: string) {
     super(message);
-    this.message = message ?? 'Something went wrong';
+    this.message = message ?? 'ServerError:: Something went wrong';
     this.statusCode = 500;
     this.name = this.constructor.name;
   }
@@ -20,10 +20,11 @@ export class AuthenticationException extends Exception {
 }
 
 export class BadRequestException extends Exception {
-  constructor(message?: string) {
+  constructor(message?: string | object) {
+    if (typeof message === 'object') message = JSON.stringify(message);
     super(message);
     this.statusCode = 400;
-    this.message = message ?? 'Bad Request:: Invalid request payload';
+    this.message = message ?? 'BadRequest:: Invalid request payload';
   }
 }
 
@@ -43,18 +44,10 @@ export class ForbiddenException extends Exception {
   }
 }
 
-export class InternalServerException extends Exception {
-  constructor(message?: string) {
-    super(message);
-    this.statusCode = 500;
-    this.message = message ?? 'Server Error:: Internal Server Error';
-  }
-}
-
 export class NotFoundException extends Exception {
   constructor(message?: string) {
     super(message);
     this.statusCode = 404;
-    this.message = message ?? 'Not found:: Customer not found';
+    this.message = message ?? 'NotFound:: User not found';
   }
 }

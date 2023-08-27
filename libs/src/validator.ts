@@ -1,11 +1,9 @@
 import { BadRequestException } from './exceptions';
 
-const KEYS = ['title', 'genre', 'description', 'duration'];
-
 export default abstract class Validator<T extends object> {
-  protected payload: T;
-  protected errors: object;
-  protected errorCounter: number = 0;
+  readonly payload: T;
+  public errors: object;
+  public errorCounter: number = 0;
 
   constructor(payload: T) {
     this.payload = payload;
@@ -21,7 +19,7 @@ export default abstract class Validator<T extends object> {
       message: `You have (${this.errorCounter}) errors to fix`,
       errors: { ...this.errors },
     };
-    throw new BadRequestException(JSON.stringify(message));
+    throw new BadRequestException(message);
   }
 
   protected validateString(key: keyof T, value: string): void {
@@ -49,14 +47,6 @@ export default abstract class Validator<T extends object> {
 
     if (!uuidRegex.test(uuid)) {
       this.addError({ [key]: `Please provide a valid ${[key]}` });
-    }
-  }
-
-  protected validateUnknownType(): void {
-    for (const key in this.payload) {
-      if (!KEYS.includes(key)) {
-        this.addError({ [key]: `${[key]} is not part of the required data` });
-      }
     }
   }
 
