@@ -4,13 +4,10 @@
   "author": "Abeeb Raheem",
   "license": "ISC",
   "private": true,
-  "workspaces": [
-    "libs/*"
-  ],
   "scripts": {
-    "start": "pnpm -r run start",
-    "auth-service": "pnpm start --filter auth-service",
-    "movie-service": "pnpm start --filter movie-service",
-    "ticket-service": "pnpm start --filter ticket-service"
+    "start": "pnpm --stream -r run dev",
+    "build": "pnpm --stream -r run build",
+    "clean": "pnpm -r run clean",
+    "auth":  "pnpm run dev --filter auth-service"
   }
 }

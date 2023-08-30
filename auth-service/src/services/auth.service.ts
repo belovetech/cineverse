@@ -3,16 +3,16 @@ import jwt from "jsonwebtoken";
 import Customer from "@models/customers.model";
 import redisClient from "@datasource/redis";
 import config from "@config";
-import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "@cineverse/libs";
-import { CustomerDataValidator } from "@validators/customerPayloadValidator";
+import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "packages";
+// import { CustomerDataValidator } from "@validators/customerPayloadValidator";
 import { ICustomer } from "@interfaces/customers.interface";
 import { LoginDto, TokenDto, VerifyOtpDto } from "@dtos/auth.dto";
 import { CustomerDto } from "@dtos/customers.dto";
 
 export default class AuthService {
   public static async signup(payload: CustomerDto): Promise<ICustomer> {
-    const validator: CustomerDataValidator<CustomerDto> = new CustomerDataValidator<CustomerDto>(payload);
-    validator.validate();
+    // const validator: CustomerDataValidator<CustomerDto> = new CustomerDataValidator<CustomerDto>(payload);
+    // validator.validate();
     const customerExist = await Customer.findOne({ email: payload.email }).exec();
     if (customerExist) throw new ConflictException();
     const customer = await Customer.create({ ...payload });

@@ -1,4 +1,4 @@
-import { expect, describe } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import Logger from '../src/logger';
 
 describe.concurrent('#Logger', () => {

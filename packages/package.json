@@ -1,9 +1,9 @@
 {
-  "name": "@cineverse/libs",
+  "name": "packages",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "",
+  "description": "cineverse utility libraries",
+  "main": "dist/index.js",
+  "author": "Abeeb Raheem",
   "license": "ISC",
   "engines": {
     "node": ">=10",
@@ -11,10 +11,10 @@
   },
   "keywords": [],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon",
+    "dev": "cross-env NODE_ENV=development nodemon dist/index.js",
     "build": "tsc && npx tsc-alias",
     "test": "vitest --watch",
-    "test:ui": "vitest --ui",
+    "ui:test": "vitest --ui",
     "lint": "npm run prettier:check && npm run eslint",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\"",
@@ -29,6 +29,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "prettier": "^2.4.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2",
     "uuid": "^9.0.0",
     "vitest": "^0.34.3"

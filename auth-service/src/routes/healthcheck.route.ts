@@ -4,7 +4,7 @@ import IRoute from "@interfaces/routes.interface";
 
 export default class HealthCheckRoute implements IRoute {
   public path? = "/ping";
-  public router = Router();
+  public router: Router = Router();
   public healthcheck = new HealthCheck();
 
   constructor() {

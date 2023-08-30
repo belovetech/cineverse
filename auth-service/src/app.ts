@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import logger from "@cineverse/libs";
+import logger from "packages";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
@@ -11,7 +11,6 @@ import IRoute from "@interfaces/routes.interface";
 import mongoClient from "@datasource/database";
 import unknownRoute from "@controllers/unknownRoute.controller";
 import swaggerOption from "@utils/swaggerOptions";
-
 
 export default class App {
   private app: Application;

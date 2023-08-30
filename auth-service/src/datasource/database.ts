@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions, Connection } from "mongoose";
 import config from "@config";
-import logger from "@cineverse/libs";
+import logger from "packages";
 import { IConnectionOptionExtend } from "@interfaces/connection.interface";
 
 class MongoClient {

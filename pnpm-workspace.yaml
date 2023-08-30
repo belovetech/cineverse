@@ -1,5 +1,3 @@
 packages:
-  - 'auth-service'
-  - 'movie-service'
-  - 'ticket-service'
-  - 'libs/*'
+  - auth-service
+  - packages
