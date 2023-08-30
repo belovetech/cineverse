@@ -1,7 +1,7 @@
 import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import config from "@config";
-import { AuthenticationException, NotFoundException } from "packages";
+import { AuthenticationException, NotFoundException } from "libs";
 import Customer from "@models/customers.model";
 import { IRequest } from "@interfaces/auth.interface";
 

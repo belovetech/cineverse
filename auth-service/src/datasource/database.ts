@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions, Connection } from "mongoose";
 import config from "@config";
-import logger from "packages";
+import logger from "libs";
 import { IConnectionOptionExtend } from "@interfaces/connection.interface";
 
 class MongoClient {

@@ -1,6 +1,6 @@
 import Redis, { RedisOptions, RedisKey, RedisValue } from "ioredis";
 import config from "@config";
-import logger from "packages";
+import logger from "libs";
 
 class RedisClient {
   private redis: Redis;

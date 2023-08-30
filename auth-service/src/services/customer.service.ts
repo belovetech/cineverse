@@ -2,13 +2,13 @@ import Customer from "@models/customers.model";
 import filteredCustomerData from "@utils/filterCustomerData";
 import { ICustomer } from "@interfaces/customers.interface";
 import { CustomerDto } from "@dtos/customers.dto";
-import { NotFoundException, ConflictException } from "packages";
-// import { CustomerDataValidator } from "@validators/customerPayloadValidator";
+import { NotFoundException, ConflictException } from "libs";
+import { CustomerDataValidator } from "@validators/customerPayloadValidator";
 
 export default class CustomerService {
   public static async createCustomer(data: CustomerDto): Promise<ICustomer> {
-    // const validator: CustomerDataValidator<CustomerDto> = new CustomerDataValidator<CustomerDto>(data);
-    // validator.validate();
+    const validator: CustomerDataValidator<CustomerDto> = new CustomerDataValidator<CustomerDto>(data);
+    validator.validate();
     const customerExist = await Customer.findOne({ email: data.email }).exec();
     if (customerExist) throw new ConflictException();
     const customer = await Customer.create({ ...data });

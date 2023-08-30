@@ -1,4 +1,4 @@
-import { BadRequestException } from "packages";
+import { BadRequestException } from "libs";
 import { CustomerDto } from "@dtos/customers.dto";
 
 export default function filterCustomerData(data: CustomerDto) {
