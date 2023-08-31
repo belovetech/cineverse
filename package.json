@@ -5,13 +5,17 @@
   "private": true,
   "scripts": {
     "start": "pnpm -r run dev",
+    "test:server": "pnpm --parallel run test:server",
     "build": "pnpm -r run build",
     "clean": "pnpm -r run clean",
-    "libs": "pnpm --filter shared-libs run dev",
-    "libs:build": "pnpm --filter shared-libs run build",
+    "libs": "pnpm --filter @cineverse/libs run dev",
+    "libs:build": "pnpm --filter @cineverse/libs run build",
+    "libs:test": "pnpm --filter @cineverse/libs run test",
     "auth": "pnpm --filter auth-service run dev",
     "auth:build": "pnpm --filter auth-service run build",
+    "auth:test": "pnpm --filter auth-service run test",
     "movie": "pnpm --filter movie-service run dev",
-    "movie:build": "pnpm --filter movie-service run build"
+    "movie:build": "pnpm --filter movie-service run build",
+    "movie:test": "pnpm --filter movie-service run test"
   }
 }
