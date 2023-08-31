@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Exception } from "libs";
-import logger from "libs";
+import logger, { Exception } from "@cineverse/libs";
 
 function errorMiddleware(err: Exception, req: Request, res: Response, next: NextFunction) {
   try {

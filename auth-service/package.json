@@ -6,7 +6,7 @@
   "author": "Abeeb Raheem",
   "license": "ISC",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=production nodets-a",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "test:server": "cross-env NODE_ENV=test nodemon",
     "build": "tsc --incremental",
@@ -20,7 +20,7 @@
     "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
-    "libs": "workspace:*",
+    "@cineverse/libs": "workspace:*",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",

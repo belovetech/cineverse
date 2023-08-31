@@ -1,4 +1,4 @@
-import { BadRequestException } from "libs";
+import { BadRequestException } from "@cineverse/libs";
 import { CustomerDto } from "@dtos/customers.dto";
 
 export default function filterCustomerData(data: CustomerDto) {

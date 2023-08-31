@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import { logger } from "libs";
+import { logger } from "@cineverse/libs";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
