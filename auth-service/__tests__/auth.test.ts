@@ -33,10 +33,9 @@ describe("Authentication Endpoint Testing", function () {
     it("Signup with invalid payloads", async function () {
       const emptyData = {};
       const res = await chai.request(url).post("/auth/signup").send(emptyData);
-      const errorCount = res.body.errors.length;
+      const errorCount = Object.keys(res.body.errors).length;
       expect(res.status).to.equal(400);
-      expect(res.body).to.haveOwnProperty("name", "ValidationException");
-      expect(res.body).to.haveOwnProperty("errors").with.lengthOf(errorCount);
+      expect(res.body).to.haveOwnProperty("name", "BadRequestException");
       expect(res.body).to.haveOwnProperty("message", `You have (${errorCount}) errors to fix`);
     });
 
@@ -66,9 +65,9 @@ describe("Authentication Endpoint Testing", function () {
   describe("[POST] OTP Verification", function () {
     let otp;
     it("Should not create user if user has not been verified", async function () {
-      const loginData = { email: data.email, password: data.password };
+      const signinData = { email: data.email, password: data.password };
       const message = "Verify your account before signing in.";
-      const res = await chai.request(url).post("/auth/login").send(loginData);
+      const res = await chai.request(url).post("/auth/signin").send(signinData);
       expect(res.status).to.equal(401);
       expect(res.body).to.haveOwnProperty("name", "AuthenticationException");
       expect(res.body).to.haveOwnProperty("error", message);
@@ -92,19 +91,19 @@ describe("Authentication Endpoint Testing", function () {
     });
   });
 
-  describe("[POST] Login Endpoint", function () {
-    it("Login with wrong credentials", async function () {
+  describe("[POST] Signin Endpoint", function () {
+    it("signin with wrong credentials", async function () {
       const payload = { email: data.email, password: "wrongPassword" };
-      const message = "Please check your email and password";
-      const res = await chai.request(url).post("/auth/login").send(payload);
-      expect(res.status).to.equal(401);
-      expect(res.body).to.haveOwnProperty("name", "AuthenticationException");
-      expect(res.body).to.haveOwnProperty("error", message);
+      const message = "Please provide a strong password";
+      const res = await chai.request(url).post("/auth/signin").send(payload);
+      expect(res.status).to.equal(400);
+      expect(res.body).to.haveOwnProperty("name", "BadRequestException");
+      expect(res.body.errors).to.haveOwnProperty("password", message);
     });
 
-    it("Login with correct credentials", async function () {
+    it("signin with correct credentials", async function () {
       const payload = { email: data.email, password: data.password };
-      const res = await chai.request(url).post("/auth/login").send(payload);
+      const res = await chai.request(url).post("/auth/signin").send(payload);
       const authorization = res.header["set-cookie"][0]?.split("=");
       token = authorization[1].split(";")[0];
       const isValidJWT = await jwt.verify(token, config.secret);

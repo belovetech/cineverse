@@ -48,7 +48,7 @@ export default class AuthService {
   public static async verifyOtp(payload: VerifyOtpDto): Promise<ICustomer> {
     if (!payload?.otp || !payload?.email) throw new BadRequestException("Invalid OTP credentials");
     const customer = await Customer.findOne({ email: payload.email }).exec();
-    if (!customer) throw new NotFoundException("Provided email was not found");
+    if (!customer) throw new NotFoundException("No user found with that email");
     if (customer.isVerified) throw new ConflictException("You are already being verified");
 
     const storedOtp = await redisClient.get(`x-otp_${payload.email}`);
