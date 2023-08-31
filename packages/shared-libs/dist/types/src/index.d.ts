@@ -1,3 +1,3 @@
 export * from './exceptions';
-export * from './validator';
+export { default as Validator } from './validator';
 export declare const logger: import("winston").Logger;

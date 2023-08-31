@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Validator = void 0;
 const exceptions_1 = require("./exceptions");
 class Validator {
     constructor(payload) {
@@ -35,6 +34,13 @@ class Validator {
             this.addError({ [key]: `Please provide a valid ${[key]}` });
         }
     }
+    validatePassword(key, value) {
+        const passwordRegex = /^(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=])(?=.*[a-zA-Z0-9@#$%^&+=]).{7,}$/;
+        if (!value || !passwordRegex.test(value)) {
+            this.addError({ [key]: 'Please provide a strong password' });
+            this.errorCounter += 1;
+        }
+    }
     validateUUIDv4(key, uuid) {
         const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
         if (!uuidRegex.test(uuid)) {
@@ -46,5 +52,5 @@ class Validator {
         this.errorCounter = Object.keys(this.errors).length;
     }
 }
-exports.Validator = Validator;
+exports.default = Validator;
 //# sourceMappingURL=validator.js.map

@@ -1,6 +1,6 @@
 import { BadRequestException } from './exceptions';
 
-export abstract class Validator<T> {
+export default abstract class Validator<T> {
   readonly payload: T;
   readonly keys: (keyof T)[];
   public errors: object;
@@ -40,6 +40,15 @@ export abstract class Validator<T> {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (typeof value !== 'string' || !emailRegex.test(value)) {
       this.addError({ [key]: `Please provide a valid ${[key]}` });
+    }
+  }
+
+  protected validatePassword(key: keyof T, value: string): void {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=])(?=.*[a-zA-Z0-9@#$%^&+=]).{7,}$/;
+    if (!value || !passwordRegex.test(value)) {
+      this.addError({ [key]: 'Please provide a strong password' });
+      this.errorCounter += 1;
     }
   }
 
