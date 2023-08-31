@@ -1,13 +1,17 @@
 {
   "name": "cineverse",
-  "version": "1.0.0",
   "author": "Abeeb Raheem",
   "license": "ISC",
   "private": true,
   "scripts": {
-    "start": "pnpm --stream -r run dev",
-    "build": "pnpm --stream -r run build",
+    "start": "pnpm -r run dev",
+    "build": "pnpm -r run build",
     "clean": "pnpm -r run clean",
-    "auth":  "pnpm run dev --filter auth-service"
+    "libs": "pnpm --filter shared-libs run dev",
+    "libs:build": "pnpm --filter shared-libs run build",
+    "auth": "pnpm --filter auth-service run dev",
+    "auth:build": "pnpm --filter auth-service run build",
+    "movie": "pnpm --filter movie-service run dev",
+    "movie:build": "pnpm --filter movie-service run build"
   }
 }

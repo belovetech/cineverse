@@ -1,4 +1,4 @@
-import logger from "@cineverse/libs";
+import {logger} from "@cineverse/libs";
 import morgan, { StreamOptions } from "morgan";
 
 export default function customMorgan() {

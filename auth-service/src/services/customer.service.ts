@@ -7,8 +7,7 @@ import { CustomerDataValidator } from "@utils/validator";
 
 export default class CustomerService {
   public static async createCustomer(data: CustomerDto): Promise<ICustomer> {
-    const validator: CustomerDataValidator<CustomerDto> = new CustomerDataValidator<CustomerDto>(data);
-    validator.validate();
+    new CustomerDataValidator<CustomerDto>(data).validate();
     const customerExist = await Customer.findOne({ email: data.email }).exec();
     if (customerExist) throw new ConflictException();
     const customer = await Customer.create({ ...data });

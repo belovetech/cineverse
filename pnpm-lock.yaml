@@ -10,6 +10,9 @@ importers:
 
   auth-service:
     dependencies:
+      '@cineverse/libs':
+        specifier: workspace:*
+        version: link:../packages/shared-libs
       bcrypt:
         specifier: ^5.1.0
         version: 5.1.1
@@ -125,6 +128,9 @@ importers:
 
   movie-service:
     dependencies:
+      '@cineverse/libs':
+        specifier: workspace:*
+        version: link:../packages/shared-libs
       '@types/express':
         specifier: ^4.17.17
         version: 4.17.17
@@ -194,6 +200,43 @@ importers:
         version: 4.2.0
 
   packages/libs:
+    dependencies:
+      winston:
+        specifier: ^3.10.0
+        version: 3.10.0
+      winston-daily-rotate-file:
+        specifier: ^4.7.1
+        version: 4.7.1(winston@3.10.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.5.6
+        version: 20.5.6
+      '@vitest/ui':
+        specifier: ^0.34.3
+        version: 0.34.3(vitest@0.34.3)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      eslint:
+        specifier: ^7.32.0
+        version: 7.32.0
+      prettier:
+        specifier: ^2.4.1
+        version: 2.8.8
+      tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+      uuid:
+        specifier: ^9.0.0
+        version: 9.0.0
+      vitest:
+        specifier: ^0.34.3
+        version: 0.34.3(@vitest/ui@0.34.3)
+
+  packages/shared-libs:
     dependencies:
       winston:
         specifier: ^3.10.0

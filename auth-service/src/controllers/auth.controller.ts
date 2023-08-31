@@ -3,13 +3,14 @@ import AuthService from "@services/auth.service";
 import ApiResponseFormatter from "@utils/apiResponseFormatter";
 import { POST_links } from "@utils/responseLink";
 import { ICustomer } from "@interfaces/customers.interface";
-import { LoginDto, VerifyOtpDto } from "@dtos/auth.dto";
+import { SignDto, VerifyOtpDto } from "@dtos/auth.dto";
 import { IRequest } from "@interfaces/auth.interface";
+import { CustomerDto } from "@dtos/customers.dto";
 
 export class AuthController {
   public async signup(req: Request, res: Response, next: NextFunction) {
     try {
-      const customerData: ICustomer = req.body;
+      const customerData = req.body as CustomerDto;
       const newCustomer: ICustomer = await AuthService.signup(customerData);
       const apiResponseFormatter = new ApiResponseFormatter(newCustomer, POST_links);
       return res.status(201).json(apiResponseFormatter.format());
@@ -20,7 +21,7 @@ export class AuthController {
 
   public async login(req: Request, res: Response, next: NextFunction) {
     try {
-      const payload: LoginDto = req.body;
+      const payload: SignDto = req.body;
       const { customer, cookie } = await AuthService.signin(payload);
       const apiResponseFormatter = new ApiResponseFormatter(customer);
       res.setHeader("Set-Cookie", [cookie]);
@@ -32,7 +33,8 @@ export class AuthController {
 
   public async logout(req: IRequest, res: Response, next: NextFunction) {
     try {
-      await AuthService.signout(req?.customer);
+      const customer = req.customer as CustomerDto;
+      await AuthService.signout(customer);
       res.setHeader("Set-Cookie", ["Authorization=; Max-Age=0"]);
       res.setHeader("Authorization", "");
       return res.status(200).json({ message: "Logout Successfully" });

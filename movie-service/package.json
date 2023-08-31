@@ -34,7 +34,7 @@
     "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "dependencies": {
-    "libs": "workspace:*",
+    "@cineverse/libs": "workspace:*",
     "@types/express": "^4.17.17",
     "@types/validator": "^13.7.17",
     "class-validator": "^0.14.0",
