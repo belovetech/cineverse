@@ -1,4 +1,4 @@
-import { Validator } from "@cineverse/libs/src/validator";
+import Validator from "@cineverse/libs/src/validator";
 import { SignDto, SignupDto } from "@dtos/auth.dto";
 
 export class CustomerDataValidator<T extends SignupDto> extends Validator<T> {
@@ -13,7 +13,7 @@ export class CustomerDataValidator<T extends SignupDto> extends Validator<T> {
       this.printErrors();
     }
   }
-  private validatePassword(key: keyof T, value: string): void {
+  protected validatePassword(key: keyof T, value: string): void {
     const passwordRegex = /^(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=])(?=.*[a-zA-Z0-9@#$%^&+=]).{7,}$/;
     if (!value || !passwordRegex.test(value)) {
       this.addError({ [key]: "Please provide a strong password" });
@@ -33,14 +33,6 @@ export class SignValidator<T extends SignDto> extends Validator<T> {
 
     if (this.errorCounter > 0) {
       this.printErrors();
-    }
-  }
-
-  private validatePassword(key: keyof T, value: string): void {
-    const passwordRegex = /^(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=])(?=.*[a-zA-Z0-9@#$%^&+=]).{7,}$/;
-    if (!value || !passwordRegex.test(value)) {
-      this.addError({ [key]: "Please provide a strong password" });
-      this.errorCounter += 1;
     }
   }
 }
