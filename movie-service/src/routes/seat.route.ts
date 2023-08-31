@@ -4,7 +4,7 @@ import { Router } from 'express';
 
 export default class SeatRoute implements IRoute {
   public path? = '/seats';
-  public router = Router();
+  public router: Router = Router();
   private readonly seatController = seatController;
 
   constructor() {

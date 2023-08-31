@@ -7,7 +7,7 @@ import Theater from '@models/theater';
 
 export default class TheaterService {
   public async createTheater(theaterData: TheaterDto): Promise<Theater> {
-    new TheaterDataValidator<TheaterDto>(theaterData).validate();
+    new TheaterDataValidator(theaterData).validate();
 
     const isTheaterExist = await theaterRepository.findOne({ where: { name: theaterData.name } });
     if (isTheaterExist) throw new ConflictException('Theater already exist');

@@ -1,5 +1,5 @@
-import { ShowTimeDto } from '@dtos/showtime.dto';
-import Validator from '@cineverse/libs';
+import Validator from '@cineverse/libs/src/validator';
+import { ShowTimeDto } from '@dtos';
 
 export class ShowtimeDataValidator<T extends ShowTimeDto> extends Validator<T> {
   public validate(): void {

@@ -7,7 +7,7 @@ import Seat from '@models/seat';
 
 export default class SeatService {
   public async createSeat(seat: SeatDto): Promise<Seat> {
-    new SeatDataValidator<SeatDto>(seat).validate();
+    new SeatDataValidator(seat).validate();
 
     const seatExist = await seatRepository.findOne({ where: { ...seat } });
     if (seatExist) throw new ConflictException('seat already exist');

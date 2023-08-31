@@ -1,5 +1,5 @@
-import { TheaterDto } from '@dtos/theater.dto';
-import Validator from '@cineverse/libs';
+import Validator from '@cineverse/libs/src/validator';
+import { TheaterDto } from '@dtos';
 
 export class TheaterDataValidator<T extends TheaterDto> extends Validator<T> {
   public validate(): void {
