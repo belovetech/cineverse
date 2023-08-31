@@ -48,7 +48,6 @@ export default abstract class Validator<T> {
       /^(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=])(?=.*[a-zA-Z0-9@#$%^&+=]).{7,}$/;
     if (!value || !passwordRegex.test(value)) {
       this.addError({ [key]: 'Please provide a strong password' });
-      this.errorCounter += 1;
     }
   }
 

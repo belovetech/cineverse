@@ -18,7 +18,6 @@
     "cineverse"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon dist/index.js",
     "build": "rm -rf dist && tsc",
     "test": "vitest --watch",
     "ui:test": "vitest --ui",

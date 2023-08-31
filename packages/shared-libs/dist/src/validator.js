@@ -38,7 +38,6 @@ class Validator {
         const passwordRegex = /^(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=])(?=.*[a-zA-Z0-9@#$%^&+=]).{7,}$/;
         if (!value || !passwordRegex.test(value)) {
             this.addError({ [key]: 'Please provide a strong password' });
-            this.errorCounter += 1;
         }
     }
     validateUUIDv4(key, uuid) {
