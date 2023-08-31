@@ -17,10 +17,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = exports.Validator = void 0;
+exports.logger = void 0;
 const logger_1 = __importDefault(require("./logger"));
 __exportStar(require("./exceptions"), exports);
-var validator_1 = require("./validator");
-Object.defineProperty(exports, "Validator", { enumerable: true, get: function () { return __importDefault(validator_1).default; } });
+__exportStar(require("./validator"), exports);
 exports.logger = new logger_1.default().createLogger();
 //# sourceMappingURL=index.js.map

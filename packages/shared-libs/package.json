@@ -1,18 +1,25 @@
 {
-  "name": "packages",
+  "name": "@cineverse/libs",
   "version": "1.0.0",
+  "private": true,
   "description": "cineverse utility libraries",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "author": "Abeeb Raheem",
   "license": "ISC",
   "engines": {
     "node": ">=10",
     "pnpm": ">=3"
   },
-  "keywords": [],
+  "keywords": [
+    "validator",
+    "logger",
+    "exception",
+    "error",
+    "cineverse"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon dist/index.js",
-    "build": "tsc && npx tsc-alias",
+    "build": "rm -rf dist && tsc",
     "test": "vitest --watch",
     "ui:test": "vitest --ui",
     "lint": "npm run prettier:check && npm run eslint",

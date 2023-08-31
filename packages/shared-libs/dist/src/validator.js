@@ -1,14 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Validator = void 0;
 const exceptions_1 = require("./exceptions");
 class Validator {
     constructor(payload) {
         this.errorCounter = 0;
         this.payload = payload;
         this.errors = {};
+        this.keys = Object.keys(payload);
     }
     isValidKey(key) {
-        return key in this.payload;
+        return this.keys.includes(key);
     }
     printErrors() {
         const message = {
@@ -44,5 +46,5 @@ class Validator {
         this.errorCounter = Object.keys(this.errors).length;
     }
 }
-exports.default = Validator;
+exports.Validator = Validator;
 //# sourceMappingURL=validator.js.map

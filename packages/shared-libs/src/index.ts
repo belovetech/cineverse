@@ -1,7 +1,6 @@
 import Logger from './logger';
 
 export * from './exceptions';
-
-export { default as Validator } from './validator';
+export * from './validator';
 
 export const logger = new Logger().createLogger();

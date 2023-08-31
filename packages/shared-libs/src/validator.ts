@@ -1,17 +1,19 @@
 import { BadRequestException } from './exceptions';
 
-export default abstract class Validator<T extends object> {
+export abstract class Validator<T> {
   readonly payload: T;
+  readonly keys: (keyof T)[];
   public errors: object;
   public errorCounter: number = 0;
 
   constructor(payload: T) {
     this.payload = payload;
     this.errors = {};
+    this.keys = Object.keys(payload) as Array<keyof typeof this.payload>;
   }
 
   protected isValidKey(key: keyof T): boolean {
-    return key in this.payload;
+    return this.keys.includes(key);
   }
 
   protected printErrors(): void {
@@ -22,26 +24,26 @@ export default abstract class Validator<T extends object> {
     throw new BadRequestException(message);
   }
 
-  protected validateString(key: keyof T, value: string): void {
+  protected validateString(key: string, value: string): void {
     if (!value || typeof value !== 'string' || value.trim().length < 3) {
       this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
-  protected validateNumber(key: keyof T, value: number): void {
+  protected validateNumber(key: string, value: number): void {
     if (!value || typeof value !== 'number' || isNaN(value)) {
       this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
-  protected validateEmail(key: keyof T, value: string): void {
+  protected validateEmail(key: string, value: string): void {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (typeof value !== 'string' || !emailRegex.test(value)) {
       this.addError({ [key]: `Please provide a valid ${[key]}` });
     }
   }
 
-  protected validateUUIDv4(key: keyof T, uuid: string): void {
+  protected validateUUIDv4(key: string, uuid: string): void {
     const uuidRegex =
       /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
 
