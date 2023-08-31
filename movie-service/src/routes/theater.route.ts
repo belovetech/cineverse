@@ -4,7 +4,7 @@ import { Router } from 'express';
 
 export default class TheaterRoute implements IRoute {
   public path? = '/theaters';
-  public router = Router();
+  public router: Router = Router();
   private readonly theaterController = theaterController;
 
   constructor() {

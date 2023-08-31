@@ -1,6 +1,6 @@
 import rateLimiter from "express-rate-limit";
 
-const maxAttempts = 5;
+const maxAttempts = 10;
 const windowMinutes = 15;
 
 export const loginThrottleMiddleware = rateLimiter({

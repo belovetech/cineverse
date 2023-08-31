@@ -2,7 +2,7 @@
 
 The Distributed Movie Ticketing System is a distributed application that allows users to browse and book movie tickets. It is divided into several microservices to handle specific functionalities.
 
-![DESIGN](movie-ticketing-system-design.jpeg)
+![DESIGN](/images/movie-ticketing-system-design.jpeg)
 
 #### The system consists of the following services:
 
@@ -64,7 +64,7 @@ To get started with the Distributed Movie Ticketing System, follow the instructi
 
 ### ERD
 
-![ERD](movie-ticketing-system-ERD.jpg)
+![ERD](/images/movie-ticketing-system-ERD.jpg)
 
 ### Contributing
 

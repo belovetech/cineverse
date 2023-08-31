@@ -3,11 +3,21 @@ export interface VerifyOtpDto {
   readonly otp: string;
 }
 
-export interface LoginDto {
+export interface SignDto {
   readonly email: string;
   readonly password: string;
 }
 
 export interface TokenDto {
   customerId: string;
+}
+
+export interface SignupDto {
+  customerId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  isVerified?: boolean;
 }

@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Exception } from "@cineverse/exceptions";
-import { logger } from "@cineverse/logger";
+import { logger, Exception } from "@cineverse/libs";
 
 function errorMiddleware(err: Exception, req: Request, res: Response, next: NextFunction) {
   try {
@@ -10,7 +9,7 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
 
     logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
-    if (err.name === "ValidationException") {
+    if (err.name === "BadRequestException") {
       const parsedMessage = JSON.parse(message);
       return res.status(statusCode).json({ statusCode, name, ...parsedMessage });
     }

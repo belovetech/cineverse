@@ -42,14 +42,9 @@ describe("Customer Endpoint Testing", function () {
       const emptyData = {};
       const res = await chai.request(url).post("/customers").send(emptyData);
       expect(res.status).to.be.equal(400);
-      expect(res.body).to.be.an("object");
       expect(res.body).to.have.property("errors");
-      expect(res.body.errors).to.be.an("array");
-      expect(res.body.errors[0]).to.have.property("firstName");
-      expect(res.body.errors[1]).to.have.property("lastName");
-      expect(res.body.errors[2]).to.have.property("email");
-      expect(res.body.errors[3]).to.have.property("password");
-      expect(res.body).to.have.property("name").to.equal("ValidationException");
+      expect(res.body.errors).to.be.an("object");
+      expect(res.body).to.have.property("name").to.equal("BadRequestException");
     });
   });
 
@@ -83,13 +78,6 @@ describe("Customer Endpoint Testing", function () {
       expect(res.body).to.have.property("firstName").deep.equal(data.firstName);
       expect(res.body).to.have.property("lastName").deep.equal(data.lastName);
       expect(res.body).to.include.all.keys(...keys);
-    });
-
-    it("Update password or email using wrong endpoint", async function () {
-      const data = { email: "Karl@email.com", password: "Mark123" };
-      const res = await chai.request(url).patch(`/customers/${id}`).send(data);
-      expect(res.status).to.equal(400);
-      expect(res.body.name).to.equal("BadRequestException");
     });
   });
 

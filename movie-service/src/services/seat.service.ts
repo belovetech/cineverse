@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { SeatDataValidator } from '@validators/seatDataValidator';
 import { SeatDto } from '@dtos/seat.dto';
 import { seatRepository } from '@respositories';
@@ -7,7 +7,7 @@ import Seat from '@models/seat';
 
 export default class SeatService {
   public async createSeat(seat: SeatDto): Promise<Seat> {
-    new SeatDataValidator<SeatDto>(seat).validate();
+    new SeatDataValidator(seat).validate();
 
     const seatExist = await seatRepository.findOne({ where: { ...seat } });
     if (seatExist) throw new ConflictException('seat already exist');

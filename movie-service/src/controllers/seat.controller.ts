@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import ApiResponseFormatter from '@utils/formatter';
-import { logger } from '@cineverse/logger';
+import { logger } from '@cineverse/libs';
 import { seatService } from '@services';
 import { seatLinks } from '@utils/links';
 import { SeatDto } from '@dtos/seat.dto';

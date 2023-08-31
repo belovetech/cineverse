@@ -4,7 +4,7 @@ import { Router } from 'express';
 
 export default class MovieRoute implements IRoute {
   public path? = '/movies';
-  public router = Router();
+  public router: Router = Router();
   private readonly movieController = movieController;
 
   constructor() {

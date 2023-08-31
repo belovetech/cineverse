@@ -4,7 +4,7 @@ import { CustomerController } from "@controllers/customer.controller";
 
 export default class CustomerRoute implements IRoute {
   public path = "/customers";
-  public router = Router();
+  public router: Router = Router();
   public customerController = new CustomerController();
 
   constructor() {

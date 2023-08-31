@@ -1,5 +1,5 @@
 {
-  "name": "auth_service",
+  "name": "auth-service",
   "version": "1.0.0",
   "description": "movie ticketing system authentication service",
   "main": "server.ts",
@@ -9,7 +9,7 @@
     "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "test:server": "cross-env NODE_ENV=test nodemon",
-    "build": "tsc && npx tsc-alias",
+    "build": "tsc --incremental",
     "test": "mocha -r ts-node/register  --extension ts --timeout 5000 '__tests__/**/*.ts'",
     "lint": "npm run prettier:check && npm run eslint",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
@@ -20,8 +20,7 @@
     "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
-    "@cineverse/exceptions": "1.0.0",
-    "@cineverse/logger": "1.0.0",
+    "@cineverse/libs": "workspace:*",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",

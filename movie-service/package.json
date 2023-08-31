@@ -31,11 +31,10 @@
     "prettier:fix": "npm run prettier:cli -- --write",
     "eslint": "eslint --report-unused-disable-directives .",
     "eslint:fix": "npm run eslint -- --fix",
-    "clean": "yarn cache clean",
     "swagger:autogen": "ts-node ./src/swagger.ts"
   },
   "dependencies": {
-    "@cineverse/logger": "1.0.0",
+    "@cineverse/libs": "workspace:*",
     "@types/express": "^4.17.17",
     "@types/validator": "^13.7.17",
     "class-validator": "^0.14.0",

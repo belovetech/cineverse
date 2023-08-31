@@ -4,7 +4,7 @@ import { Router } from 'express';
 
 export default class ShowtimeRoute implements IRoute {
   public path? = '/showtimes';
-  public router = Router();
+  public router: Router = Router();
   private readonly showtimeController = showtimeController;
 
   constructor() {

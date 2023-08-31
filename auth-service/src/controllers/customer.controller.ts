@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import { ICustomer } from "@interfaces/customers.interface";
 import CustomerService from "@services/customer.service";
 import ApiResponseFormatter from "@utils/apiResponseFormatter";
 import { GET_links, UPDATE_links, POST_links } from "@utils/responseLink";
+import { CustomerDto } from "@dtos/customers.dto";
 
 export class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {
     try {
-      const customerData: ICustomer = req.body;
+      const customerData = req.body as CustomerDto;
       const customer = await CustomerService.createCustomer(customerData);
       const apiResponseFormatter = new ApiResponseFormatter(customer, POST_links);
       return res.status(201).json(apiResponseFormatter.format());

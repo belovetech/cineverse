@@ -1,0 +1,4 @@
+packages:
+  - auth-service
+  - movie-service
+  - packages/*

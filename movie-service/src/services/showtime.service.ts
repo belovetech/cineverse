@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@cineverse/exceptions';
+import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { ShowtimeDataValidator } from '@validators/showtimeDataValidator';
 import { ShowTimeDto } from '@dtos/showtime.dto';
 import { showtimeRepository } from '@respositories';
@@ -7,7 +7,7 @@ import ShowTime from '@models/showtime';
 
 export default class ShowtimeService {
   public async createShowtime(showtime: ShowTimeDto): Promise<ShowTime> {
-    new ShowtimeDataValidator<ShowTimeDto>(showtime).validate();
+    new ShowtimeDataValidator(showtime).validate();
 
     const { startTime, endTime, theaterId } = showtime;
     const showtimeExist = await showtimeRepository.findOne({ where: { startTime, endTime, theaterId } });

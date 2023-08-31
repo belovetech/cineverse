@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { logger } from '@cineverse/logger';
+import { logger } from '@cineverse/libs';
 import DB from '@interfaces/db.interface';
 import Movie from '@models/movies';
 import Seat from '@models/seat';
