@@ -1,8 +1,6 @@
 import { expect, describe, it } from 'vitest';
 import { v4 as uuidv4 } from 'uuid';
-import { BadRequestException } from '../src/index';
-import Validator from '../src/validator';
-
+import { BadRequestException, Validator } from '../src/index';
 describe('#Validator', () => {
   describe('#isValidKey', () => {
     it('should return true for valid key', () => {
