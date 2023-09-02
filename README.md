@@ -62,9 +62,37 @@ To get started with the Distributed Movie Ticketing System, follow the instructi
 - bcrypt.js
 - SMTP and SMS providers (for the Notification Service)
 
+## Installation
+
+1. clone the repo
+2. Use nx to run other operations
+
+### Running task with [Nx](https://nx.dev/reference/nx-json#)
+
+Nx is used for smooth running of operations across the entire monorepo. These commands should be run from the root of the project.
+
+```bash
+npx nx <target> <project/service>
+
+# build shared library
+npx nx build @cineverse/libs
+
+# start movie service
+npx nx dev movie-service
+
+# run in parallel across all services
+npx nx run-many --target=build --all
+
+# run specific service
+npx nx run-many --target=build --projects=auth-service,movie-service
+
+# project graph visualization
+npx nx graph
+```
+
 ### ERD
 
-![ERD](/images/movie-ticketing-system-ERD.jpg)
+![ERD](/images/cineverse-ERD.jpg)
 
 ### Contributing
 
