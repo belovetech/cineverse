@@ -1,46 +1,15 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "composite": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["ESNext", "DOM"],
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "target": "es6",
-    "typeRoots": ["node_modules/@types"],
-    "pretty": true,
-
-    "baseUrl": "./src",
-    "paths": {
-      "@*": ["*"],
-      "@controllers/*": ["controllers/*"],
-      "@datasource/*": ["datasource/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@validators/*": ["validators/*"],
-      "@services/*": ["services/*"],
-      "@routes/*": ["routes/*"],
-      "@models/*": ["models/*"],
-      "@utils/*": ["utils/*"],
-      "@config/*": ["config/*"],
-      "@dtos/*": ["dtos/*"]
-    }
+    "rootDir": "./src"
   },
-  "include": ["src/**/*.ts", ".env"],
-  "exclude": ["node_modules/**/*", ".vscode/**/*", "__tests__"],
-  "ts-node": { "require": ["tsconfig-paths/register"] }
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", ".vscode/**/*", "__tests__"]
 }

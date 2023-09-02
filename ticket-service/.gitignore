@@ -1,18 +1,4 @@
-# package directories
 node_modules
-jspm_packages
-.nyc_output
-coverage
+./dist
+.vscode/*
 
-.DS_Store
-.env
-.env.test
-.eslintcache
-
-
-.vscode/
-logs/
-dist/
-
-# esbuild directories
-.esbuild
