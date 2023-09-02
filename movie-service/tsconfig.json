@@ -1,4 +1,5 @@
 {
+  //   "extends": "./tslint.json",
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -37,8 +38,7 @@
       "@models/*": ["models/*"],
       "@utils/*": ["utils/*"],
       "@config/*": ["config/*"],
-      "@dtos/*": ["dtos/*"],
-      "@cineverse/libs/*": ["libs/*"]
+      "@dtos/*": ["dtos/*"]
     }
   },
   "include": ["src/**/*.ts", ".env"],

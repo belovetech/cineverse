@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import { describe, it } from 'mocha';
 import config from '../src/config';
 import database from '../src/datasource/index';
-import Theater from '../src/models/theater';
+import { Theater } from '../src/models';
 
 chai.use(chaiHttp);
 

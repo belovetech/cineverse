@@ -36,9 +36,9 @@ describe('#Seat', () => {
 
       const response = await chai.request(url).post('/theaters').send(theater);
       data = {
-        seatNumber: '5',
-        rowNumber: 'D',
-        status: 'booked',
+        seatNumber: 'A5',
+        seatType: 'standard',
+        status: 'available',
         theaterId: response.body.theaterId,
       };
       const res = await chai.request(url).post('/seats').send(data);
@@ -69,12 +69,11 @@ describe('#Seat', () => {
   });
 
   describe('[GET] Get Seat', () => {
-    console.log(seatId);
-    // it('should get a seat', async () => {
-    //   const res = await chai.request(url).get(`/seats/${seatId}`);
-    //   expect(res.status).to.be.equal(200);
-    //   expect(res.body.seatId).to.be.equal(seatId);
-    // });
+    it('should get a seat', async () => {
+      const res = await chai.request(url).get(`/seats/${seatId}`);
+      expect(res.status).to.be.equal(200);
+      expect(res.body.seatId).to.be.equal(seatId);
+    });
 
     it('should return NotFoundException ', async () => {
       const res = await chai.request(url).get('/seats/1e8265cf-1607-4543-8110-f27c9ea9aa67');

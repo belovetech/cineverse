@@ -1,13 +1,13 @@
 import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { MovieDto } from '@dtos/movie.dto';
-import { MovieDataValidator } from '@validators/movieDataValidator';
+import { MovieValidator } from '@validators';
 import { movieRepository } from '@respositories';
 import { Metadata } from '@interfaces/pagination.interface';
 import Movie from '@models/movies';
 
 export default class MovieService {
   public async createMovie(movieData: MovieDto): Promise<Movie> {
-    new MovieDataValidator(movieData).validate();
+    new MovieValidator(movieData).validate();
 
     const movieExist = await movieRepository.findOne({ where: { title: movieData.title } });
     if (movieExist) throw new ConflictException('Movie with this title already exist');

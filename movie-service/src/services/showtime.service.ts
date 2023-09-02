@@ -1,5 +1,5 @@
 import { ConflictException, NotFoundException } from '@cineverse/libs';
-import { ShowtimeDataValidator } from '@validators/showtimeDataValidator';
+import { ShowtimeDataValidator } from '@validators/showtimeValidator';
 import { ShowTimeDto } from '@dtos/showtime.dto';
 import { showtimeRepository } from '@respositories';
 import { Metadata } from '@interfaces/pagination.interface';

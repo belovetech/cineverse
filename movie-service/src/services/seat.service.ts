@@ -1,13 +1,13 @@
 import { ConflictException, NotFoundException } from '@cineverse/libs';
-import { SeatDataValidator } from '@validators/seatDataValidator';
-import { SeatDto } from '@dtos/seat.dto';
+import { Metadata } from '@interfaces';
+import { SeatValidator } from '@validators';
+import { SeatDto } from '@dtos';
 import { seatRepository } from '@respositories';
-import { Metadata } from '@interfaces/pagination.interface';
-import Seat from '@models/seat';
+import { Seat } from '@models';
 
 export default class SeatService {
   public async createSeat(seat: SeatDto): Promise<Seat> {
-    new SeatDataValidator(seat).validate();
+    new SeatValidator(seat).validate();
 
     const seatExist = await seatRepository.findOne({ where: { ...seat } });
     if (seatExist) throw new ConflictException('seat already exist');
@@ -24,5 +24,19 @@ export default class SeatService {
     const seat = await seatRepository.findByPk(seatId);
     if (seat === null) throw new NotFoundException('Seat not found');
     return seat;
+  }
+
+  public async updateSeat(seatId?: string, options?: Partial<SeatDto>): Promise<SeatDto | SeatDto[]> {
+    new SeatValidator(options as SeatDto).validate();
+    const seat = await seatRepository.findByPk(seatId);
+    if (seat === null) throw new NotFoundException('Seat not found');
+
+    return await seatRepository.update(seat, options);
+  }
+
+  public async putSeats(query: string, options?: Partial<SeatDto>): Promise<SeatDto[] | []> {
+    new SeatValidator(options as SeatDto).validate();
+    const seats = await seatRepository.put(query, options);
+    return seats;
   }
 }
