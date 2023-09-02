@@ -65,12 +65,11 @@ To get started with the Distributed Movie Ticketing System, follow the instructi
 ## Installation
 
 1. clone the repo
-2. run `pnpm install`
-3. Use nx to run other operations
+2. Use nx to run other operations
 
-### Running task with Nx
+### Running task with [Nx](https://nx.dev/reference/nx-json#)
 
-Nx is used for smooth running of operations across the entire monorepo. These commands should be run from the root of the cineverse.
+Nx is used for smooth running of operations across the entire monorepo. These commands should be run from the root of the project.
 
 ```bash
 npx nx <target> <project/service>
@@ -93,7 +92,7 @@ npx nx graph
 
 ### ERD
 
-![ERD](/images/movie-ticketing-system-ERD.jpg)
+![ERD](/images/cineverse-ERD.jpg)
 
 ### Contributing
 
