@@ -33,9 +33,13 @@ export default class SeatRepository {
     return { seats: rows, metadata };
   }
 
-  public async update(seatId: string, options: Partial<Seat>): Promise<Seat> {
-    await Seat.update({ ...options }, { where: { seatId } });
-    return await this.findByPk(seatId);
+  public async update(instance: Seat, options?: Partial<SeatDto>): Promise<SeatDto> {
+    (await instance.update(options)).save();
+    return (await instance.reload()) as SeatDto;
+  }
+
+  public async put(query: string, options?: Partial<SeatDto>): Promise<SeatDto[] | []> {
+    return await Seat.update(options, { where: { seatType: query }, returning: true })[1];
   }
 
   public async delete(seatId: string): Promise<Seat | number> {

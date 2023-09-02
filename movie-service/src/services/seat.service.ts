@@ -25,4 +25,18 @@ export default class SeatService {
     if (seat === null) throw new NotFoundException('Seat not found');
     return seat;
   }
+
+  public async updateSeat(seatId?: string, options?: Partial<SeatDto>): Promise<SeatDto | SeatDto[]> {
+    new SeatValidator(options as SeatDto).validate();
+    const seat = await seatRepository.findByPk(seatId);
+    if (seat === null) throw new NotFoundException('Seat not found');
+
+    return await seatRepository.update(seat, options);
+  }
+
+  public async putSeats(query: string, options?: Partial<SeatDto>): Promise<SeatDto[] | []> {
+    new SeatValidator(options as SeatDto).validate();
+    const seats = await seatRepository.put(query, options);
+    return seats;
+  }
 }

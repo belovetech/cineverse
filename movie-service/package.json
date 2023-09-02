@@ -56,8 +56,11 @@
     "@types/chai-http": "^4.2.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.4.5",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
     "chai": "^4.3.7",
     "chai-http": "^4.4.0",
+    "eslint": "^8.48.0",
     "mocha": "^10.2.0",
     "tsconfig-paths": "^4.2.0"
   }

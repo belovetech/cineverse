@@ -23,8 +23,10 @@ export class SeatDataValidator<T extends SeatDto> extends Validator<T> {
   }
 
   private validateEnum<T>(enumName: string, value: string, enumType: T): void {
-    if (!Object.values(enumType).includes(value)) {
-      this.addError({ [enumName]: 'Please provide a valid seat status' });
+    const enumValues = Object.values(enumType);
+    if (!enumValues.includes(value)) {
+      const valueString = `${enumValues.slice(0, -1).join(', ')} or ${enumValues.slice(-1)}`;
+      this.addError({ [enumName]: `Select one among ${valueString}` });
     }
   }
 }

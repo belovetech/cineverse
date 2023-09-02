@@ -11,8 +11,10 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
+    'max-len': ['error', { code: 80, ignorePatter: '^import\\s.+\\sfrom\\s.+;$' }],
+    indent: ['error', 2],
     semi: ['error', 'always'],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'double'],
   },
 };
