@@ -1,7 +1,7 @@
 {
   "name": "ticket-service",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "description": "cineverse ticket service for booking and payment of tickets",
   "keywords": [
     "ticket",
@@ -12,7 +12,7 @@
   "license": "ISC",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "dev": "nodemon dist/index.js",
+    "dev": "nodemon dist/server.js",
     "test": "vitest --watch",
     "ui:test": "vitest --ui",
     "lint": "npm run prettier:check && npm run eslint",
@@ -24,6 +24,7 @@
     "eslint:fix": "npm run eslint -- --fix"
   },
   "devDependencies": {
+    "@types/cineverse/libs": "link:@types/@cineverse/libs",
     "@types/node": "^20.5.9",
     "@vitest/ui": "^0.34.3",
     "eslint": "^8.48.0",
@@ -32,5 +33,9 @@
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "vitest": "^0.34.3"
+  },
+  "dependencies": {
+    "@cineverse/libs": "workspace:*",
+    "sequelize-typescript": "^2.1.5"
   }
 }
