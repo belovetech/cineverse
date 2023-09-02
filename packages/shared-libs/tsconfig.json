@@ -22,7 +22,7 @@
     "sourceMap": true,
     "target": "es6",
     "typeRoots": ["node_modules/@types"],
-    "pretty": true
+    "pretty": true,
   },
   "include": ["src/**/*.ts", ".env"],
   "exclude": ["node_modules/**/*", ".vscode/**/*", "__tests__"]
