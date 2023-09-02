@@ -46,30 +46,11 @@ export default class SeatController {
     try {
       const seatData: SeatDto = req.body;
       const seat = await seatService.updateSeat(req.params?.id, seatData);
-      if (Array.isArray(seat)) {
-        const response = seat.map(seat => new ApiResponseFormatter<SeatDto>(seat).format());
-        return res.status(200).json({ data: response });
-      }
-      const response = new ApiResponseFormatter<SeatDto>(seat, seatLinks.update);
+      const response = new ApiResponseFormatter(seat, seatLinks.update);
       return res.status(200).json(response.format());
     } catch (error) {
       logger.error('UpdateSeat', error);
       return next(error);
     }
   }
-
-  // public async putSeats(req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const seatData: SeatDto = req.body;
-  //     const seat = await seatService.putSeats(seatData.seatType, seatData);
-  //     if (Array.isArray(seat)) {
-  //       const response = seat.map(seat => new ApiResponseFormatter<SeatDto>(seat).format());
-  //       return res.status(200).json({ data: response, affectecdRows: seat.length });
-  //     }
-  //     return res.status(200).json({});
-  //   } catch (error) {
-  //     logger.error('UpdateSeat', error);
-  //     return next(error);
-  //   }
-  // }
 }

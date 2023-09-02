@@ -19,7 +19,7 @@ export enum SeatType {
 
 @DefaultScope(() => ({
   attributes: { exclude: ['createdAt', 'updatedAt'] },
-  where: { status: 'available' },
+  where: { status: ['available', 'cancelled'] },
 }))
 @Table({ tableName: 'seats' })
 export default class Seat extends Model<Seat> {
@@ -36,7 +36,12 @@ export default class Seat extends Model<Seat> {
   @Column(DataType.ENUM({ values: STATUSES }))
   status: string;
 
+  @Column({ type: DataType.DECIMAL(10, 2) })
+  price: number;
+
   @ForeignKey(() => Theater)
   @Column({ type: DataType.UUID })
   theaterId: string;
 }
+
+// regular -> 1000, standard -> 1500, recliner -> 2000
