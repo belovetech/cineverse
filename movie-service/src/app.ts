@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
+import { logger } from '@cineverse/libs';
 import config from '@config';
 import errorMiddleware from '@middlewares/error.middleware';
 import database from '@datasource';
 import IRoute from '@interfaces/route.interface';
-import { logger } from '@cineverse/libs';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDOC from 'swagger-jsdoc';
 import swaggerOption from '@utils/swagger';

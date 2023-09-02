@@ -1,5 +1,4 @@
 {
-  //   "extends": "./tslint.json",
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
