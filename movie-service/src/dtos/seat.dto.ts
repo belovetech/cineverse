@@ -13,6 +13,9 @@ export class SeatDto {
   @IsEnum(SeatType)
   readonly seatType: SeatType = SeatType.REGULAR;
 
+  @IsNumber()
+  public price: number;
+
   @IsNotEmpty()
   @IsEnum(Status)
   readonly status: Status = Status.AVAILABLE;

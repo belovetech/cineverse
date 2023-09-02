@@ -16,6 +16,5 @@ export default class SeatRoute implements IRoute {
     this.router.get(this.path, this.seatController.getSeats);
     this.router.get(`${this.path}/:id`, this.seatController.getSeat);
     this.router.patch(`${this.path}/:id`, this.seatController.updateSeat);
-    // this.router.put(`${this.path}`, this.seatController.putSeats);
   }
 }

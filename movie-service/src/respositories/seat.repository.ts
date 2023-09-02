@@ -38,10 +38,6 @@ export default class SeatRepository {
     return (await instance.reload()) as SeatDto;
   }
 
-  public async put(query: string, options?: Partial<SeatDto>): Promise<SeatDto[] | []> {
-    return await Seat.update(options, { where: { seatType: query }, returning: true })[1];
-  }
-
   public async delete(seatId: string): Promise<Seat | number> {
     return await Seat.destroy({ where: { seatId } });
   }
