@@ -1,6 +1,6 @@
 import { ConflictException, NotFoundException } from '@cineverse/libs';
 import { TheaterDto } from '@dtos/theater.dto';
-import { TheaterDataValidator } from '@validators/theaterDataValidator';
+import { TheaterDataValidator } from '@validators/theaterValidator';
 import { theaterRepository } from '@respositories';
 import { Metadata } from '@interfaces/pagination.interface';
 import Theater from '@models/theater';

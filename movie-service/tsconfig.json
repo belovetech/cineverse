@@ -38,7 +38,6 @@
       "@utils/*": ["utils/*"],
       "@config/*": ["config/*"],
       "@dtos/*": ["dtos/*"],
-      "@cineverse/libs/*": ["libs/*"]
     }
   },
   "include": ["src/**/*.ts", ".env"],

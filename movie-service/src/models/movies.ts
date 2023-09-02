@@ -34,3 +34,5 @@ export default class Movie extends Model<Movie> {
     instance.photo = 'default.jpg';
   }
 }
+
+//TODO: include release date, rating, actors, director, etc.

@@ -3,9 +3,7 @@ import chaiHttp from 'chai-http';
 import { describe, it } from 'mocha';
 import config from '../src/config';
 import database from '../src/datasource/index';
-import Showtime from '../src/models/showtime';
-import Movie from '../src/models/movies';
-import Theater from '../src/models/theater';
+import { Movie, ShowTime, Theater } from '../src/models';
 
 chai.use(chaiHttp);
 
@@ -18,7 +16,7 @@ describe('#Showtime', () => {
     sequelize.options.logging = false;
     Movie.drop();
     Theater.drop();
-    Showtime.drop();
+    ShowTime.drop();
   });
 
   afterEach(async () => {
@@ -45,11 +43,11 @@ describe('#Showtime', () => {
         await chai.request(url).post('/movies').send(movie),
         await chai.request(url).post('/theaters').send(theater),
       ]);
-
+      const now = new Date();
       data = {
         startTime: '12:00',
         endTime: '13:00',
-        date: '2023-08-30',
+        date: `${now.getFullYear()}-0${now.getMonth() + 1}-0${now.getDate() + 1}`,
         movieId: movieResponse.body.movieId,
         theaterId: theaterResponse.body.theaterId,
       };

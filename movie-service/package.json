@@ -37,6 +37,7 @@
     "@cineverse/libs": "workspace:*",
     "@types/express": "^4.17.17",
     "@types/validator": "^13.7.17",
+    "build": "^0.1.4",
     "class-validator": "^0.14.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",

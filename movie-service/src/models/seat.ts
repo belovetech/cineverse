@@ -2,12 +2,19 @@ import { v4 as uuidv4 } from 'uuid';
 import { ForeignKey, Table, Model, Column, Default, DataType, DefaultScope } from 'sequelize-typescript';
 import Theater from './theater';
 
-const STATUSES = ['available', 'booked', 'cancelled'];
+export const STATUSES = ['available', 'booked', 'cancelled'];
+export const SEATTYPES = ['regular', 'standard', 'recliner'];
 
 export enum Status {
   AVAILABLE = 'available',
   BOOKED = 'booked',
   CANCELLED = 'cancelled',
+}
+
+export enum SeatType {
+  REGULAR = 'regular',
+  STANDARD = 'standard',
+  RECLINER = 'recliner',
 }
 
 @DefaultScope(() => ({
@@ -23,8 +30,8 @@ export default class Seat extends Model<Seat> {
   @Column({ type: DataType.STRING })
   seatNumber: string;
 
-  @Column({ type: DataType.CHAR(1) })
-  rowNumber: string;
+  @Column(DataType.ENUM({ values: SEATTYPES }))
+  seatType: string;
 
   @Column(DataType.ENUM({ values: STATUSES }))
   status: string;
