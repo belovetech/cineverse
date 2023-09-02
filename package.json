@@ -17,5 +17,8 @@
     "movie": "pnpm --filter movie-service run dev",
     "movie:build": "pnpm --filter movie-service run build",
     "movie:test": "pnpm --filter movie-service run test"
+  },
+  "devDependencies": {
+    "nx": "^16.7.4"
   }
 }
