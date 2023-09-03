@@ -1,53 +1,52 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
+  BeforeCreate,
   Column,
+  UpdatedAt,
+  DataType,
   Table,
   Model,
   CreatedAt,
-  UpdatedAt,
-  BeforeCreate,
-  PrimaryKey,
 } from 'sequelize-typescript';
 
 @Table
 export class Booking extends Model<Booking> {
-  @Column
-  @PrimaryKey
+  @Column({ primaryKey: true, type: DataType.UUID })
   bookingId!: string;
 
-  @Column
+  @Column({ type: DataType.UUID })
   customerId!: string;
 
-  @Column
+  @Column({ type: DataType.UUID })
   movieId!: string;
 
-  @Column
+  @Column({ type: DataType.UUID })
   showtimeId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   seatNumber!: string;
 
-  @Column
+  @Column({ type: DataType.DATE })
   bookingDate!: Date;
 
-  @Column
+  @Column({ type: DataType.STRING })
   bookingStatus!: string;
 
-  @Column
+  @Column({ type: DataType.DECIMAL(10, 2) })
   totalAmount!: number;
 
-  @Column
+  @Column({ type: DataType.UUID })
   paymentId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   ticketId!: string;
 
   @CreatedAt
-  @Column
+  @Column({ type: DataType.STRING })
   createdAt!: Date;
 
   @UpdatedAt
-  @Column
+  @Column({ type: DataType.STRING })
   updatedAt!: Date;
 
   @BeforeCreate

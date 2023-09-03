@@ -3,48 +3,47 @@ import {
   Column,
   Table,
   Model,
+  DataType,
   CreatedAt,
   DeletedAt,
-  PrimaryKey,
   BeforeCreate,
 } from 'sequelize-typescript';
 
 @Table
 export class Ticket extends Model<Ticket> {
-  @Column
-  @PrimaryKey
+  @Column({ primaryKey: true, type: DataType.UUID })
   ticketId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   customerId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   bookingId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   movieId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   showtimeId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   seatNumber!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   QRCode!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   ticketType!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   price!: string;
 
   @CreatedAt
-  @Column
+  @Column({ type: DataType.DATE })
   createdAt!: Date;
 
   @DeletedAt
-  @Column
+  @Column({ type: DataType.DATE })
   deletedAt!: Date;
 
   @BeforeCreate

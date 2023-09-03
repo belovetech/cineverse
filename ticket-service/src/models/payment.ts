@@ -4,32 +4,31 @@ import {
   Model,
   Column,
   CreatedAt,
+  DataType,
   UpdatedAt,
   BeforeCreate,
-  PrimaryKey,
 } from 'sequelize-typescript';
 
 @Table
 export class Payment extends Model<Payment> {
-  @Column
-  @PrimaryKey
+  @Column({ primaryKey: true, type: DataType.UUID })
   paymentId!: string;
 
-  @Column
+  @Column({ type: DataType.STRING })
   bookingId!: string;
 
-  @Column
+  @Column({ type: DataType.DECIMAL(10, 2) })
   amount!: number;
 
-  @Column
+  @Column({ type: DataType.STRING })
   status!: string;
 
   @CreatedAt
-  @Column
+  @Column({ type: DataType.DATE })
   createdAt!: Date;
 
   @UpdatedAt
-  @Column
+  @Column({ type: DataType.DATE })
   updatedAt!: Date;
 
   @BeforeCreate
