@@ -27,6 +27,7 @@
     "@types/cineverse/libs": "link:@types/@cineverse/libs",
     "@types/node": "^20.5.9",
     "@types/sequelize": "^4.28.15",
+    "@types/validator": "^13.7.17",
     "@vitest/ui": "^0.34.3",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
@@ -39,6 +40,7 @@
   },
   "dependencies": {
     "@cineverse/libs": "workspace:*",
+    "reflect-metadata": "^0.1.13",
     "sequelize-typescript": "^2.1.5",
     "uuid": "^9.0.0"
   }
