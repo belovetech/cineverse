@@ -101,10 +101,11 @@ describe('#Validators', () => {
   });
 
   describe('#ShowtimeValidator', () => {
+    const now = new Date();
     const showtimeData = {
       startTime: '15:00',
       endTime: '16:30',
-      date: '2023-09-03',
+      date: `${now.getFullYear()}-0${now.getMonth() + 1}-0${now.getDate() + 1}`,
       movieId: 'bf318a4f-9723-4a81-8835-b63d278016bf',
       theaterId: '20c1f338-71f0-4269-851c-7b546e0ef687',
     } as ShowTimeDto;
