@@ -1,0 +1,89 @@
+2023-09-03 12:35:50:3550 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:35:50:3550 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:35:53:3553 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 12:35:53:3553 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 12:36:33:3633 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:36:33:3633 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:36:34:3634 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:36:34:3634 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:36:39:3639 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:36:39:3639 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:36:41:3641 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:36:41:3641 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:36:52:3652 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:36:52:3652 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:41:3741 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:41:3741 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:44:3744 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:44:3744 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:49:3749 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:49:3749 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:52:3752 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:52:3752 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:54:3754 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:54:3754 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:57:3757 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:57:3757 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:37:59:3759 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:37:59:3759 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:02:392 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:02:392 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:07:397 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:07:397 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:10:3910 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:10:3910 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:11:3911 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:11:3911 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:11:3911 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:14:3914 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:14:3914 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:23:3923 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:23:3923 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:43:3943 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:44:3944 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:46:3946 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:46:3946 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:47:3947 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:47:3947 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:56:3956 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:56:3956 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:39:59:3959 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:39:59:3959 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:40:06:406 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:40:15:4015 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:40:15:4015 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:40:18:4018 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:40:19:4019 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:40:21:4021 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:40:21:4021 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:42:19:4219 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:42:19:4219 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:42:29:4229 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:42:29:4229 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:42:33:4233 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:42:33:4233 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:42:47:4247 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:42:47:4247 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:42:47:4247 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:42:56:4256 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:42:56:4256 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:43:05:435 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:43:05:435 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:43:19:4319 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:43:19:4319 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:43:24:4324 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:43:24:4324 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:44:33:4433 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:35:4435 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:37:4437 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:41:4441 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:43:4443 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:46:4446 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:47:4447 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:44:47:4447 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:45:35:4535 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:45:35:4535 [32minfo[39m: [32mRedis server succesfully disconncted[39m
+2023-09-03 12:45:35:4535 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 12:45:35:4535 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 12:45:48:4548 [31merror[39m: [31mUnable to connect to the redis server: ${error}[39m
+2023-09-03 12:45:48:4548 [32minfo[39m: [32mRedis server succesfully disconncted[39m
