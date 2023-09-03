@@ -48,11 +48,12 @@ export default class App {
   private inititializeMiddlewares(): void {
     if (this.env === "development") {
       this.app.use(customMorgan());
+    } else {
+      this.app.use(morgan("combined"));
+      this.app.use(express.json());
+      this.app.use(express.urlencoded({ extended: true }));
+      this.app.use(cookieParser());
     }
-    this.app.use(morgan("combined"));
-    this.app.use(express.json());
-    this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(cookieParser());
   }
 
   private inititializeRoutes(routes: IRoute[]): void {
