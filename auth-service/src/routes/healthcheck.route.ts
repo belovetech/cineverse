@@ -1,6 +1,6 @@
 import { Router } from "express";
-import HealthCheck from "@controllers/healthcheck.controller";
-import IRoute from "@interfaces/routes.interface";
+import { HealthCheck } from "@controllers";
+import { IRoute } from "@interfaces";
 
 export default class HealthCheckRoute implements IRoute {
   public path? = "/ping";
@@ -13,5 +13,9 @@ export default class HealthCheckRoute implements IRoute {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.healthcheck.ping);
+  }
+
+  public getPaths() {
+    return [{ method: "GET", path: `${this.path}`, description: "Ping the server" }];
   }
 }

@@ -6,3 +6,11 @@ interface IRoute {
 }
 
 export default IRoute;
+
+export interface IPaths {
+  method: string;
+  path: string;
+  description?: string;
+}
+
+export type IPathsArray = IPaths[];

@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import config from "@config";
 import { AuthenticationException, NotFoundException } from "@cineverse/libs";
 import Customer from "@models/customers.model";
-import { IRequest } from "@interfaces/auth.interface";
+import { IRequest } from "@interfaces";
 
 export const authMiddleware = async (req: IRequest, res: Response, next: NextFunction) => {
   try {
