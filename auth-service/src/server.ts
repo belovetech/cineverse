@@ -1,12 +1,21 @@
 import App from "@app";
-import printPaths from "@utils/printPaths";
+import { loggerMiddleware } from "@middlewares";
 import { authRoute, customerRoute, healthcheckRoute } from "@routes";
 
-// API Server
+// Initialize the app with routes
 const app = new App([authRoute, customerRoute, healthcheckRoute]);
+
+// Start the server
 app.listen();
+loggerMiddleware(app);
+
+// import listEndpoints from "express-list-endpoints";
+// listEndpoints(app.getServer()).forEach(path => console.log(path));
 
 // Print all paths
-printPaths(authRoute.getPaths());
-printPaths(customerRoute.getPaths());
-printPaths(healthcheckRoute.getPaths());
+// (() => {
+//   setTimeout(() => {
+//     const allPaths = [...authRoute.getPaths(), ...customerRoute.getPaths(), ...healthcheckRoute.getPaths()];
+//     loggerMiddleware(allPaths);
+//   }, 2000);
+// })();
