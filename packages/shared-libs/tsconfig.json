@@ -17,11 +17,12 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist",
+    "baseUrl": ".",
     "removeComments": true,
     "resolveJsonModule": true,
     "sourceMap": true,
     "target": "es6",
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": ["node_modules/@types", "./@types"],
     "pretty": true
   },
   "include": ["src/**/*.ts", ".env"],

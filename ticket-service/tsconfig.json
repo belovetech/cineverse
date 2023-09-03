@@ -4,8 +4,6 @@
     "allowSyntheticDefaultImports": true,
     "composite": true,
     "noEmit": true,
-    // "declaration": true,
-    // "declarationDir": "./dist/types",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

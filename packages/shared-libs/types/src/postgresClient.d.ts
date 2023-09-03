@@ -1,10 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
-export interface DB {
-    database: string;
-    username: string;
-    password: string;
-}
-export declare class PostgresClient {
+import { DB } from './index';
+export default class PostgresClient {
     private sequelize;
     constructor(db: DB, models: any[]);
     getInstance(): Promise<Sequelize>;
