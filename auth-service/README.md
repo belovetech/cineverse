@@ -20,6 +20,10 @@ The authentication service is a crucial component of the Movie Ticketing System,
 4. Start the server: yarn run dev
 5. Click [here](http://localhost:8000/v1/docs) for interactive swagger UI
 
+## Available Endpoints
+
+![auth-service-endpoints](/images/auth-service-endpoints.png)
+
 ### Technologies Used
 
 - Typescript

@@ -7,15 +7,10 @@ const app = new App([authRoute, customerRoute, healthcheckRoute]);
 
 // Start the server
 app.listen();
-loggerMiddleware(app);
 
-// import listEndpoints from "express-list-endpoints";
-// listEndpoints(app.getServer()).forEach(path => console.log(path));
-
-// Print all paths
-// (() => {
-//   setTimeout(() => {
-//     const allPaths = [...authRoute.getPaths(), ...customerRoute.getPaths(), ...healthcheckRoute.getPaths()];
-//     loggerMiddleware(allPaths);
-//   }, 2000);
-// })();
+// Print all the available endpoints
+(() => {
+  setTimeout(() => {
+    loggerMiddleware(app);
+  }, 1000);
+})();

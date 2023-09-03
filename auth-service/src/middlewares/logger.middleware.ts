@@ -1,5 +1,5 @@
 import App from "@app";
-import listEndpoints from "express-list-endpoints";
+import expressListEndpoints from "express-list-endpoints";
 import { logger } from "@cineverse/libs";
 
 interface EndpointAttributes {
@@ -9,21 +9,23 @@ interface EndpointAttributes {
 }
 
 export default function loggerMiddleware(app: App): void {
-  const routes = listEndpoints(app.getServer());
+  const routes = expressListEndpoints(app.getServer());
   logger.info("┌───────────────────────────────────────────────────────────────┐");
-  logger.info("│          Available Routes (HTTP Method | URL)                 │");
+  logger.warn("│           Available Routes (HTTP Method | URL)  🚀            │");
   logger.info("└───────────────────────────────────────────────────────────────┘");
   const baseUrl = process.env.BASE_URL.slice(0, -3) || "http://localhost:8000";
 
   const methods2dArray = concatMethods(routes.slice(0, -1) as EndpointAttributes[]);
-  const longestMethods = longestLength(methods2dArray);
+  const [longestMethods, len] = longestLength(methods2dArray);
   const longestPath = getlongestPath(routes);
 
   routes.forEach(route => {
     if (route.path !== "*") {
-      const rightSpaces = " ".repeat(longestMethods - route.methods.join("").length);
-      const leftSpaces = " ".repeat(longestPath - `${route.path}`.length );
-      logger.info(`│  ${route.methods.join("")}${rightSpaces}|\t${baseUrl}${route.path}${leftSpaces}\t│`);
+      const length = route.methods.length;
+      const diff = len - length;
+      const rightSpaces = " ".repeat(longestMethods + diff - route.methods.join("").length);
+      const leftSpaces = " ".repeat(longestPath - `${route.path}`.length);
+      logger.info(`│  ${route.methods.join(",")}${rightSpaces}  |\t${baseUrl}${route.path}${leftSpaces}      │`);
     }
   });
   logger.info("└───────────────────────────────────────────────────────────────┘");
@@ -37,15 +39,15 @@ const concatMethods = (routes: EndpointAttributes[]): string[][] => {
   return methods2dArray;
 };
 
-const longestLength = (methods: string[][]): number => {
+const longestLength = (methods: string[][]): [number, number] => {
   let longest = 0;
-  let maxElement = 0;
+  let len = 0;
   methods.forEach((method: string[]) => {
     const methodsLength = method.join("").length;
     if (methodsLength > longest) longest = methodsLength;
-    if (method.length > maxElement) maxElement = method.length;
+    if (method.length > len) len = method.length;
   });
-  return longest + maxElement;
+  return [longest, len];
 };
 
 const getlongestPath = (routes: EndpointAttributes[]): number => {

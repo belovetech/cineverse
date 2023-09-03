@@ -31,9 +31,9 @@ export default class App {
 
   public listen(): void {
     this.app.listen(this.port, () => {
-      logger.info("==================================");
-      logger.info(`App listening on localhost:${this.port} 🚀`);
-      logger.info("==================================");
+      logger.info("================================================================");
+      logger.info(`             🚀 App listening on localhost:${this.port} 🚀`);
+      logger.info("================================================================");
     });
   }
 
