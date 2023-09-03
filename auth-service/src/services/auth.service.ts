@@ -5,9 +5,8 @@ import redisClient from "@datasource/redis";
 import config from "@config";
 import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "@cineverse/libs";
 import { CustomerDataValidator, SignValidator } from "@utils/validator";
-import { ICustomer } from "@interfaces/customers.interface";
-import { SignupDto, SignDto, TokenDto, VerifyOtpDto } from "@dtos/auth.dto";
-import { CustomerDto } from "@dtos/customers.dto";
+import { ICustomer } from "@interfaces";
+import { SignupDto, SignDto, TokenDto, VerifyOtpDto, CustomerDto } from "@dtos";
 
 export default class AuthService {
   public static async signup(payload: SignupDto): Promise<ICustomer> {

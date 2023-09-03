@@ -5,12 +5,11 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import swaggerJSDOC from "swagger-jsdoc";
 import config from "@config";
-import customMorgan from "@middlewares/morgan.middleware";
-import errorMiddleware from "@middlewares/error.middleware";
-import IRoute from "@interfaces/routes.interface";
+import { IRoute } from "@interfaces";
 import mongoClient from "@datasource/database";
-import unknownRoute from "@controllers/unknownRoute.controller";
+import { UnknownRoute } from "@controllers";
 import swaggerOption from "@utils/swaggerOptions";
+import { customMorgan, errorMiddleware } from "@middlewares";
 
 export default class App {
   private app: Application;
@@ -61,7 +60,7 @@ export default class App {
   }
 
   private handleUnknownRoute() {
-    this.app.all("*", unknownRoute.handler);
+    this.app.all("*", UnknownRoute.handler);
   }
 
   private initializeGlobalErrorHandler(): void {
