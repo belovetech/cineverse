@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-// import { logger } from '@cineverse/libs';
+import { logger } from '@cineverse/libs';
 
-interface DB {
+export interface DB {
   database: string;
   username: string;
   password: string;
