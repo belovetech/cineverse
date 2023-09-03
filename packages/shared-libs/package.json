@@ -41,6 +41,7 @@
     "vitest": "^0.34.3"
   },
   "dependencies": {
+    "sequelize-typescript": "^2.1.5",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
   }

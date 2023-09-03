@@ -1,51 +1,45 @@
 {
   "name": "ticket-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.ts",
-  "engines": {
-    "node": ">=10",
-    "pnpm": ">=3"
-  },
+  "main": "server.js",
+  "description": "cineverse ticket service for booking and payment of tickets",
+  "keywords": [
+    "ticket",
+    "booking",
+    "payment"
+  ],
+  "author": "Abeeb Raheem",
+  "license": "ISC",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
-    "dev": "cross-env NODE_ENV=development nodemon",
-    "test:server": "cross-env NODE_ENV=test nodemon",
-    "build": "tsc && npx tsc-alias",
-    "test": "mocha -r ts-node/register  --extension ts --timeout 5000 '__tests__/**/*.ts'",
+    "build": "rm -rf dist && tsc",
+    "dev": "nodemon dist/server.js",
+    "test": "vitest --watch",
+    "ui:test": "vitest --ui",
     "lint": "npm run prettier:check && npm run eslint",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\"",
     "prettier:check": "npm run prettier:cli -- -l",
     "prettier:fix": "npm run prettier:cli -- --write",
     "eslint": "eslint --report-unused-disable-directives .",
-    "eslint:fix": "npm run eslint -- --fix",
-    "clean": "yarn cache clean",
-    "swagger:autogen": "ts-node ./src/swagger.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "class-validator": "^0.14.0",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "pg": "^8.11.3",
-    "sequelize": "^6.32.1",
-    "sequelize-typescript": "^2.1.5",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0",
-    "uuid": "^9.0.0"
+    "eslint:fix": "npm run eslint -- --fix"
   },
   "devDependencies": {
-    "@cineverse/libs": "workspace:*",
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.5.6",
-    "@types/validator": "^13.11.1",
-    "supertest": "^6.3.3",
-    "ts-node": "^10.9.1",
+    "@types/cineverse/libs": "link:@types/@cineverse/libs",
+    "@types/node": "^20.5.9",
+    "@types/sequelize": "^4.28.15",
+    "@vitest/ui": "^0.34.3",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "libs": "link:@types/@cineverse/libs",
+    "prettier": "^3.0.3",
+    "sequelize": "^6.32.1",
     "typescript": "^5.2.2",
     "vitest": "^0.34.3"
+  },
+  "dependencies": {
+    "@cineverse/libs": "workspace:*",
+    "sequelize-typescript": "^2.1.5",
+    "uuid": "^9.0.0"
   }
 }

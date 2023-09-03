@@ -1,4 +1,5 @@
 packages:
   - auth-service
   - movie-service
+  - ticket-service
   - packages/*

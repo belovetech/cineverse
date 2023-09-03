@@ -1,0 +1,455 @@
+2023-09-03 09:02:29:229 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:02:29:229 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:02:29:229 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:02:56:256 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:02:56:256 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:02:56:256 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:03:15:315 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:03:15:315 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:03:15:315 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:03:36:336 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:03:41:341 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:03:43:343 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:03:43:343 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:03:43:343 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:03:58:358 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:03:58:358 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:03:58:358 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:03:58:358 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:04:02:42 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:04:03:43 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:04:03:43 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:04:08:48 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:04:08:48 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:04:08:48 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:04:10:410 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:04:10:410 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:04:10:410 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:04:17:417 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:04:27:427 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:02:52 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:02:52 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:02:52 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:08:58 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:08:58 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:08:58 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:11:511 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:11:511 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:11:511 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:12:512 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:13:513 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:13:513 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:15:515 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:15:515 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:16:516 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:18:518 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:19:519 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:19:519 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:20:520 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:20:520 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:20:520 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:46:546 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:46:546 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:46:546 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:49:549 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:49:549 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:49:549 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:05:50:550 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:05:50:550 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:05:50:550 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:06:37:637 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:06:55:655 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:06:59:659 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:07:01:71 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:07:04:74 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:07:04:74 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:07:04:74 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:07:07:77 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:07:07:77 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:07:07:77 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:07:34:734 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:08:13:813 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:08:14:814 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:09:10:910 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:09:12:912 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:09:55:955 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:09:58:958 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:06:106 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:12:1012 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:16:1016 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:19:1019 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:22:1022 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:30:1030 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:30:1030 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:10:30:1030 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:10:32:1032 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:32:1032 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:10:32:1032 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:10:53:1053 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:10:53:1053 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:10:54:1054 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:22:1222 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:23:1223 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:23:1223 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:29:1229 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:29:1229 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:29:1229 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:38:1238 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:38:1238 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:39:1239 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:40:1240 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:40:1240 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:41:1241 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:42:1242 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:42:1242 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:43:1243 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:43:1243 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:12:48:1248 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:49:1249 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:49:1249 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:51:1251 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:12:51:1251 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:12:51:1251 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:51:1251 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:12:51:1251 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:07:147 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:08:148 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:08:148 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:08:148 [31merror[39m: [31mError dropping the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:08:148 [31merror[39m: [31mError dropping the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:12:1412 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:12:1412 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:12:1412 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:12:1412 [31merror[39m: [31mError dropping the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:15:1415 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:16:1416 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:16:1416 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:16:1416 [31merror[39m: [31mError dropping the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:19:1419 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:19:1419 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:19:1419 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:19:1419 [31merror[39m: [31mError dropping the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:23:1423 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:24:1424 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:24:1424 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:24:1424 [31merror[39m: [31mError dropping the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:14:30:1430 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:30:1430 [31merror[39m: [31mError altering the database: could not open relation with OID 446523[39m
+2023-09-03 09:14:30:1430 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:14:30:1430 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:14:45:1445 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:14:45:1445 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:14:45:1445 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:14:45:1445 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:15:07:157 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:10:1510 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:10:1510 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:15:11:1511 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:15:11:1511 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:15:17:1517 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:17:1517 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:15:17:1517 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:15:21:1521 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:21:1521 [31merror[39m: [31mError altering the database: could not open relation with OID 446560[39m
+2023-09-03 09:15:22:1522 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:15:22:1522 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:15:23:1523 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:23:1523 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:15:23:1523 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:15:29:1529 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:41:1541 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:42:1542 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:15:42:1542 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:15:48:1548 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:15:58:1558 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:16:05:165 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:16:06:166 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:16:06:166 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:17:39:1739 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:17:39:1739 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:17:40:1740 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:17:45:1745 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:17:45:1745 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:17:46:1746 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:17:47:1747 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:17:47:1747 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:17:48:1748 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:17:55:1755 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:17:58:1758 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:18:52:1852 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:18:55:1855 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:18:2218 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:20:2220 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:22:2222 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:22:2222 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:31:2231 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:31:2231 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:37:2237 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:37:2237 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:22:37:2237 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:22:37:2237 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:22:38:2238 [32minfo[39m: [32mDatabase has been successfully disconnected[39m
+2023-09-03 09:25:05:255 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:06:256 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:08:258 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:08:258 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:08:258 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:25:08:258 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:25:08:258 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:25:11:2511 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:11:2511 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:11:2511 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:25:11:2511 [31merror[39m: [31mError altering the database: could not open relation with OID 446624[39m
+2023-09-03 09:25:12:2512 [32minfo[39m: [32mTest database has been successfully dropped[39m
+2023-09-03 09:25:14:2514 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:14:2514 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:25:2525 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:25:2525 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:27:2527 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:27:2527 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:29:2529 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:29:2529 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:35:2535 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:25:35:2535 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:26:58:2658 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:26:58:2658 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:06:276 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:06:276 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:06:276 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:27:06:276 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:27:08:278 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:08:278 [31merror[39m: [31mError altering the database: could not open relation with OID 446633[39m
+2023-09-03 09:27:08:278 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:12:2712 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:12:2712 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:27:12:2712 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:12:2712 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:27:18:2718 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:18:2718 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:32:2732 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:32:2732 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:36:2736 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:36:2736 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:37:2737 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:37:2737 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:38:2738 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:27:38:2738 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:27:41:2741 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:41:2741 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:27:41:2741 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:27:41:2741 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:27:57:2757 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:05:285 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:05:285 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:05:285 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:05:285 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:09:289 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:10:2810 [31merror[39m: [31mError altering the database: could not open relation with OID 446679[39m
+2023-09-03 09:28:13:2813 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:13:2813 [31merror[39m: [31mError altering the database: could not open relation with OID 446688[39m
+2023-09-03 09:28:19:2819 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:19:2819 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:19:2819 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:19:2819 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:21:2821 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:21:2821 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:21:2821 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:21:2821 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:23:2823 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:23:2823 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:28:25:2825 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:26:2826 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:26:2826 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:26:2826 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:37:2837 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:37:2837 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:37:2837 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:28:37:2837 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:28:39:2839 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:39:2839 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:28:39:2839 [31merror[39m: [31mError altering the database: could not open relation with OID 446742[39m
+2023-09-03 09:28:39:2839 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:30:07:307 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:07:307 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:30:09:309 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:09:309 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:30:17:3017 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:17:3017 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:30:19:3019 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:19:3019 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:19:3019 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:30:19:3019 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:30:30:3030 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:30:3030 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:31:3031 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:30:31:3031 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:31:48:3148 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:31:48:3148 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:31:48:3148 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:32:05:325 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:32:05:325 [31merror[39m: [31mError altering the database: could not open relation with OID 446797[39m
+2023-09-03 09:32:05:325 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:32:05:325 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:32:07:327 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:32:07:327 [31merror[39m: [31mError altering the database: could not open relation with OID 446816[39m
+2023-09-03 09:32:08:328 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:32:08:328 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:33:11:3311 [31merror[39m: [31mUnable to connect to the database:  SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string[39m
+2023-09-03 09:33:13:3313 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:13:3313 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:33:14:3314 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:14:3314 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:33:23:3323 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:23:3323 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:33:23:3323 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:25:3325 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:25:3325 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:33:25:3325 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:40:3340 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:40:3340 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:33:40:3340 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:42:3342 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:42:3342 [31merror[39m: [31mError altering the database: could not open relation with OID 446861[39m
+2023-09-03 09:33:42:3342 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:48:3348 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:48:3348 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:55:3355 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:33:55:3355 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:03:343 [31merror[39m: [31mUnable to connect to the database:  SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string[39m
+2023-09-03 09:34:05:345 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:05:345 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:11:3411 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:11:3411 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:13:3413 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:15:3415 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:15:3415 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:57:3457 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:34:57:3457 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:02:352 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:02:352 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:35:02:352 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:28:3528 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:28:3528 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:30:3530 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:30:3530 [31merror[39m: [31mError altering the database: No description found for "users" table. Check the table name and schema; remember, they _are_ case sensitive.[39m
+2023-09-03 09:35:30:3530 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:35:3535 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:35:3535 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:37:3537 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:37:3537 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:40:3540 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:40:3540 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:40:3540 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:35:40:3540 [31merror[39m: [31mError altering the database: ConnectionManager.getConnection was called after the connection manager was closed![39m
+2023-09-03 09:35:43:3543 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:43:3543 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:43:3543 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:35:43:3543 [31merror[39m: [31mError altering the database: could not open relation with OID 446889[39m
+2023-09-03 09:35:48:3548 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:48:3548 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:48:3548 [31merror[39m: [31mError altering the database: Validation error[39m
+2023-09-03 09:35:49:3549 [32minfo[39m: [32mDatabase has been successfully altered[39m
+2023-09-03 09:35:50:3550 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:50:3550 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:55:3555 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:55:3555 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:57:3557 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:35:57:3557 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:36:17:3617 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:36:17:3617 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:36:28:3628 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:36:28:3628 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:36:44:3644 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:36:44:3644 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:37:03:373 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:37:03:373 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:37:03:373 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:37:03:373 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:41:26:4126 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:41:26:4126 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:41:26:4126 [31merror[39m: [31mError altering the database: Validation error[39m
+2023-09-03 09:41:26:4126 [31merror[39m: [31mError altering the database: could not open relation with OID 446908[39m
+2023-09-03 09:43:12:4312 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:12:4312 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:15:4315 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:15:4315 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:15:4315 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:43:15:4315 [31merror[39m: [31mError altering the database: relation "users" does not exist[39m
+2023-09-03 09:43:18:4318 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:18:4318 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:18:4318 [31merror[39m: [31mError altering the database: Validation error[39m
+2023-09-03 09:43:18:4318 [32minfo[39m: [32mDatabase has been successfully altered[39m
+2023-09-03 09:43:48:4348 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:48:4348 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:48:4348 [31merror[39m: [31mError altering the database: Validation error[39m
+2023-09-03 09:43:48:4348 [32minfo[39m: [32mDatabase has been successfully altered[39m
+2023-09-03 09:43:52:4352 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:43:52:4352 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:19:4419 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:19:4419 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:21:4421 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:21:4421 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:28:4428 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:28:4428 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:32:4432 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:32:4432 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:49:4449 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:49:4449 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:50:4450 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:44:50:4450 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:14:4614 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:14:4614 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:16:4616 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:16:4616 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:23:4623 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:23:4623 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:30:4630 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:30:4630 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:43:4643 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:43:4643 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:55:4655 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:46:55:4655 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:02:472 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:02:472 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:26:4726 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:26:4726 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:32:4732 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:32:4732 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:34:4734 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:47:34:4734 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:14:4914 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:14:4914 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:18:4918 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:18:4918 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:46:4946 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:46:4946 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:54:4954 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:49:54:4954 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:03:503 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:03:503 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:12:5012 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:12:5012 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:18:5018 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:18:5018 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:21:5021 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:22:5022 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:26:5026 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:26:5026 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:32:5032 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:32:5032 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:59:5059 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:50:59:5059 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:51:03:513 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:51:03:513 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:18:5518 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:18:5518 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:54:5554 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:54:5554 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:55:5555 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:55:5555 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:57:5557 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:55:57:5557 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:56:04:564 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:56:05:565 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:57:24:5724 [32minfo[39m: [32mConnection has been established successfully[39m
+2023-09-03 09:57:24:5724 [32minfo[39m: [32mConnection has been established successfully[39m
