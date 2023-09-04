@@ -9,6 +9,14 @@ function errorMiddleware(err: Exception, req: Request, res: Response, next: Next
 
     logger.info(`[${req.method}] ${req.path} >> StatusCode:: ${statusCode}, message:: ${message}`);
 
+    if (process.env.NODE_ENV === "development") {
+      if (err.name === "BadRequestException") {
+        const parsedMessage = JSON.parse(message);
+        return res.status(statusCode).json({ statusCode, name, ...parsedMessage, stack: err.stack });
+      }
+      return res.status(statusCode).json({ statusCode, name, message, stack: err.stack });
+    }
+
     if (err.name === "BadRequestException") {
       const parsedMessage = JSON.parse(message);
       return res.status(statusCode).json({ statusCode, name, ...parsedMessage });

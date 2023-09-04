@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import AuthService from "@services/auth.service";
-import ApiResponseFormatter from "@utils/apiResponseFormatter";
 import { POST_links } from "@utils/responseLink";
 import { ICustomer } from "@interfaces/customers.interface";
 import { SignDto, VerifyOtpDto } from "@dtos/auth.dto";
 import { IRequest } from "@interfaces/auth.interface";
 import { CustomerDto } from "@dtos/customers.dto";
+import AuthService from "@services/auth.service";
+import ApiResponseFormatter from "@utils/apiResponseFormatter";
 
-export class AuthController {
+export default class AuthController {
   public async signup(req: Request, res: Response, next: NextFunction) {
     try {
       const customerData = req.body as CustomerDto;
@@ -19,12 +19,19 @@ export class AuthController {
     }
   }
 
-  public async login(req: Request, res: Response, next: NextFunction) {
+  public async signin(req: Request, res: Response, next: NextFunction) {
     try {
       const payload: SignDto = req.body;
       const { customer, cookie } = await AuthService.signin(payload);
       const apiResponseFormatter = new ApiResponseFormatter(customer);
       res.setHeader("Set-Cookie", [cookie]);
+      res.cookie("Authorization", cookie, {
+        expires: new Date(Date.now() + 60 * 60 * 1000), // 1hr
+        secure: true,
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/", // all routes
+      });
       return res.status(200).json(apiResponseFormatter.format());
     } catch (error) {
       return next(error);
@@ -37,6 +44,7 @@ export class AuthController {
       await AuthService.signout(customer);
       res.setHeader("Set-Cookie", ["Authorization=; Max-Age=0"]);
       res.setHeader("Authorization", "");
+      res.cookie("Authorization", "");
       return res.status(200).json({ message: "Logout Successfully" });
     } catch (error) {
       return next(error);

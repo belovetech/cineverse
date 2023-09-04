@@ -2,6 +2,7 @@ import App from "@app";
 import expressListEndpoints from "express-list-endpoints";
 import { logger } from "@cineverse/libs";
 
+// TODO: move to the packages
 interface EndpointAttributes {
   methods: string[];
   path: string;

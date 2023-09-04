@@ -14,8 +14,4 @@ export default class HealthCheckRoute implements IRoute {
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.healthcheck.ping);
   }
-
-  public getPaths() {
-    return [{ method: "GET", path: `${this.path}`, description: "Ping the server" }];
-  }
 }

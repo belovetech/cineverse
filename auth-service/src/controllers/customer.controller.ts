@@ -4,7 +4,7 @@ import ApiResponseFormatter from "@utils/apiResponseFormatter";
 import { GET_links, UPDATE_links, POST_links } from "@utils/responseLink";
 import { CustomerDto } from "@dtos/customers.dto";
 
-export class CustomerController {
+export default class CustomerController {
   public async createCustomer(req: Request, res: Response, next: NextFunction) {
     try {
       const customerData = req.body as CustomerDto;
