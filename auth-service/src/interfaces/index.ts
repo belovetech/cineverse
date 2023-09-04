@@ -1,4 +1,3 @@
-export { IPathsArray, IPaths } from "./routes.interface";
 export { default as IRoute } from "./routes.interface";
 export { ICustomer, CustomerModel } from "./customers.interface";
 export { IRequest } from "./auth.interface";
