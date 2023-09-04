@@ -232,6 +232,9 @@ importers:
 
   packages/shared-libs:
     dependencies:
+      jsonwebtoken:
+        specifier: ^9.0.1
+        version: 9.0.1
       sequelize-typescript:
         specifier: ^2.1.5
         version: 2.1.5(@types/node@20.5.6)(@types/validator@13.11.1)(reflect-metadata@0.1.13)(sequelize@6.32.1)
