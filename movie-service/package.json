@@ -20,8 +20,8 @@
   "homepage": "https://github.com/belovetech/CineVerse/tree/main#readme",
   "scripts": {
     "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
-    "dev": "cross-env NODE_ENV=development nodemon",
-    "test:server": "cross-env NODE_ENV=test nodemon",
+    "dev": "doppler run cross-env NODE_ENV=development nodemon",
+    "test:server": "doppler run cross-env NODE_ENV=test nodemon",
     "build": "tsc --incremental",
     "test": "mocha -r ts-node/register  --extension ts --timeout 5000 '__tests__/**/*.ts'",
     "lint": "npm run prettier:check && npm run eslint",
