@@ -34,6 +34,7 @@
     "@vitest/ui": "^0.34.3",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
+    "express-list-endpoints": "^6.0.0",
     "prettier": "^2.4.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2",
