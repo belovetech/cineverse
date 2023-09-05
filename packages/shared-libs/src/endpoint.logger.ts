@@ -44,11 +44,6 @@ export default class EndpointLogger {
         );
 
         const leftSpaces = this.calaculateRightSpaces(route.path);
-        console.log(
-          `│  ${route.methods.join(',')}${rightSpaces}  |\t${this.baseUrl}${
-            route.path
-          }${leftSpaces}     │`.length
-        );
 
         logger.info(
           `│  ${route.methods.join(',')}${leftSpaces}  |\t${this.baseUrl}${
@@ -59,9 +54,6 @@ export default class EndpointLogger {
     });
     logger.info(
       '└───────────────────────────────────────────────────────────────┘'
-    );
-    console.log(
-      '└───────────────────────────────────────────────────────────────┘'.length
     );
   }
 
@@ -125,3 +117,5 @@ export default class EndpointLogger {
     return leftSpaces;
   }
 }
+
+
