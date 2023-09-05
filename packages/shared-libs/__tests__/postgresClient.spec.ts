@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest';
 import { PostgresClient, DB } from '../src/index';
-import { User } from './postgresSetup';
+import { User } from './postgres.setup';
 
 describe.sequential('#postgresClient', () => {
   let db: DB;
