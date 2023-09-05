@@ -22,10 +22,9 @@ export default class AuthController {
   public async signin(req: Request, res: Response, next: NextFunction) {
     try {
       const payload: SignDto = req.body;
-      const { customer, cookie } = await AuthService.signin(payload);
+      const { customer, token } = await AuthService.signin(payload);
       const apiResponseFormatter = new ApiResponseFormatter(customer);
-      res.setHeader("Set-Cookie", [cookie]);
-      res.cookie("Authorization", cookie, {
+      res.cookie("Authorization", token, {
         expires: new Date(Date.now() + 60 * 60 * 1000), // 1hr
         secure: true,
         httpOnly: true,
@@ -38,14 +37,12 @@ export default class AuthController {
     }
   }
 
-  public async logout(req: IRequest, res: Response, next: NextFunction) {
+  public async signout(req: IRequest, res: Response, next: NextFunction) {
     try {
       const customer = req.customer as CustomerDto;
       await AuthService.signout(customer);
-      res.setHeader("Set-Cookie", ["Authorization=; Max-Age=0"]);
-      res.setHeader("Authorization", "");
       res.cookie("Authorization", "");
-      return res.status(200).json({ message: "Logout Successfully" });
+      return res.status(200).json({ message: "Signout Successfully" });
     } catch (error) {
       return next(error);
     }

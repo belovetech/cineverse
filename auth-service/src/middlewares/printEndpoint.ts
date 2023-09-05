@@ -9,7 +9,7 @@ interface EndpointAttributes {
   middleware: string[];
 }
 
-export default function loggerMiddleware(app: App): void {
+export default function printEndpoints(app: App): void {
   const routes = expressListEndpoints(app.getServer());
   logger.info("┌───────────────────────────────────────────────────────────────┐");
   logger.warn("│           Available Routes (HTTP Method | URL)  🚀            │");

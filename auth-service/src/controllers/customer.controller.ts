@@ -20,7 +20,7 @@ export default class CustomerController {
     try {
       const customers = await CustomerService.findAllCustomers();
       const formattedCustomers = customers.map(customer => new ApiResponseFormatter(customer).format());
-      return res.status(200).json(formattedCustomers);
+      return res.status(200).json({ results: formattedCustomers.length, data: formattedCustomers });
     } catch (error) {
       return next(error);
     }

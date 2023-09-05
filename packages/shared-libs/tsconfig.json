@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "composite": true,
     "declaration": true,
-    "declarationDir": "./types",
+    "declarationDir": "./dist/types",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
