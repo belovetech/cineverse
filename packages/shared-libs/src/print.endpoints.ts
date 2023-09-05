@@ -23,7 +23,7 @@ export function printEndpoints(app: Application): void {
   logger.info(
     '└───────────────────────────────────────────────────────────────┘'
   );
-  const baseUrl = process.env.BASE_URL.slice(0, -3) || 'http://localhost:8000';
+  const baseUrl = process.env.BASE_URL?.slice(0, -3) || 'http://localhost:8000';
 
   const methods2dArray = concatMethods(endpoints.slice(0, -1));
   const [longestMethods, len] = longestLength(methods2dArray);
