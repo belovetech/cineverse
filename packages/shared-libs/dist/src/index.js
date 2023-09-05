@@ -17,7 +17,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = exports.EndpointLogger = exports.verifyToken = exports.generateToken = exports.RedisClient = exports.PostgresClient = exports.Validator = void 0;
+exports.logger = exports.printEndpoints = exports.verifyToken = exports.generateToken = exports.RedisClient = exports.PostgresClient = exports.Validator = void 0;
 const logger_1 = __importDefault(require("./logger"));
 __exportStar(require("./exceptions"), exports);
 var validator_1 = require("./validator");
@@ -29,7 +29,7 @@ Object.defineProperty(exports, "RedisClient", { enumerable: true, get: function 
 var authentication_1 = require("./authentication");
 Object.defineProperty(exports, "generateToken", { enumerable: true, get: function () { return authentication_1.generateToken; } });
 Object.defineProperty(exports, "verifyToken", { enumerable: true, get: function () { return authentication_1.verifyToken; } });
-var endpoint_logger_1 = require("./endpoint.logger");
-Object.defineProperty(exports, "EndpointLogger", { enumerable: true, get: function () { return __importDefault(endpoint_logger_1).default; } });
+var print_endpoints_1 = require("./print.endpoints");
+Object.defineProperty(exports, "printEndpoints", { enumerable: true, get: function () { return print_endpoints_1.printEndpoints; } });
 exports.logger = new logger_1.default().createLogger();
 //# sourceMappingURL=index.js.map

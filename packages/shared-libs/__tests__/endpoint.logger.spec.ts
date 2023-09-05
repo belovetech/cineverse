@@ -1,6 +1,14 @@
 import express, { Application } from 'express';
-import { describe, expect } from 'vitest';
-import { EndpointLogger } from '../src/index';
+import { describe, expect, vi } from 'vitest';
+import { logger } from '../src/index';
+import {
+  getEndPoints,
+  concatMethods,
+  longestLength,
+  getlongestPath,
+  EndpointAttributes,
+  printEndpoints,
+} from '../src/print.endpoints';
 
 describe('EndpointLogger', () => {
   const app: Application = express();
@@ -17,34 +25,57 @@ describe('EndpointLogger', () => {
     res.send('test');
   });
 
-  app.listen(8888, () => console.log('Server is running...'));
+  app.listen(8888, () => console.log('Server is running... 8888'));
+  const endpoints = getEndPoints(app);
 
-  
-  const endpointLogger = new EndpointLogger(app);
-  const endpoints = endpointLogger.endpoints;
-
-  const methods2dArray = endpointLogger.concatMethods(endpoints);
-  const stringLengthAndItemLength =
-    endpointLogger.longestMethodStringLengthAndItemLength(methods2dArray);
-
-  describe('EndpointLogger methods', () => {
-    it('#concatMethods', () => {
-      expect(methods2dArray).toStrictEqual([['GET', 'POST'], ['POST']]);
-    });
-
-    it('#longestMethodStringLengthAndItemLength', () => {
-      expect(stringLengthAndItemLength).toStrictEqual([7, 2]);
-    });
-
-    it('#longPath', () => {
-      expect(endpointLogger.getlongestPath()).toBe(8);
+  describe('#getEndPoints', () => {
+    it('should return an array of endpoints', () => {
+      expect(endpoints).toEqual([
+        {
+          path: '/test',
+          methods: ['GET', 'POST'],
+          middlewares: ['anonymous'],
+        },
+        {
+          path: '/test/id',
+          methods: ['POST'],
+          middlewares: ['anonymous'],
+        },
+      ]);
     });
   });
 
-  describe('EndpointLogger log', () => {
-    it('should log the endpoints', () => {
-      expect(endpoints[0].path).toBe('/test');
-      expect(endpoints[0].methods[0]).toBe('GET');
+  describe('#concatMethods', () => {
+    it('should return a 2d array of methods', () => {
+      const methods = concatMethods(endpoints as EndpointAttributes[]);
+      expect(methods).toStrictEqual([['GET', 'POST'], ['POST']]);
+    });
+  });
+
+  describe('#longestLength', () => {
+    it('should return the longest length of methods', () => {
+      const methods = concatMethods(endpoints as EndpointAttributes[]);
+      const [longestmethodString, itemNumber] = longestLength(methods);
+      expect(longestmethodString).toEqual(7);
+      expect(itemNumber).toEqual(2);
+    });
+  });
+
+  describe('#getlongestPath', () => {
+    it('should return the longest length of path', () => {
+      const longestPath = getlongestPath(endpoints);
+      expect(longestPath).toEqual(8);
+    });
+  });
+
+  describe('#printEndpoints', () => {
+    const infoSpy = vi.spyOn(logger, 'info');
+    const warnSpy = vi.spyOn(logger, 'warn');
+
+    it('should print the endpoints', () => {
+      printEndpoints(app);
+      expect(infoSpy).toHaveBeenCalledTimes(5);
+      expect(warnSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

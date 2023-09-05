@@ -45,7 +45,6 @@ describe.sequential('#postgresClient', () => {
   });
 
   afterAll(async () => {
-    console.log('afterAll');
     await User.destroy({ where: {} });
   });
 });
