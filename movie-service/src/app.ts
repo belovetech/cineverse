@@ -58,4 +58,8 @@ export default class App {
   private initializeGlobalErrorHandler() {
     this.app.use(errorMiddleware);
   }
+
+  public getServer(): Application {
+    return this.app;
+  }
 }

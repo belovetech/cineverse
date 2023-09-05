@@ -61,6 +61,7 @@
     "chai": "^4.3.7",
     "chai-http": "^4.4.0",
     "eslint": "^8.48.0",
+    "express-list-endpoints": "^6.0.0",
     "libs": "link:@types/@cineverse/libs",
     "mocha": "^10.2.0",
     "sequelize": "^6.32.1",
