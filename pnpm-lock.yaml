@@ -217,6 +217,9 @@ importers:
       eslint:
         specifier: ^8.48.0
         version: 8.48.0
+      express-list-endpoints:
+        specifier: ^6.0.0
+        version: 6.0.0
       libs:
         specifier: link:@types/@cineverse/libs
         version: link:@types/@cineverse/libs
