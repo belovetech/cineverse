@@ -8,10 +8,6 @@ export interface SignDto {
   readonly password: string;
 }
 
-export interface TokenDto {
-  customerId: string;
-}
-
 export interface SignupDto {
   customerId: string;
   firstName: string;

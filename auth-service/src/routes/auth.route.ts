@@ -15,7 +15,7 @@ export default class AuthRoute implements IRoute {
   private initializeRouter() {
     this.router.post(`${this.path}/signup`, this.authController.signup);
     this.router.post(`${this.path}/signin`, loginThrottleMiddleware, this.authController.signin);
-    this.router.post(`${this.path}/logout`, authMiddleware, this.authController.logout);
+    this.router.post(`${this.path}/signout`, authMiddleware, this.authController.signout);
     this.router.post(`${this.path}/verify-otp`, this.authController.verifyOtp);
     this.router.post(`${this.path}/send-otp`, this.authController.sendOtp);
   }

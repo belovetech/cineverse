@@ -1,12 +1,11 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import Customer from "@models/customers.model";
 import redisClient from "@datasource/redis";
 import config from "@config";
-import { AuthenticationException, BadRequestException, ConflictException, NotFoundException } from "@cineverse/libs";
+import { AuthenticationException, BadRequestException, ConflictException, NotFoundException, generateToken } from "@cineverse/libs";
 import { CustomerDataValidator, SignValidator } from "@utils/validator";
 import { ICustomer } from "@interfaces";
-import { SignupDto, SignDto, TokenDto, VerifyOtpDto, CustomerDto } from "@dtos";
+import { SignupDto, SignDto, VerifyOtpDto, CustomerDto } from "@dtos";
 
 export default class AuthService {
   public static async signup(payload: SignupDto): Promise<ICustomer> {
@@ -21,7 +20,7 @@ export default class AuthService {
     return customer;
   }
 
-  public static async signin(payload: SignDto): Promise<{ cookie: string; customer: ICustomer }> {
+  public static async signin(payload: SignDto): Promise<{ token: string; customer: ICustomer }> {
     new SignValidator(payload).validate();
     const customer: ICustomer = await Customer.findOne({ email: payload.email }).select("+password");
     if (!customer) throw new NotFoundException();
@@ -29,12 +28,11 @@ export default class AuthService {
     const isCorrectPassword = await bcrypt.compare(payload.password, customer.password);
     if (!isCorrectPassword) throw new AuthenticationException("Please check your email and password");
 
-    const token = await this.generateToken(customer);
-    const cookie = this.setCookies(token);
+    const token = generateToken({ customerId: customer.customerId }, config.secret);
     const key = `x-token_${customer.customerId}`;
     await redisClient.del(key);
     await redisClient.set(key, token, 60 * 60); // 1hr
-    return { cookie, customer };
+    return { token, customer };
   }
 
   public static async signout(payload: CustomerDto): Promise<ICustomer> {
@@ -76,15 +74,5 @@ export default class AuthService {
     const min = 100000;
     const max = 999999;
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  private static async generateToken(payload: ICustomer): Promise<string> {
-    const payloadStoredInToken: TokenDto = { customerId: payload.customerId };
-    const token = await jwt.sign(payloadStoredInToken, config.secret, { expiresIn: "1h" });
-    return token;
-  }
-
-  private static setCookies(token: string): string {
-    return `Authorization=${token}; Secure; HttpOnly; SameSite=strict; Max-Age=${60 * 60}`;
   }
 }

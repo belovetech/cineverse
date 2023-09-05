@@ -1,5 +1,5 @@
 import App from "@app";
-import { loggerMiddleware } from "@middlewares";
+import { printEndpoints } from "@middlewares/index";
 import { authRoute, customerRoute, healthcheckRoute } from "@routes";
 
 // Initialize the app with routes
@@ -11,6 +11,6 @@ app.listen();
 // Print all the available endpoints
 (() => {
   setTimeout(() => {
-    loggerMiddleware(app);
+    printEndpoints(app);
   }, 1000);
 })();
