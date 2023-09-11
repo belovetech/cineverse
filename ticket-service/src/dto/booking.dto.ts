@@ -1,40 +1,37 @@
+import { BookingStatus } from '@models/booking';
 import {
   IsOptional,
   IsString,
   IsEnum,
   IsDecimal,
-  IsDateString,
   IsUUID,
 } from 'class-validator';
-import { BookingStatus } from '@models/booking';
 
 export class CreateBookingDto {
   @IsString()
   @IsOptional()
-  readonly bookingId: string;
+  bookingId: string;
 
   @IsString()
-  readonly customerId: string;
+  customerId: string;
 
   @IsUUID()
-  readonly movieId: string;
+  movieId: string;
 
   @IsUUID()
-  readonly showtimeId: string;
+  showtimeId: string;
 
   @IsString()
-  readonly seatNumber: string;
-
-  @IsDateString()
-  readonly bookingDate: Date;
+  seatNumber: string;
 
   @IsUUID()
   @IsOptional()
-  readonly paymentId: string;
+  paymentId: string;
 
   @IsEnum(BookingStatus)
-  readonly bookingStatus: BookingStatus;
+  @IsOptional()
+  bookingStatus: BookingStatus;
 
   @IsDecimal()
-  readonly totalAmount: number;
+  totalAmount: number;
 }

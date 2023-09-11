@@ -26,7 +26,7 @@ export class Booking extends Model<Booking> {
   @Column({ type: DataType.UUID, allowNull: false })
   bookingId: string;
 
-  @Column({ type: DataType.UUID })
+  @Column({ type: DataType.STRING })
   customerId: string;
 
   @Column({ type: DataType.UUID })
@@ -35,10 +35,10 @@ export class Booking extends Model<Booking> {
   @Column({ type: DataType.UUID })
   showtimeId: string;
 
-  @Column({ type: DataType.DATE })
-  bookingDate: Date;
-
-  @Column(DataType.ENUM({ values: Object.values(BookingStatus) }))
+  @Column({
+    type: DataType.ENUM({ values: Object.values(BookingStatus) }),
+    defaultValue: BookingStatus.PENDING,
+  })
   bookingStatus: string;
 
   @Column({ type: DataType.DECIMAL(10, 2) })

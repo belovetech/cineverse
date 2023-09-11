@@ -1,5 +1,5 @@
 import App from '@app';
-import { healthcheckRoute } from '@routes';
+import { healthcheckRoute, bookingRoute } from '@routes';
 
-const app = new App([healthcheckRoute]);
+const app = new App([healthcheckRoute, bookingRoute]);
 app.listen();
