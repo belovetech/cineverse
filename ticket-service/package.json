@@ -2,11 +2,10 @@
   "name": "ticket-service",
   "version": "1.0.0",
   "main": "server.ts",
-  "description": "cineverse ticket service for booking and payment of tickets",
+  "description": "cineverse ticket service for booking of tickets",
   "keywords": [
     "ticket",
-    "booking",
-    "payment"
+    "booking"
   ],
   "author": "Abeeb Raheem",
   "license": "ISC",
@@ -41,6 +40,7 @@
   },
   "dependencies": {
     "@cineverse/libs": "workspace:*",
+    "class-validator": "^0.14.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
