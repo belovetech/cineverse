@@ -7,7 +7,7 @@ export interface QRCodeData {
   bookingId: string;
   seatNumber: string;
   customerId?: string;
-  ticketId?: number;
+  qrcodeId: string;
   price: number;
 }
 
@@ -23,7 +23,7 @@ export async function generateQRCode(ticketData: QRCodeData): Promise<string> {
       fs.mkdirSync(absolutePath);
     }
 
-    const fileName = `${ticketData.bookingId.slice(0, 3)}-${
+    const fileName = `${ticketData.qrcodeId.slice(0, 3)}-${
       ticketData.seatNumber
     }`;
     const filePath = `${absolutePath}/${fileName}-ticket-qrcode.png`;
