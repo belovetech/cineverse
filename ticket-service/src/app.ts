@@ -1,11 +1,12 @@
 import express, { Application } from 'express';
+import { logger } from '@cineverse/libs';
+import { IRoute } from '@interfaces/route';
+import { UnknownEndpoint } from '@controllers/unknown.endpoint';
+import config from '@config';
+import errorMiddleware from '@middlewares/error.middlewares';
+import database from '@datasource/database';
 // import swaggerJSDOC from 'swagger-jsdoc';
 // import swaggerUi from 'swagger-ui-express';
-import config from '@config';
-import { logger } from '@cineverse/libs';
-import IRoute from '@interfaces/route';
-import database from '@datasource/database';
-import errorMiddleware from '@middlewares/error.middlewares';
 
 export default class App {
   private app: Application;
@@ -19,7 +20,7 @@ export default class App {
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     // this.initializeSwaggerUi();
-    // this.handleUnknownEndpoint();
+    this.handleUnknownEndpoint();
     this.initializeGlobalErrorHandler();
   }
 
@@ -49,9 +50,9 @@ export default class App {
   //     this.app.use('/v1/docs', swaggerUi.serve, swaggerUi.setup(specs));
   //   }
 
-  //   private async handleUnknownEndpoint() {
-  //     this.app.all('*', UnknownEndpoint.handler);
-  //   }
+  private async handleUnknownEndpoint() {
+    this.app.all('*', UnknownEndpoint.handler);
+  }
 
   private initializeGlobalErrorHandler() {
     this.app.use(errorMiddleware);

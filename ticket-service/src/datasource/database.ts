@@ -1,9 +1,9 @@
 import config from '@config';
 import { PostgresClient, DB } from '@cineverse/libs';
-import { Booking, Ticket, Payment } from '@models';
+import { Booking, Ticket } from '@models';
 
 let database;
-const models = [Booking, Ticket, Payment];
+const models = [Booking, Ticket];
 if (config.node_env === 'test') {
   database = new PostgresClient(config.test as DB, models);
 } else {

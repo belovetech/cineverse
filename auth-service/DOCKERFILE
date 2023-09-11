@@ -1,0 +1,19 @@
+ARG NODE_VERSION=17.14.0
+
+FROM node:${NODE_VERSION}-alpine
+
+RUN mkdir -p /opt/app
+
+WORKDIR /opt/app
+
+COPY ./package.json .
+
+ENV NODE_ENV=development
+
+RUN pnpm install
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["pnpm", "dev"]

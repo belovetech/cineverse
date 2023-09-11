@@ -1,30 +1,33 @@
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import {
   Column,
   Table,
   Model,
   DataType,
   CreatedAt,
-  DeletedAt,
-  BeforeCreate,
+  ForeignKey,
+  BelongsTo,
+  Default,
+  PrimaryKey,
 } from 'sequelize-typescript';
+import { Booking } from './booking';
+
+export enum TicketType {
+  ADULT = 'ADULT',
+  CHILD = 'CHILD',
+  SENIOR = 'SENIOR',
+}
 
 @Table
 export class Ticket extends Model<Ticket> {
-  @Column({ primaryKey: true, type: DataType.UUID })
+  @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column({ type: DataType.UUID, allowNull: false })
   ticketId!: string;
 
-  @Column({ type: DataType.STRING })
-  customerId!: string;
-
-  @Column({ type: DataType.STRING })
+  @ForeignKey(() => Booking)
+  @Column({ type: DataType.UUID })
   bookingId!: string;
-
-  @Column({ type: DataType.STRING })
-  movieId!: string;
-
-  @Column({ type: DataType.STRING })
-  showtimeId!: string;
 
   @Column({ type: DataType.STRING })
   seatNumber!: string;
@@ -32,22 +35,24 @@ export class Ticket extends Model<Ticket> {
   @Column({ type: DataType.STRING })
   QRCode!: string;
 
-  @Column({ type: DataType.STRING })
+  @Column({
+    defaultValue: TicketType.ADULT,
+    type: DataType.ENUM(...Object.values(TicketType)),
+  })
   ticketType!: string;
 
-  @Column({ type: DataType.STRING })
-  price!: string;
+  @Column({ type: DataType.DECIMAL(10, 2) })
+  price!: number;
 
   @CreatedAt
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, defaultValue: DataType.NOW })
   createdAt!: Date;
 
-  @DeletedAt
-  @Column({ type: DataType.DATE })
-  deletedAt!: Date;
+  @BelongsTo(() => Booking)
+  booking: Booking;
 
-  @BeforeCreate
-  static addUUID(instance: Ticket) {
-    instance.ticketId = uuidv4().replace(/-/g, '');
-  }
+  // @BeforeCreate
+  // static addUUID(instance: Ticket) {
+  //   instance.ticketId = uuidv4().replace(/-/g, '');
+  // }
 }
