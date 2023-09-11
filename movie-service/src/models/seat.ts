@@ -16,6 +16,7 @@ export enum SeatType {
   STANDARD = 'standard',
   RECLINER = 'recliner',
 }
+// TODO: update seatType to standard, vip, premium
 
 @DefaultScope(() => ({
   attributes: { exclude: ['createdAt', 'updatedAt'] },

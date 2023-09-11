@@ -1,11 +1,11 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
 import { BadRequestException } from '@cineverse/libs';
-import { CreateBookingDto, CreateTicketDto } from '@dto';
-import { ticketService } from '@services';
+// import { CreateBookingDto, CreateTicketDto } from '@dto';
+// import { ticketService } from '@services';
 import { generateQRCode } from '@utils/generateQRcode';
-import { v4 as uuidv4 } from 'uuid';
 
 export interface Seat {
   seatId: string;
@@ -17,6 +17,8 @@ export interface Seat {
 
 export class BookingService {
   public async create(booking: CreateBookingDto): Promise<Booking> {
+    // const t = database.transaction();
+
     const validationErrors = await validateDto(booking, CreateBookingDto);
 
     if (validationErrors.length > 0) {
@@ -35,30 +37,29 @@ export class BookingService {
     // TODO: update seat status to booked by making an update request to seat-service
 
     // TODO: create ticket
-    this.createTicket(booking.seats);
+    // this.createTicket(booked.bookingId, booking.seats);
 
     // TODO: make payment
 
     // TODO: create booking
-
     return await bookingRepository.create(booking);
   }
 
-  private async createTicket(seats: Seat[]) {
-    for (const seat of seats) {
-      await ticketService.create({
-        bookingId: seat.seatId,
-        seatNumber: seat.seatNumber,
-        price: seat.price,
-        QRCode: await this.generateQRCode(seat),
-      } as CreateTicketDto);
-    }
-  }
+  // private async createTicket(bookingId: string, seats: Seat[]) {
+  //   for (const seat of seats) {
+  //     await ticketService.create({
+  //       bookingId: bookingId,
+  //       seatNumber: seat.seatNumber,
+  //       price: seat.price,
+  //       QRCode: await this.generateQRCode(seat),
+  //     } as CreateTicketDto);
+  //   }
+  // }
 
   private async generateQRCode(seat: Seat): Promise<string> {
     return await generateQRCode({
       qrcodeId: uuidv4(),
-      bookingId: seat.seatId,
+      seatId: seat.seatId,
       seatNumber: seat.seatNumber,
       price: seat.price,
     });

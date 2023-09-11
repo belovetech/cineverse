@@ -4,7 +4,7 @@ import * as path from 'path';
 import { logger } from '@cineverse/libs';
 
 export interface QRCodeData {
-  bookingId: string;
+  seatId: string;
   seatNumber: string;
   customerId?: string;
   qrcodeId: string;
