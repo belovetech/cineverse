@@ -5,7 +5,7 @@ interface ValidatorResponse {
 }
 
 export const validateDto = async (
-  model: any,
+  model: unknown,
   dto: any,
 ): Promise<ValidatorResponse[] | []> => {
   const dtoInstance = new dto();
