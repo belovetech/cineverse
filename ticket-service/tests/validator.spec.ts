@@ -1,10 +1,8 @@
-import { beforeAll, describe, expect } from 'vitest';
+import { describe, expect } from 'vitest';
 import { validateDto } from '../src/utils/validator';
 import { TestDto } from '../src/utils/validator.setup';
 
 describe('validator', () => {
-  beforeAll(() => {});
-
   it('should validate dto', async () => {
     const model = {
       bookingId: 'd4f9f8f7-6d9a-4a63-88f9-6e66d59b19d0',
