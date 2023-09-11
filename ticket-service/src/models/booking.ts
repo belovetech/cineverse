@@ -1,7 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Ticket } from './ticket';
+import { Seat } from '@services/booking.service';
 import {
-  BeforeCreate,
   Column,
   UpdatedAt,
   DataType,
@@ -15,6 +14,7 @@ import {
 
 export enum BookingStatus {
   PENDING = 'PENDING',
+  'IN PROGRESS' = 'IN PROGRESS',
   COMPLETED = 'COMPLETED',
   CANCELLED = 'CANCELLED',
 }
@@ -58,13 +58,6 @@ export class Booking extends Model<Booking> {
   @HasMany(() => Ticket)
   tickets: Ticket[];
 
-  @BeforeCreate
-  static addUUID(instance: Booking) {
-    instance.bookingId = uuidv4().replace(/-/g, '');
-  }
-
-  // @BeforeCreate
-  // static addBookingStatus(instance: Booking) {
-  //   instance.bookingStatus = BookingStatus.PENDING;
-  // }
+  @Column({ type: DataType.JSONB, allowNull: false, defaultValue: [] })
+  seats: Seat[];
 }

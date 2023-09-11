@@ -50,9 +50,4 @@ export class Ticket extends Model<Ticket> {
 
   @BelongsTo(() => Booking)
   booking: Booking;
-
-  // @BeforeCreate
-  // static addUUID(instance: Ticket) {
-  //   instance.ticketId = uuidv4().replace(/-/g, '');
-  // }
 }

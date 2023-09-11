@@ -1,10 +1,13 @@
 import { BookingStatus } from '@models/booking';
+import { Seat } from '@services/booking.service';
 import {
   IsOptional,
   IsString,
   IsEnum,
   IsDecimal,
   IsUUID,
+  IsAlphanumeric,
+  IsArray,
 } from 'class-validator';
 
 export class CreateBookingDto {
@@ -21,7 +24,7 @@ export class CreateBookingDto {
   @IsUUID()
   showtimeId: string;
 
-  @IsString()
+  @IsAlphanumeric()
   seatNumber: string;
 
   @IsUUID()
@@ -34,4 +37,7 @@ export class CreateBookingDto {
 
   @IsDecimal()
   totalAmount: number;
+
+  @IsArray()
+  seats: Seat[];
 }
