@@ -39,6 +39,6 @@
     }
   },
   "include": ["src/**/*.ts", ".env"],
-  "exclude": ["node_modules/**/*", ".vscode/**/*", "__tests__"],
+  "exclude": ["node_modules/**/*", ".vscode/**/*", "tests"],
   "ts-node": { "require": ["tsconfig-paths/register"] }
 }
