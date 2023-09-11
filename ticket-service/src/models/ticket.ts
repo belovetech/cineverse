@@ -5,7 +5,6 @@ import {
   Model,
   DataType,
   CreatedAt,
-  DeletedAt,
   ForeignKey,
   BelongsTo,
   Default,
