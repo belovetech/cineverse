@@ -44,29 +44,16 @@ export class BookingService {
     return await bookingRepository.create(booking);
   }
 
-  private checkSeatAvailability(seat: Seat): boolean {
-    return seat.status === 'available';
+  calculateTotalAmount(seats: Seat[]): number {
+    return seats.reduce((total, seat) => total + seat.price, 0);
   }
 
-  private getUnavailableSeats(seats: Seat[]): {
+  public getUnavailableSeats(seats: Seat[]): {
     message: string;
     seats: Seat[];
   } {
-    const unavailableSeats = [];
-    seats.forEach((seat) => {
-      if (!this.checkSeatAvailability(seat)) {
-        unavailableSeats.push(seat);
-      }
-    });
-    const message = 'seats are not available, kindly choose another seat';
+    const unavailableSeats = seats.filter((seat) => seat.status === 'booked');
+    const message = 'Seats are not available, kindly choose another seat';
     return { message, seats: unavailableSeats };
-  }
-
-  private calculateTotalAmount(seats: Seat[]): number {
-    let total = 0;
-    seats.forEach((seat) => {
-      total += seat.price;
-    });
-    return total;
   }
 }
