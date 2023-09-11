@@ -1,4 +1,3 @@
-// import { v4 as uuidv4 } from 'uuid';
 import {
   Column,
   Table,
@@ -27,7 +26,10 @@ export class Ticket extends Model<Ticket> {
 
   @ForeignKey(() => Booking)
   @Column({ type: DataType.UUID })
-  bookingId!: string;
+  bookingId: string;
+
+  @BelongsTo(() => Booking)
+  booking: Booking;
 
   @Column({ type: DataType.STRING })
   seatNumber!: string;
@@ -47,12 +49,4 @@ export class Ticket extends Model<Ticket> {
   @CreatedAt
   @Column({ type: DataType.DATE, defaultValue: DataType.NOW })
   createdAt!: Date;
-
-  @BelongsTo(() => Booking)
-  booking: Booking;
-
-  // @BeforeCreate
-  // static addUUID(instance: Ticket) {
-  //   instance.ticketId = uuidv4().replace(/-/g, '');
-  // }
 }
