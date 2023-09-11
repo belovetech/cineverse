@@ -1,8 +1,11 @@
-import { bookingRepository } from '@repositories';
-import { CreateBookingDto } from '@dto';
 import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
+import { bookingRepository } from '@repositories';
 import { BadRequestException } from '@cineverse/libs';
+import { CreateBookingDto, CreateTicketDto } from '@dto';
+import { ticketService } from '@services';
+import { generateQRCode } from '@utils/generateQRcode';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Seat {
   seatId: string;
@@ -22,10 +25,6 @@ export class BookingService {
 
     //TODO: take customerId from token
 
-    /**
-     * [  {"seatId": "aaaa", "seatNumber": "A2", "seatType": "regular", "price": 10, "status": "available"},"},
-     */
-
     const unavailable = this.getUnavailableSeats(booking.seats);
     if (unavailable.seats.length > 0) {
       throw new BadRequestException(unavailable);
@@ -36,6 +35,7 @@ export class BookingService {
     // TODO: update seat status to booked by making an update request to seat-service
 
     // TODO: create ticket
+    this.createTicket(booking.seats);
 
     // TODO: make payment
 
@@ -44,11 +44,31 @@ export class BookingService {
     return await bookingRepository.create(booking);
   }
 
-  calculateTotalAmount(seats: Seat[]): number {
+  private async createTicket(seats: Seat[]) {
+    for (const seat of seats) {
+      await ticketService.create({
+        bookingId: seat.seatId,
+        seatNumber: seat.seatNumber,
+        price: seat.price,
+        QRCode: await this.generateQRCode(seat),
+      } as CreateTicketDto);
+    }
+  }
+
+  private async generateQRCode(seat: Seat): Promise<string> {
+    return await generateQRCode({
+      qrcodeId: uuidv4(),
+      bookingId: seat.seatId,
+      seatNumber: seat.seatNumber,
+      price: seat.price,
+    });
+  }
+
+  private calculateTotalAmount(seats: Seat[]): number {
     return seats.reduce((total, seat) => total + seat.price, 0);
   }
 
-  public getUnavailableSeats(seats: Seat[]): {
+  private getUnavailableSeats(seats: Seat[]): {
     message: string;
     seats: Seat[];
   } {
