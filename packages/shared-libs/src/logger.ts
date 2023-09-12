@@ -1,9 +1,8 @@
-import { addColors, createLogger, transports, format } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
+import * as winston from 'winston';
 
-const { combine, timestamp, colorize, printf } = format;
+const { combine, timestamp, colorize, printf } = winston.format;
 
-export default class Logger {
+export class Logger {
   private colors = {
     error: 'red',
     warn: 'yellow',
@@ -23,41 +22,26 @@ export default class Logger {
   }
 
   private getTransports() {
-    const commonTransporOptions = {
-      datePattern: 'YYYY-MM-DD-HH',
-      zippedArchive: true,
-      maxSize: '50m',
-      maxFiles: '14d',
-    };
-    const transport1: DailyRotateFile = new DailyRotateFile({
-      level: 'info',
-      filename: 'logs/app-%DATE%.log',
-      auditFile: 'logs/app.json',
-      ...commonTransporOptions,
-    });
-
-    const transport2: DailyRotateFile = new DailyRotateFile({
-      level: 'error',
-      filename: 'logs/error-%DATE%.log',
-      auditFile: 'logs/error.json',
-      ...commonTransporOptions,
-    });
-
-    const transport3: DailyRotateFile = new DailyRotateFile({
-      filename: 'logs/other-%DATE%.log',
-      auditFile: 'logs/other.json',
-      ...commonTransporOptions,
-    });
-
-    return [new transports.Console(), transport1, transport2, transport3];
+    return [
+      new winston.transports.Console(),
+      new winston.transports.File({
+        filename: './logs/error.log',
+        level: 'error',
+      }),
+      new winston.transports.File({ filename: './logs/combined.log' }),
+    ];
   }
 
   public createLogger() {
-    addColors(this.colors);
-    return createLogger({
+    winston.addColors(this.colors);
+    return winston.createLogger({
       level: this.isDevelopment ? 'debug' : 'warn',
       format: this.logFormat(),
       transports: this.getTransports(),
     });
   }
 }
+
+const logger = new Logger().createLogger();
+
+export { logger };
