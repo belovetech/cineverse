@@ -5,9 +5,9 @@ import {
   DataType,
   CreatedAt,
   ForeignKey,
-  BelongsTo,
   Default,
   PrimaryKey,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Booking } from './booking';
 
