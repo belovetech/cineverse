@@ -3,8 +3,8 @@ import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
 import { BadRequestException } from '@cineverse/libs';
-// import { CreateBookingDto, CreateTicketDto } from '@dto';
-// import { ticketService } from '@services';
+import { CreateBookingDto, CreateTicketDto } from '@dto';
+import { ticketService } from '@services';
 import { generateQRCode } from '@utils/generateQRcode';
 
 export interface Seat {
@@ -17,8 +17,6 @@ export interface Seat {
 
 export class BookingService {
   public async create(booking: CreateBookingDto): Promise<Booking> {
-    // const t = database.transaction();
-
     const validationErrors = await validateDto(booking, CreateBookingDto);
 
     if (validationErrors.length > 0) {
@@ -45,16 +43,16 @@ export class BookingService {
     return await bookingRepository.create(booking);
   }
 
-  // private async createTicket(bookingId: string, seats: Seat[]) {
-  //   for (const seat of seats) {
-  //     await ticketService.create({
-  //       bookingId: bookingId,
-  //       seatNumber: seat.seatNumber,
-  //       price: seat.price,
-  //       QRCode: await this.generateQRCode(seat),
-  //     } as CreateTicketDto);
-  //   }
-  // }
+  private async createTicket(bookingId: string, seats: Seat[]) {
+    for (const seat of seats) {
+      await ticketService.create({
+        bookingId: bookingId,
+        seatNumber: seat.seatNumber,
+        price: seat.price,
+        QRCode: await this.generateQRCode(seat),
+      } as CreateTicketDto);
+    }
+  }
 
   private async generateQRCode(seat: Seat): Promise<string> {
     return await generateQRCode({
