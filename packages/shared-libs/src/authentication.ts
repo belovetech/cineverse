@@ -1,6 +1,10 @@
 import { sign, verify } from 'jsonwebtoken';
 
-export const generateToken = (payload: unknown, secretKey: string) => {
+interface ITokenPayload {
+  customerId: string;
+}
+
+export const generateToken = (payload: ITokenPayload, secretKey: string) => {
   return sign(payload, secretKey, { expiresIn: '1d' });
 };
 

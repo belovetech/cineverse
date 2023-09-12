@@ -1,18 +1,12 @@
-import expressListEndpoints from 'express-list-endpoints';
-import { Application } from 'express';
+import expressListEndpoints, { Endpoint } from 'express-list-endpoints';
+import { Express } from 'express';
 import { logger } from './index';
 
-export interface EndpointAttributes {
-  methods: string[];
-  path: string;
-  middleware: string[];
-}
-
-export const getEndPoints = (app: Application): EndpointAttributes[] => {
+export const getEndPoints = (app: Express): Endpoint[] => {
   return expressListEndpoints(app);
 };
 
-export function printEndpoints(app: Application): void {
+export function printEndpoints(app: Express): void {
   const endpoints = getEndPoints(app);
   logger.info(
     '┌───────────────────────────────────────────────────────────────┐'
@@ -49,7 +43,7 @@ export function printEndpoints(app: Application): void {
   );
 }
 
-export const concatMethods = (endpoints: EndpointAttributes[]): string[][] => {
+export const concatMethods = (endpoints: Endpoint[]): string[][] => {
   const methods2dArray: string[][] = [];
   endpoints.forEach((endpoint) => {
     methods2dArray.push(endpoint.methods);
@@ -68,7 +62,7 @@ export const longestLength = (methods: string[][]): [number, number] => {
   return [longest, len];
 };
 
-export const getlongestPath = (routes: EndpointAttributes[]): number => {
+export const getlongestPath = (routes: Endpoint[]): number => {
   return routes.reduce(
     (acc, curr) => (acc > curr.path.length ? acc : curr.path.length),
     0
