@@ -13,11 +13,13 @@ export interface QRCodeData {
 
 let qrCodeImagePath: string;
 
-export async function generateQRCode(ticketData: QRCodeData): Promise<string> {
+export async function generateQRCode(
+  ticketData: QRCodeData,
+): Promise<[string, string]> {
   try {
     const qrDataUrl = await QRCode.toDataURL(JSON.stringify(ticketData));
 
-    const relativePath = '../ticket-qrcode';
+    const relativePath = './src/ticket-qrcode';
     const absolutePath = path.resolve(relativePath);
     if (!fs.existsSync(absolutePath)) {
       fs.mkdirSync(absolutePath);
@@ -31,7 +33,7 @@ export async function generateQRCode(ticketData: QRCodeData): Promise<string> {
 
     await QRCode.toFile(qrCodeImagePath, JSON.stringify(ticketData));
 
-    return qrDataUrl;
+    return [qrDataUrl, qrCodeImagePath];
   } catch (error) {
     logger.error('Error generating QR code:', error);
     throw error;

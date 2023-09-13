@@ -6,6 +6,7 @@ import { BadRequestException } from '@cineverse/libs';
 
 export class TicketService {
   async create(ticket: CreateTicketDto): Promise<Ticket> {
+    console.log('ticket', ticket);
     const validationErrors = await validateDto(ticket, CreateTicketDto);
     if (validationErrors.length > 0) {
       throw new BadRequestException({ errors: validationErrors });
