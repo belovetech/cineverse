@@ -6,9 +6,6 @@ export class CreateTicketDto {
   @IsOptional()
   readonly tickeId: string;
 
-  @IsString()
-  readonly customerId: string;
-
   @IsUUID()
   readonly bookingId: string;
 

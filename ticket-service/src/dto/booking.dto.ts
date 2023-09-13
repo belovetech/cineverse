@@ -22,6 +22,9 @@ export class CreateBookingDto {
   movieId: string;
 
   @IsUUID()
+  theaterId: string;
+
+  @IsUUID()
   showtimeId: string;
 
   @IsAlphanumeric()
