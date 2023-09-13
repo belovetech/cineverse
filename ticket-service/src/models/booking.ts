@@ -33,6 +33,9 @@ export class Booking extends Model<Booking> {
   movieId: string;
 
   @Column({ type: DataType.UUID })
+  theaterId: string;
+
+  @Column({ type: DataType.UUID })
   showtimeId: string;
 
   @Column({

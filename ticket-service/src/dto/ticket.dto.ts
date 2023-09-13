@@ -1,22 +1,12 @@
-import { IsOptional, IsString, IsEnum, IsUUID } from 'class-validator';
-import { TicketType } from '@models/ticket';
+import { IsOptional, IsString, IsNumber, IsUUID } from 'class-validator';
 
 export class CreateTicketDto {
   @IsUUID()
   @IsOptional()
   readonly tickeId: string;
 
-  @IsString()
-  readonly customerId: string;
-
   @IsUUID()
   readonly bookingId: string;
-
-  @IsUUID()
-  readonly movieId: string;
-
-  @IsUUID()
-  readonly showtimeId: string;
 
   @IsString()
   readonly seatNumber: string;
@@ -25,9 +15,6 @@ export class CreateTicketDto {
   @IsOptional()
   readonly QRCode: string;
 
-  @IsEnum(TicketType)
-  readonly ticketType: TicketType;
-
-  @IsString()
+  @IsNumber()
   readonly price: number;
 }
