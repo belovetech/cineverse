@@ -34,7 +34,7 @@ export class Ticket extends Model<Ticket> {
   @Column({ type: DataType.STRING })
   seatNumber!: string;
 
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.TEXT })
   QRCode!: string;
 
   @Column({

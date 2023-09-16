@@ -17,4 +17,12 @@ export class TicketRepository {
     Ticket.update({ ...options }, { where: { ticketId } });
     return await this.findByPk(ticketId);
   }
+
+  public async delete(ticketId: string): Promise<void> {
+    await Ticket.destroy({ where: { ticketId } });
+  }
+
+  public async deleteMany(bookingId: string) {
+    await Ticket.destroy({ where: { bookingId } });
+  }
 }

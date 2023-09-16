@@ -1,21 +1,14 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
-import { BadRequestException, logger } from '@cineverse/libs';
-import { CreateBookingDto, CreateTicketDto } from '@dto';
+import { BadRequestException } from '@cineverse/libs';
+import { CreateBookingDto } from '@dto';
 import { ticketService } from '@services';
-import { generateQRCode } from '@utils/generateQRcode';
 import { BookingStatus } from '@models/booking';
-// import database from '@datasource/database';
+import { v4 as uuidv4 } from 'uuid';
+import { SeatUtils } from './seat.utils';
 
-export interface Seat {
-  seatId: string;
-  seatNumber: string;
-  seatType: string;
-  price: number;
-  status: string;
-}
+const { calculateTotalAmount, getUnavailableSeats } = new SeatUtils();
 
 export class BookingService {
   public async create(booking: CreateBookingDto): Promise<Booking> {
@@ -25,73 +18,46 @@ export class BookingService {
       throw new BadRequestException({ errors: validationErrors });
     }
 
-    const unavailable = this.getUnavailableSeats(booking.seats);
+    const unavailable = getUnavailableSeats(booking.seats);
     if (unavailable.seats.length > 0) {
       throw new BadRequestException(unavailable);
     }
 
-    // TODO: update seat status to booked by making an update request to seat-service
-    // Create booking
-    let booked;
+    let newBooking: Booking | undefined;
+    let updatedBooking: Booking[] | [];
     try {
-      booking.totalAmount = this.calculateTotalAmount(booking.seats);
-      booking.bookingStatus = BookingStatus.COMPLETED;
-      booked = await bookingRepository.create(booking);
-    } catch (error) {
-      booking.bookingStatus = BookingStatus.CANCELLED;
-    }
-
-    // generate ticket for each seat
-    try {
-      await this.createTicket(booked.bookingId, booking.seats);
-    } catch (error) {
-      throw new BadRequestException(error);
+      booking.bookingId = uuidv4();
+      newBooking = await bookingRepository.create(booking);
+      await this.updateBookingStatus(newBooking, BookingStatus.COMPLETED);
+      updatedBooking = await this.updateBookingTotalAmount(newBooking);
+      await ticketService.generateTickets(newBooking.bookingId, booking.seats);
+      // TODO: update seat status to newBooking
+    } catch (err) {
+      if (newBooking !== undefined) {
+        this.updateBookingStatus(booking, BookingStatus.CANCELLED);
+        await ticketService.deleteGeneratedTickets(newBooking.bookingId);
+        await bookingRepository.delete(newBooking.bookingId);
+        // TODO: update seat status to available/cancelled
+      }
+      throw new BadRequestException(JSON.parse((err as Error).message));
     }
 
     // TODO: make payment via rabbitmq to payment-service
-    return booked;
+    return updatedBooking[0];
   }
 
-  private async createTicket(bookingId: string, seats: Seat[]) {
-    for (const seat of seats) {
-      try {
-        const priceToDecimal = (price) => Number(price.toFixed(2));
-        await ticketService.create({
-          bookingId: bookingId,
-          seatNumber: seat.seatNumber,
-          price: priceToDecimal(seat.price),
-          QRCode: await this.generateQRCode(seat),
-        } as CreateTicketDto);
-      } catch (error) {
-        if (error instanceof BadRequestException) {
-          throw error;
-        }
-        logger.error('Error creating ticket:', error);
-      }
-    }
-  }
-
-  private async generateQRCode(seat: Seat): Promise<string> {
-    const [_, qrImagePath] = await generateQRCode({
-      qrcodeId: uuidv4(),
-      seatId: seat.seatId,
-      seatNumber: seat.seatNumber,
-      price: seat.price,
+  private async updateBookingStatus(
+    booking: Partial<Booking>,
+    status: BookingStatus,
+  ) {
+    return await bookingRepository.update(booking.bookingId, {
+      bookingStatus: status,
     });
-    return qrImagePath;
   }
 
-  private calculateTotalAmount(seats: Seat[]): number {
-    // TODO: calculate only available seats price
-    return seats.reduce((total, seat) => total + seat.price, 0);
-  }
-
-  private getUnavailableSeats(seats: Seat[]): {
-    message: string;
-    seats: Seat[];
-  } {
-    const unavailableSeats = seats.filter((seat) => seat.status === 'booked');
-    const message = 'Seats are not available, kindly choose another seat';
-    return { message, seats: unavailableSeats };
+  private updateBookingTotalAmount(booking: Partial<Booking>) {
+    return bookingRepository.update(booking.bookingId, {
+      totalAmount: calculateTotalAmount(booking.seats),
+    });
   }
 }
