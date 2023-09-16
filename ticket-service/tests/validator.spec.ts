@@ -1,4 +1,4 @@
-import { describe, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { validateDto } from '../src/utils/validator';
 import { TestDto } from '../src/utils/validator.setup';
 

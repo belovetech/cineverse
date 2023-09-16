@@ -15,6 +15,7 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
     "outDir": "./dist",
     "removeComments": true,
     "resolveJsonModule": true,

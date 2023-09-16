@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Ticket } from './ticket';
 import { Seat } from '@services/booking.service';
 import {
@@ -10,6 +11,7 @@ import {
   HasMany,
   Default,
   PrimaryKey,
+  BeforeCreate,
 } from 'sequelize-typescript';
 
 export enum BookingStatus {
@@ -24,7 +26,7 @@ export class Booking extends Model<Booking> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID, allowNull: false })
-  bookingId: string;
+  bookingId!: string;
 
   @Column({ type: DataType.STRING })
   customerId: string;
@@ -63,4 +65,9 @@ export class Booking extends Model<Booking> {
 
   @Column({ type: DataType.JSONB, allowNull: false, defaultValue: [] })
   seats: Seat[];
+
+  @BeforeCreate
+  static addUUID(instance: Booking) {
+    instance.bookingId = instance.bookingId ?? uuidv4();
+  }
 }
