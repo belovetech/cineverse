@@ -13,14 +13,15 @@ const { calculateTotalAmount, getUnavailableSeats } = new SeatUtils();
 export class BookingService {
   public async create(booking: CreateBookingDto): Promise<Booking> {
     const validationErrors = await validateDto(booking, CreateBookingDto);
+    console.log(validationErrors);
 
     if (validationErrors.length > 0) {
       throw new BadRequestException({ errors: validationErrors });
     }
 
-    const unavailable = getUnavailableSeats(booking.seats);
-    if (unavailable.seats.length > 0) {
-      throw new BadRequestException(unavailable);
+    const unavailableSeat = getUnavailableSeats(booking.seats);
+    if (unavailableSeat.seats.length > 0) {
+      throw new BadRequestException(unavailableSeat);
     }
 
     let newBooking: Booking | undefined;
@@ -30,7 +31,13 @@ export class BookingService {
       newBooking = await bookingRepository.create(booking);
       await this.updateBookingStatus(newBooking, BookingStatus.COMPLETED);
       updatedBooking = await this.updateBookingTotalAmount(newBooking);
-      await ticketService.generateTickets(newBooking.bookingId, booking.seats);
+      if (!newBooking.seats.length) {
+        throw new BadRequestException({ message: 'No seats selected' });
+      }
+      await ticketService.generateTickets(
+        newBooking.bookingId,
+        newBooking.seats,
+      );
       // TODO: update seat status to newBooking
     } catch (err) {
       if (newBooking !== undefined) {
