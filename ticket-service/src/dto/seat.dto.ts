@@ -1,8 +1,7 @@
 import {
-  IsOptional,
   IsString,
   IsNumber,
-  IsUUID,
+  IsAlphanumeric,
   IsNotEmpty,
   IsEnum,
 } from 'class-validator';
@@ -21,23 +20,26 @@ export enum SeatType {
 
 export class SeatDto {
   @IsString()
-  @IsOptional()
   readonly seatId: string;
 
-  @IsNumber()
+  @IsAlphanumeric()
   readonly seatNumber: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'seatType is required' })
   @IsEnum(SeatType)
-  readonly seatType: SeatType = SeatType.REGULAR;
+  readonly seatType: SeatType;
 
-  @IsNumber()
+  @IsNumber(
+    { allowNaN: false },
+    {
+      message: 'price must be a number',
+    },
+  )
   public price: number;
 
-  @IsNotEmpty()
-  @IsEnum(Status)
-  readonly status: Status = Status.AVAILABLE;
-
-  @IsUUID()
-  readonly theaterId: string;
+  @IsNotEmpty({ message: 'status is required' })
+  @IsEnum(Status, {
+    message: 'status must be a valid enum value',
+  })
+  readonly status: Status;
 }

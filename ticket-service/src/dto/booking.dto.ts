@@ -1,12 +1,12 @@
 import { BookingStatus } from '@models/booking';
-import { Seat } from '@services/seat.utils';
+import { SeatDto } from './seat.dto';
 import {
   IsOptional,
   IsString,
   IsEnum,
   IsUUID,
-  IsAlphanumeric,
   IsArray,
+  ValidateNested,
 } from 'class-validator';
 
 export class CreateBookingDto {
@@ -26,9 +26,6 @@ export class CreateBookingDto {
   @IsUUID()
   showtimeId: string;
 
-  @IsAlphanumeric()
-  seatNumber: string;
-
   @IsUUID()
   @IsOptional()
   paymentId: string;
@@ -38,5 +35,6 @@ export class CreateBookingDto {
   bookingStatus: BookingStatus;
 
   @IsArray()
-  seats: Seat[];
+  @ValidateNested()
+  seats: SeatDto[];
 }

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Ticket } from './ticket';
-import { Seat } from '@services/booking.service';
+import { Seat } from '@services/seat.utils';
 import {
   Column,
   UpdatedAt,
@@ -63,7 +63,7 @@ export class Booking extends Model<Booking> {
   @HasMany(() => Ticket)
   tickets: Ticket[];
 
-  @Column({ type: DataType.JSONB, allowNull: false, defaultValue: [] })
+  @Column({ type: DataType.JSONB, allowNull: false })
   seats: Seat[];
 
   @BeforeCreate

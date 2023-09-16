@@ -3,11 +3,9 @@ import {
   IsString,
   IsNumber,
   IsUUID,
-  ValidateNested,
+  IsEnum,
 } from 'class-validator';
-import { Seat } from '@services/seat.utils';
-import { Type } from 'class-transformer';
-import { SeatDto } from './seat.dto';
+import { TicketType } from '@models/ticket';
 
 export class CreateTicketDto {
   @IsUUID()
@@ -27,7 +25,7 @@ export class CreateTicketDto {
   @IsNumber()
   readonly price: number;
 
-  @ValidateNested({ each: true })
-  @Type(() => SeatDto)
-  seats: Seat[];
+  @IsEnum(TicketType)
+  @IsOptional()
+  readonly ticketType: TicketType;
 }
