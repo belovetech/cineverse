@@ -2,4 +2,5 @@ packages:
   - auth-service
   - movie-service
   - ticket-service
+  - payment-service
   - packages/*
