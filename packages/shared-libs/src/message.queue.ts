@@ -61,7 +61,7 @@ export default class MessageQueue {
       await this.queue.activateConsumer((message) => {
         content = message.getContent();
         message.ack();
-        logger.info('[x]: message recieved');
+        logger.info('[x]: message received');
       });
       return content;
     } catch (error) {
