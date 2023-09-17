@@ -1,5 +1,5 @@
 import { expect, describe, it } from 'vitest';
-import Logger from '../src/logger';
+import { Logger } from '../src/logger';
 
 describe.concurrent('#Logger', () => {
   describe('#loggerInstance', () => {

@@ -1,5 +1,6 @@
 export * from './exceptions';
 export * from './logger';
+export * from './validateDto';
 export { default as Validator } from './validator';
 export { default as PostgresClient } from './postgresClient';
 export { default as RedisClient } from './redisClient';
