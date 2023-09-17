@@ -4,7 +4,7 @@ interface ValidatorResponse {
   [key: string]: string;
 }
 
-export const validateDto = async (
+const validateDto = async (
   model: unknown,
   dto: any
 ): Promise<ValidatorResponse[] | []> => {
@@ -22,3 +22,5 @@ export const validateDto = async (
 
   return errors;
 };
+
+export default validateDto;
