@@ -1,9 +1,11 @@
 {
   "name": "payment-service",
   "version": "1.0.0",
+  "main": "server.ts",
   "description": "payment service for the cineverse app",
   "scripts": {
-    "build": "tsc src/*.ts",
+    "build": "rm -rf dist && tsc",
+    "dev": "cross-env NODE_ENV=development nodemon",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "tsc && dist/src/server.js",
     "start:dev": "pnpm run test --watch",
@@ -17,6 +19,10 @@
   "dependencies": {
     "@cineverse/libs": "workspace:*",
     "amqp-ts": "^1.8.0",
+    "class-validator": "^0.14.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "sequelize-typescript": "^2.1.5",
     "uuid": "^9.0.0"
   },
