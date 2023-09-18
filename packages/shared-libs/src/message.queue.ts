@@ -57,7 +57,7 @@ export default class MessageQueue {
   }
 
   async sendMessageWithRetry(
-    message: Amqp.Message,
+    message: unknown,
     maxRetries?: number
   ): Promise<string> {
     let retryCount = 0;
@@ -89,17 +89,19 @@ export default class MessageQueue {
   }
 
   public async getMessage(): Promise<unknown> {
-    try {
-      let content;
-      await this.queue.activateConsumer((message) => {
-        content = message.getContent();
-        message.ack();
-        logger.info('[x]: message received');
-      });
-      return content;
-    } catch (error) {
-      logger.error('Error getting message:', error);
-    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.queue.activateConsumer((message) => {
+          const content = message.getContent();
+          message.ack();
+          logger.info('[x]: message received', content);
+          resolve(content);
+        });
+      } catch (error) {
+        logger.error('Error getting message:', error);
+        reject(error);
+      }
+    });
   }
 
   public closeConnection() {
