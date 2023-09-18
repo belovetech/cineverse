@@ -1,7 +1,7 @@
 import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
-import { BadRequestException } from '@cineverse/libs';
+import { BadRequestException, MessageQueue } from '@cineverse/libs';
 import { CreateBookingDto } from '@dto';
 import { ticketService } from '@services';
 import { BookingStatus } from '@models/booking';
@@ -11,6 +11,8 @@ import { SeatUtils } from './seat.utils';
 const { calculateTotalAmount, getUnavailableSeats } = new SeatUtils();
 
 export class BookingService {
+  constructor(private messageQueue = new MessageQueue('amqp://localhost')) {}
+
   public async create(booking: CreateBookingDto): Promise<Booking> {
     const validationErrors = await validateDto(booking, CreateBookingDto);
     console.log(validationErrors);
@@ -38,6 +40,9 @@ export class BookingService {
         newBooking.bookingId,
         newBooking.seats,
       );
+
+      this.messageQueue.bindExchangeWithQueue('Booking-Ticket', 'Booking');
+      this.messageQueue.sendMessage(updatedBooking[0]);
       // TODO: update seat status to newBooking
     } catch (err) {
       if (newBooking !== undefined) {
