@@ -1,7 +1,7 @@
 import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
-import { BadRequestException, MessageQueue } from '@cineverse/libs';
+import { BadRequestException, MessageQueue, logger } from '@cineverse/libs';
 import { CreateBookingDto } from '@dto';
 import { ticketService } from '@services';
 import { BookingStatus } from '@models/booking';
@@ -15,7 +15,6 @@ export class BookingService {
 
   public async create(booking: CreateBookingDto): Promise<Booking> {
     const validationErrors = await validateDto(booking, CreateBookingDto);
-    console.log(validationErrors);
 
     if (validationErrors.length > 0) {
       throw new BadRequestException({ errors: validationErrors });
@@ -41,7 +40,7 @@ export class BookingService {
         newBooking.seats,
       );
 
-      this.messageQueue.bindExchangeWithQueue('Booking-Ticket', 'Booking');
+      this.messageQueue.bindExchangeWithQueue('booking-X', 'booking-queue');
       this.messageQueue.sendMessage(updatedBooking[0]);
       // TODO: update seat status to newBooking
     } catch (err) {
@@ -70,6 +69,17 @@ export class BookingService {
   private updateBookingTotalAmount(booking: Partial<Booking>) {
     return bookingRepository.update(booking.bookingId, {
       totalAmount: calculateTotalAmount(booking.seats),
+    });
+  }
+
+  public async checkPaymentStatus() {
+    return new Promise((resolve, reject) => {
+      try {
+        const content = this.messageQueue.getMessage();
+        resolve(content);
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 }

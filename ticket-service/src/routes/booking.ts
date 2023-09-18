@@ -12,5 +12,6 @@ export class BookingRoute implements IRoute {
 
   private initializeRoutes() {
     this.router.post(`${this.path}`, bookingController.create);
+    this.router.get(`${this.path}/payment-status`, bookingController.paymentStatus);
   }
 }

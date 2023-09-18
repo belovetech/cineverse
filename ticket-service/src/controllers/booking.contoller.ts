@@ -12,4 +12,15 @@ export class BookingController {
       return next(error);
     }
   }
+
+  public async paymentStatus(req: Request, res: Response, next: NextFunction) {
+    try {
+      const content = await bookingService.checkPaymentStatus();
+      return res
+        .status(200)
+        .json({ message: 'Payment status checked', data: content });
+    } catch (error) {
+      return next(error);
+    }
+  }
 }
