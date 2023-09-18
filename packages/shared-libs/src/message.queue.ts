@@ -17,6 +17,7 @@ export default class MessageQueue {
   public readonly connection: Amqp.Connection;
   private queue: Amqp.Queue;
   private exchange: Amqp.Exchange;
+  private MAX_RETRIES = 5;
 
   constructor(url: string) {
     this.url = url;
@@ -44,7 +45,7 @@ export default class MessageQueue {
   public async sendMessage(message: unknown): Promise<boolean> {
     try {
       await this.connection.completeConfiguration().then(async () => {
-        const msg = new Amqp.Message(message);
+        const msg = new Amqp.Message(message, { deliveryMode: 2 });
         await this.exchange.send(msg);
         logger.info('[x]: message sent');
       });
@@ -53,6 +54,38 @@ export default class MessageQueue {
       logger.error('Error sending message:', error);
       return false;
     }
+  }
+
+  async sendMessageWithRetry(
+    message: Amqp.Message,
+    maxRetries?: number
+  ): Promise<string> {
+    let retryCount = 0;
+
+    async function trySending(): Promise<boolean | undefined> {
+      try {
+        const msg = new Amqp.Message(message, { deliveryMode: 2 });
+        await this.exchange.send(msg);
+        logger.info('[x]: message sent');
+        return true;
+      } catch (error) {
+        if (retryCount < (maxRetries ?? this.MAX_RETRIES)) {
+          logger.error(
+            `Message sending failed. Retrying... [${retryCount + 1}]`
+          );
+          retryCount++;
+          setTimeout(trySending, 1000);
+        } else {
+          logger.error('Max retries reached. Message could not be sent.');
+          return false;
+        }
+      } finally {
+        logger.info('send Message With Retry completed.');
+      }
+    }
+
+    trySending();
+    return 'DONE';
   }
 
   public async getMessage(): Promise<unknown> {
