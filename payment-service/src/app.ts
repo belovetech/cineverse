@@ -26,8 +26,9 @@ export default class App {
   }
 
   private makePayment() {
-    const paymentService = new PaymentService();
-    console.log('payment service', paymentService);
-    paymentService.createPayment();
+    setTimeout(() => {
+      const paymentService = new PaymentService();
+      paymentService.createPayment();
+    }, 1000);
   }
 }

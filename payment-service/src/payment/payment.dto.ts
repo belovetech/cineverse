@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsUUID, IsDecimal } from 'class-validator';
+import { IsOptional, IsString, IsNotEmpty, IsUUID } from 'class-validator';
 
 export class CreatePaymentDto {
   @IsString()
@@ -8,8 +8,8 @@ export class CreatePaymentDto {
   @IsUUID()
   readonly bookingId: string;
 
-  @IsDecimal()
-  readonly totalAmount: number;
+  @IsNotEmpty()
+  readonly totalAmount: string;
 
   @IsString()
   readonly status: string;
