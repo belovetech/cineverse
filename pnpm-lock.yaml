@@ -305,6 +305,18 @@ importers:
       amqp-ts:
         specifier: ^1.8.0
         version: 1.8.0
+      class-validator:
+        specifier: ^0.14.0
+        version: 0.14.0
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+      express:
+        specifier: ^4.18.2
+        version: 4.18.2
       sequelize-typescript:
         specifier: ^2.1.5
         version: 2.1.5(@types/node@20.6.0)(@types/validator@13.11.1)(reflect-metadata@0.1.13)(sequelize@6.33.0)

@@ -11,6 +11,6 @@ export class CreatePaymentDto {
   @IsNotEmpty()
   readonly totalAmount: string;
 
-  @IsString()
-  readonly status: string;
+  // @IsString()
+  // status: string;
 }

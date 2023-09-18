@@ -12,13 +12,13 @@ export default class PaymentService {
 
   async createPayment(): Promise<boolean> {
     try {
-      this.messageQueue.bindExchangeWithQueue('Booking-Ticket', 'Booking');
+      this.messageQueue.bindExchangeWithQueue('booking-X', 'booking-queue');
       const message =
         (await this.messageQueue.getMessage()) as CreatePaymentDto;
 
       const payment = new Payment();
-      if (message || message !== undefined) {
-        payment.bookingId = message.bookingId;
+      if (message && message !== undefined) {
+        payment.bookingId = message?.bookingId;
         payment.amount = Number(message.totalAmount);
         payment.status = 'COMPLETED';
 
@@ -39,6 +39,7 @@ export default class PaymentService {
       }
       return false;
     } catch (error) {
+      this.messageQueue.bindExchangeWithQueue('payment-X', 'payment-queue');
       await this.messageQueue.sendMessage({
         status: 'failed',
         data: {},
