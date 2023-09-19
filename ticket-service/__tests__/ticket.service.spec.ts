@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { TicketService } from '../src/services/ticket.service';
-import { Seat } from '../src/services/seat.utils';
 
 describe('TicketService', () => {
   let ticketService: TicketService;

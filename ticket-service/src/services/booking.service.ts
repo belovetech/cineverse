@@ -64,7 +64,7 @@ export class BookingService {
     return updatedBooking[0];
   }
 
-  private async updateBookingStatus(
+  public async updateBookingStatus(
     booking: Partial<Booking>,
     status: BookingStatus,
   ) {
@@ -73,7 +73,7 @@ export class BookingService {
     });
   }
 
-  private updateBookingStatusAndTotalAmount(booking: Partial<Booking>) {
+  public updateBookingStatusAndTotalAmount(booking: Partial<Booking>) {
     return bookingRepository.update(booking.bookingId, {
       bookingStatus: BookingStatus.COMPLETED,
       totalAmount: calculateTotalAmount(booking.seats),
