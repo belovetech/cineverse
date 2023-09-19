@@ -1,5 +1,5 @@
 import { Booking } from '@models';
-import { CreateBookingDto } from '@dto';
+import { CreateBookingDto } from '@dtos';
 
 export class BookingRepository {
   public async create(booking: CreateBookingDto): Promise<Booking> {

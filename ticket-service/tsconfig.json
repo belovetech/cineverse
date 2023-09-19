@@ -40,6 +40,6 @@
     }
   },
   "include": ["src/**/*.ts", ".env"],
-  "exclude": ["node_modules/**/*", ".vscode/**/*", "tests"],
+  "exclude": ["node_modules", "__tests__", "dist", "**/*spec.ts"],
   "ts-node": { "require": ["tsconfig-paths/register"] }
 }

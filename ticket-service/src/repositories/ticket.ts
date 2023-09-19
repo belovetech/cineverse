@@ -1,5 +1,5 @@
 import { Ticket } from '@models';
-import { CreateTicketDto } from '@dto';
+import { CreateTicketDto } from '@dtos';
 
 export class TicketRepository {
   public async create(payment: CreateTicketDto): Promise<Ticket> {

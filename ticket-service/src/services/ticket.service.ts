@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Ticket } from '@models';
-import { CreateTicketDto } from '@dto';
+import { CreateTicketDto } from '@dtos';
 import { ticketRepository } from '@repositories';
 import { BadRequestException, validateDto } from '@cineverse/libs';
 import { Seat } from './seat.utils';
@@ -17,6 +17,10 @@ export class TicketService {
 
   async delete(ticketId: string): Promise<void> {
     await ticketRepository.delete(ticketId);
+  }
+
+  async getTicket(ticketId: string): Promise<Ticket> {
+    return await ticketRepository.findByPk(ticketId);
   }
 
   async updateTicket(
@@ -44,7 +48,7 @@ export class TicketService {
     await ticketRepository.deleteMany(bookingId);
   }
 
-  private async generateQRCode(seat: Seat): Promise<string> {
+  public async generateQRCode(seat: Seat): Promise<string> {
     const [QRCode, QRImagePath] = await generateQRCode({
       qrcodeId: uuidv4(),
       seatId: seat.seatId,

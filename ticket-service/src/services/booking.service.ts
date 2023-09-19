@@ -1,6 +1,6 @@
 import { Booking } from '@models';
 import { bookingRepository } from '@repositories';
-import { CreateBookingDto } from '@dto';
+import { CreateBookingDto } from '@dtos';
 import { ticketService } from '@services';
 import { BookingStatus } from '@models/booking';
 import { v4 as uuidv4 } from 'uuid';
