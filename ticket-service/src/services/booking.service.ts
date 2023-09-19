@@ -1,7 +1,7 @@
 import { Booking } from '@models';
 import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
-import { BadRequestException, MessageQueue, logger } from '@cineverse/libs';
+import { BadRequestException, MessageQueue } from '@cineverse/libs';
 import { CreateBookingDto } from '@dto';
 import { ticketService } from '@services';
 import { BookingStatus } from '@models/booking';
@@ -28,20 +28,25 @@ export class BookingService {
     let newBooking: Booking | undefined;
     let updatedBooking: Booking[] | [];
     try {
-      booking.bookingId = uuidv4();
-      newBooking = await bookingRepository.create(booking);
-      await this.updateBookingStatus(newBooking, BookingStatus.COMPLETED);
-      updatedBooking = await this.updateBookingTotalAmount(newBooking);
+      newBooking = await bookingRepository.create({
+        bookingId: uuidv4(),
+        ...booking,
+      });
+
       if (!newBooking.seats.length) {
         throw new BadRequestException({ message: 'No seats selected' });
       }
+
+      updatedBooking = await this.updateBookingStatusAndTotalAmount(newBooking);
+      // send booking details for payment process
+      this.messageQueue.bindExchangeWithQueue('booking-X', 'booking-queue');
+      this.messageQueue.sendMessage(updatedBooking[0]);
+
       await ticketService.generateTickets(
         newBooking.bookingId,
         newBooking.seats,
       );
 
-      this.messageQueue.bindExchangeWithQueue('booking-X', 'booking-queue');
-      this.messageQueue.sendMessage(updatedBooking[0]);
       // TODO: update seat status to newBooking
     } catch (err) {
       if (newBooking !== undefined) {
@@ -53,7 +58,6 @@ export class BookingService {
       throw new BadRequestException(JSON.parse((err as Error).message));
     }
 
-    // TODO: make payment via rabbitmq to payment-service
     return updatedBooking[0];
   }
 
@@ -66,8 +70,9 @@ export class BookingService {
     });
   }
 
-  private updateBookingTotalAmount(booking: Partial<Booking>) {
+  private updateBookingStatusAndTotalAmount(booking: Partial<Booking>) {
     return bookingRepository.update(booking.bookingId, {
+      bookingStatus: BookingStatus.COMPLETED,
       totalAmount: calculateTotalAmount(booking.seats),
     });
   }
