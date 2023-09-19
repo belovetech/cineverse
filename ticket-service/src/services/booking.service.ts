@@ -1,12 +1,15 @@
 import { Booking } from '@models';
-import { validateDto } from '@utils/validator';
 import { bookingRepository } from '@repositories';
-import { BadRequestException, MessageQueue } from '@cineverse/libs';
 import { CreateBookingDto } from '@dto';
 import { ticketService } from '@services';
 import { BookingStatus } from '@models/booking';
 import { v4 as uuidv4 } from 'uuid';
 import { SeatUtils } from './seat.utils';
+import {
+  BadRequestException,
+  MessageQueue,
+  validateDto,
+} from '@cineverse/libs';
 
 const { calculateTotalAmount, getUnavailableSeats } = new SeatUtils();
 

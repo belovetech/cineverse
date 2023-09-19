@@ -1,9 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Ticket } from '@models';
 import { CreateTicketDto } from '@dto';
-import { validateDto } from '@utils/validator';
 import { ticketRepository } from '@repositories';
-import { BadRequestException } from '@cineverse/libs';
+import { BadRequestException, validateDto } from '@cineverse/libs';
 import { Seat } from './seat.utils';
 import { generateQRCode } from '@utils/generateQRcode';
 
