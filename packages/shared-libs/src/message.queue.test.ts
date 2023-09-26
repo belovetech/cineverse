@@ -1,5 +1,4 @@
-import { expect, describe, it, beforeAll, afterAll } from 'vitest';
-import { MessageQueue } from '../src';
+import MessageQueue from './message.queue';
 
 describe('MessageQueue', () => {
   let messageQueue: MessageQueue;

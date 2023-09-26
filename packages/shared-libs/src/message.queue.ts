@@ -15,8 +15,8 @@ import { logger } from './logger';
 export default class MessageQueue {
   private url: string;
   public readonly connection: Amqp.Connection;
-  private queue: Amqp.Queue;
-  private exchange: Amqp.Exchange;
+  public queue: Amqp.Queue;
+  public exchange: Amqp.Exchange;
   private MAX_RETRIES = 5;
 
   constructor(url: string) {
