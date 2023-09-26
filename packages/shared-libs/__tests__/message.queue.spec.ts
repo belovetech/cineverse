@@ -6,7 +6,7 @@ describe(
   () => {
     let messageQueue: MessageQueue;
 
-    beforeAll(() => {
+    beforeAll(async () => {
       messageQueue = new MessageQueue('amqp://localhost');
     });
 

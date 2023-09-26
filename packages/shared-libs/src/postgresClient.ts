@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sequelize } from 'sequelize-typescript';
 import { logger, DB } from './index';
 

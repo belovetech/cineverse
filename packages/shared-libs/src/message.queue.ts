@@ -89,6 +89,7 @@ export default class MessageQueue {
   }
 
   public async getMessage(): Promise<unknown> {
+    // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
       try {
         await this.queue.activateConsumer((message) => {
