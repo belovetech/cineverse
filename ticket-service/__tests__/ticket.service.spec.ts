@@ -13,7 +13,7 @@ describe('TicketService', () => {
         await ticketService.createTicket({
           bookingId: 'bookingId',
           price: 10,
-        } as any);
+        } as unknown);
       } catch (error) {
         expect(error.message).toBe('seatNumber must be a string');
       }

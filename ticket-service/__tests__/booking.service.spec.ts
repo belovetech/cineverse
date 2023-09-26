@@ -11,7 +11,7 @@ describe('BookingService', () => {
   describe('create', () => {
     it('should throw an error if booking is not valid', async () => {
       try {
-        await bookingService.create({} as any);
+        await bookingService.create({} as unknown);
       } catch (error) {
         expect(error.message).toBe('bookingId must be a string');
       }
@@ -38,7 +38,7 @@ describe('BookingService', () => {
     });
 
     it('should update booking status and total amount', async () => {
-      let booking = await createBooking(bookingService);
+      const booking = await createBooking(bookingService);
       booking.totalAmount = 500.0;
       const updatedBooking =
         await bookingService.updateBookingStatusAndTotalAmount(booking);

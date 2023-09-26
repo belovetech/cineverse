@@ -14,7 +14,8 @@ export class SeatUtils {
   }
 
   public async updateSeatStatus(seatId: string, status: string) {
-    return 'TODO: update seat status';
+    //TODO: update seat status
+    return seatId + status;
   }
 
   public getUnavailableSeats(seats: Seat[]): {

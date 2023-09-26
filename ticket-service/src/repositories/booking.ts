@@ -10,11 +10,10 @@ export class BookingRepository {
     bookingId: string,
     options: Partial<Booking>,
   ): Promise<Booking[]> {
-    const [_, updatedBooking] = await Booking.update(
+    return await Booking.update(
       { ...options },
       { where: { bookingId }, returning: true },
-    );
-    return updatedBooking;
+    )[1];
   }
 
   public async findByPk(bookingId: string): Promise<Booking | null> {
