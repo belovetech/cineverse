@@ -22,7 +22,6 @@
     "test": "npm run docker-rabbitmq && vitest --watch",
     "ui:test": "vitest --ui",
     "lint": "npm run prettier:check && npm run eslint",
-    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\"",
     "prettier:check": "npm run prettier:cli -- -l",
     "prettier:fix": "npm run prettier:cli -- --write",

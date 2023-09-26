@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Express } from 'express';
 import { describe, expect, vi, it } from 'vitest';
 import { logger } from '../src/index';
 import {
@@ -6,12 +6,11 @@ import {
   concatMethods,
   longestLength,
   getlongestPath,
-  EndpointAttributes,
   printEndpoints,
 } from '../src/print.endpoints';
 
 describe('EndpointLogger', () => {
-  const app: Application = express();
+  const app: Express = express();
 
   app.get('/test', (req, res) => {
     res.send('test');
@@ -47,14 +46,14 @@ describe('EndpointLogger', () => {
 
   describe('#concatMethods', () => {
     it('should return a 2d array of methods', () => {
-      const methods = concatMethods(endpoints as EndpointAttributes[]);
+      const methods = concatMethods(endpoints);
       expect(methods).toStrictEqual([['GET', 'POST'], ['POST']]);
     });
   });
 
   describe('#longestLength', () => {
     it('should return the longest length of methods', () => {
-      const methods = concatMethods(endpoints as EndpointAttributes[]);
+      const methods = concatMethods(endpoints);
       const [longestmethodString, itemNumber] = longestLength(methods);
       expect(longestmethodString).toEqual(7);
       expect(itemNumber).toEqual(2);
