@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { v4 as uuidv4 } from 'uuid';
 import { Model, Table, Column, Default, DefaultScope, DataType, BeforeCreate, HasMany } from 'sequelize-typescript';
 import ShowTime from './showtime';
@@ -5,7 +6,6 @@ import ShowTime from './showtime';
 @DefaultScope(() => ({
   attributes: { exclude: ['createdAt', 'updatedAt'] },
 }))
-
 @Table({ tableName: 'movies' })
 export default class Movie extends Model<Movie> {
   @Default(() => uuidv4().replace(/-/g, ''))

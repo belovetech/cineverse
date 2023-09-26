@@ -1,8 +1,8 @@
+/* eslint-disable indent */
 import { v4 as uuidv4 } from 'uuid';
 import { Table, Model, Column, Default, DataType, BelongsTo, ForeignKey, DefaultScope } from 'sequelize-typescript';
 import Movie from './movies';
 import Theater from './theater';
-
 
 @DefaultScope(() => ({
   attributes: { exclude: ['createdAt', 'updatedAt'] },
