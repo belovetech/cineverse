@@ -1,0 +1,50 @@
+name: Linting, Building and Testing
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.17.0' # specify Node.js version here
+
+      - name: Install pnpm
+        run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run lint
+        run: pnpm run lint # add lint script in package.json
+
+
+  # test_and_build:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '18.17.0'
+
+  #     - name: Install pnpm
+  #       run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm
+
+  #     - name: Install dependencies
+  #       run: pnpm install --no-frozen-lockfile
+
+  #     - name: Run build
+  #       run: pnpm run build
+
+  #     - name: Run test
+  #       run: pnpm run test
